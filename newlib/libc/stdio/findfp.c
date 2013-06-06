@@ -27,11 +27,11 @@
 #include "local.h"
 
 #ifdef _REENT_SMALL
-const struct __sFILE_fake __sf_fake_stdin =
+const struct __sFILE __sf_fake_stdin =
     {_NULL, 0, 0, 0, 0, {_NULL, 0}, 0, _NULL};
-const struct __sFILE_fake __sf_fake_stdout =
+const struct __sFILE __sf_fake_stdout =
     {_NULL, 0, 0, 0, 0, {_NULL, 0}, 0, _NULL};
-const struct __sFILE_fake __sf_fake_stderr =
+const struct __sFILE __sf_fake_stderr =
     {_NULL, 0, 0, 0, 0, {_NULL, 0}, 0, _NULL};
 #endif
 
