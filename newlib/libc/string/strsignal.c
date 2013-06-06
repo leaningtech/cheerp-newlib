@@ -57,6 +57,7 @@ QUICKREF
 #include <signal.h>
 #include <stdio.h>
 #include <reent.h>
+#include <malloc.h>
 
 char *
 _DEFUN (strsignal, (signal),

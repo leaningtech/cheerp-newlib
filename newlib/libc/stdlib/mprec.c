@@ -81,7 +81,7 @@
  */
 
 #include <_ansi.h>
-#include <stdlib.h>
+#include <malloc.h>
 #include <string.h>
 #include <reent.h>
 #include "mprec.h"

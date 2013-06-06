@@ -63,6 +63,7 @@ No supporting OS subroutines are required.
 #include <_ansi.h>
 #include <stdio.h>
 #include <errno.h>
+#include <malloc.h>
 #include "local.h"
 
 /* Flush a single file, or (if fp is NULL) all files.  */

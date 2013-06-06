@@ -88,7 +88,7 @@ Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
 
 #include <_ansi.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <malloc.h>
 #include "local.h"
 
 /*

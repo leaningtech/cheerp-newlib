@@ -46,6 +46,7 @@ ANSI C requires <<localtime>>.
 
 #include <time.h>
 #include <reent.h>
+#include <malloc.h>
 
 #ifndef _REENT_ONLY
 

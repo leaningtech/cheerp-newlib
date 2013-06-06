@@ -55,6 +55,7 @@ No supporting OS subroutines are required.
 #include <stdio_ext.h>
 #endif
 #include <errno.h>
+#include <malloc.h>
 #include "local.h"
 
 /* Discard I/O from a single file.  */

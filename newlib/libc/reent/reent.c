@@ -11,6 +11,7 @@ DESCRIPTION
 */
 
 #include <stdlib.h>
+#include <malloc.h>
 #include <reent.h>
 
 #ifdef _REENT_ONLY

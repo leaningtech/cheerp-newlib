@@ -2,7 +2,6 @@
 
 #include <_ansi.h>
 #include <reent.h>
-#include <stdlib.h>
 #include <string.h>
 
 char *

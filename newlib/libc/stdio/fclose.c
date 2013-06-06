@@ -60,7 +60,7 @@ Required OS subroutines: <<close>>, <<fstat>>, <<isatty>>, <<lseek>>,
 #include <_ansi.h>
 #include <reent.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <malloc.h>
 #include <sys/lock.h>
 #include "local.h"
 

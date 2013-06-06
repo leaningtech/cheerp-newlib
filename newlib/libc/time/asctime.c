@@ -50,6 +50,8 @@ ANSI C requires <<asctime>>.
 #include <time.h>
 #include <_ansi.h>
 #include <reent.h>
+#include <malloc.h>
+#include <string.h>
 
 #ifndef _REENT_ONLY
 

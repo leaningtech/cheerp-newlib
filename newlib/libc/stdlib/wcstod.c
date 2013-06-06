@@ -116,6 +116,7 @@ Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
 #include <_ansi.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <malloc.h>
 #include <string.h>
 #include <wchar.h>
 #include <wctype.h>

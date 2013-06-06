@@ -28,7 +28,7 @@
 
 #include <sys/cdefs.h>
 
-#include <stdlib.h>
+#include <malloc.h>
 
 _PTR
 _DEFUN (_reallocf_r, (reentptr, ptr, size),

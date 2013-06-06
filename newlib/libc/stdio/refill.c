@@ -18,7 +18,7 @@
 
 #include <_ansi.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <malloc.h>
 #include <errno.h>
 #include "local.h"
 

@@ -67,6 +67,7 @@ Supporting OS subroutines required: <<sbrk>>.
 #include <string.h>
 #include <sys/lock.h>
 #include <stdint.h>
+#include <malloc.h>
 #include "local.h"
 
 #ifndef __LARGE64_FILES
