@@ -87,6 +87,7 @@ No supporting OS subroutines are required.
 #include <_ansi.h>
 #include <stdio.h>
 #include <errno.h>
+#include <malloc.h>
 #include "local.h"
 
 #ifdef __IMPL_UNLOCKED__

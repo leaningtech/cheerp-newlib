@@ -65,6 +65,7 @@ Supporting OS subroutines required: <<sbrk>>.
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
+#include <malloc.h>
 #include <sys/lock.h>
 #include "local.h"
 

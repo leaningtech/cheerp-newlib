@@ -151,7 +151,7 @@ static char *rcsid = "$Id$";
 #include <_ansi.h>
 #include <reent.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <malloc.h>
 #include <string.h>
 #include <limits.h>
 #include <stdint.h>

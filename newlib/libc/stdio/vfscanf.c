@@ -114,7 +114,7 @@ Supporting OS subroutines required:
 #include <ctype.h>
 #include <wctype.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <malloc.h>
 #include <stdint.h>
 #include <limits.h>
 #include <wchar.h>

@@ -38,7 +38,7 @@ QUICKREF
 */
 
 #include <reent.h>
-#include <stdlib.h>
+#include <malloc.h>
 #include <wchar.h>
 
 wchar_t *

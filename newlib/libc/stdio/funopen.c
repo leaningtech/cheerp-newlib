@@ -83,6 +83,7 @@ Supporting OS subroutines required: <<sbrk>>.
 #include <stdio.h>
 #include <errno.h>
 #include <sys/lock.h>
+#include <malloc.h>
 #include "local.h"
 
 typedef int (*funread)(void *_cookie, char *_buf, _READ_WRITE_BUFSIZE_TYPE _n);

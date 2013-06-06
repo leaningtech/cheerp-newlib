@@ -87,6 +87,7 @@ QUICKREF
 #include <string.h>
 #include <_ansi.h>
 #include <reent.h>
+#include <malloc.h>
 
 #ifndef _REENT_ONLY
 

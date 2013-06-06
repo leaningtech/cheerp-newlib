@@ -104,7 +104,7 @@ Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
 #include <string.h>
 #include <time.h>
 #include <fcntl.h>
-#include <stdlib.h>
+#include <malloc.h>
 #include <errno.h>
 #include <sys/stat.h>
 #include "local.h"

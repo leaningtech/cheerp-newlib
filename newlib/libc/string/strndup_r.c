@@ -1,5 +1,5 @@
 #include <reent.h>
-#include <stdlib.h>
+#include <malloc.h>
 #include <string.h>
 
 char *

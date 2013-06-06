@@ -244,13 +244,6 @@ int _EXFUN(posix_memalign,(void **, size_t, size_t));
 #endif /* ! __STRICT_ANSI__ */
 
 char *	_EXFUN(_dtoa_r,(struct _reent *, double, int, int, int *, int*, char**));
-#ifndef __CYGWIN__
-_PTR	_EXFUN_NOTHROW(_malloc_r,(struct _reent *, size_t));
-_PTR	_EXFUN_NOTHROW(_calloc_r,(struct _reent *, size_t, size_t));
-_VOID	_EXFUN_NOTHROW(_free_r,(struct _reent *, _PTR));
-_PTR	_EXFUN_NOTHROW(_realloc_r,(struct _reent *, _PTR, size_t));
-_VOID	_EXFUN(_mstats_r,(struct _reent *, char *));
-#endif
 int	_EXFUN(_system_r,(struct _reent *, const char *));
 
 _VOID	_EXFUN(__eprintf,(const char *, const char *, unsigned int, const char *));
