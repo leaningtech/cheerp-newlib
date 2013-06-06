@@ -388,6 +388,11 @@
 #define __SMALL_BITFIELDS	/* 16 Bit INT */
 #endif
 
+#if (defined(__DUETTO__))
+/* Fake little endianness */
+#define __IEEE_LITTLE_ENDIAN
+#endif
+
 #ifndef __IEEE_BIG_ENDIAN
 #ifndef __IEEE_LITTLE_ENDIAN
 #error Endianess not declared!!
