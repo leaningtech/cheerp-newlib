@@ -189,6 +189,10 @@
 #define __DYNAMIC_REENT__
 #endif
 
+#ifdef __DUETTO__
+#define _REENT_SMALL
+#endif
+
 /* This block should be kept in sync with GCC's limits.h.  The point
    of having these definitions here is to not include limits.h, which
    would pollute the user namespace, while still using types of the
