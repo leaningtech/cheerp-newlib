@@ -1,5 +1,5 @@
 #ifdef MALLOC_PROVIDED
-int _dummy_calloc = 1;
+extern int _dummy_calloc;
 #else
 /* realloc.c -- a wrapper for realloc_r.  */
 

@@ -1,5 +1,7 @@
 #ifdef MALLOC_PROVIDED
+#ifdef DEFINE_MALLOC
 int _dummy_mallocr = 1;
+#endif
 #else
 /* ---------- To make a malloc.h, start cutting here ------------ */
 
