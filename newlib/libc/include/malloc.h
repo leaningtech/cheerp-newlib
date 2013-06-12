@@ -35,7 +35,7 @@ struct mallinfo {
 /* The routines.  */
 
 extern _PTR malloc _PARAMS ((size_t));
-#ifdef __CYGWIN__
+#if defined(__CYGWIN__) || defined(__DUETTO__)
 #undef _malloc_r
 #define _malloc_r(r, s) malloc (s)
 #else

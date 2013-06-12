@@ -169,7 +169,7 @@ int _EXFUN(sigprocmask, (int how, const sigset_t *set, sigset_t *oset));
 int _EXFUN(pthread_sigmask, (int how, const sigset_t *set, sigset_t *oset));
 #endif
 
-#if defined(__CYGWIN__) || defined(__rtems__)
+#if defined(__CYGWIN__) || defined(__rtems__) || defined(__DUETTO__)
 #undef sigaddset
 #undef sigdelset
 #undef sigemptyset
