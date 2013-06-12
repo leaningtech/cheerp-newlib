@@ -304,7 +304,7 @@ struct _rand48 {
   unsigned short _add;
 #ifdef _REENT_SMALL
   /* Put this in here as well, for good luck.  */
-  __extension__ unsigned long long _rand_next;
+  __extension__ unsigned long _rand_next;
 #endif
 };
 
