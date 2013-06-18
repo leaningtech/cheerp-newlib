@@ -76,7 +76,7 @@ Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
 #include "local.h"
 
 static void
-_DEFUN (print_f, (ptr, buf, invalue, ndigit, type, dot, mode),
+_FUN (print_f, (ptr, buf, invalue, ndigit, type, dot, mode),
 	struct _reent *ptr _AND
 	char *buf _AND
 	double invalue _AND
@@ -144,7 +144,7 @@ _DEFUN (print_f, (ptr, buf, invalue, ndigit, type, dot, mode),
    WIDTH is the number of digits of precision after the decimal point.  */
 
 static void
-_DEFUN (print_e, (ptr, buf, invalue, width, type, dot),
+_FUN (print_e, (ptr, buf, invalue, width, type, dot),
 	struct _reent *ptr _AND
 	char *buf _AND
 	double invalue _AND

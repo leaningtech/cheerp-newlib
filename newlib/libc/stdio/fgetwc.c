@@ -111,7 +111,7 @@ C99, POSIX.1-2001
 #include "local.h"
 
 static wint_t
-_DEFUN(__fgetwc, (ptr, fp),
+_FUN(__fgetwc, (ptr, fp),
 	struct _reent *ptr _AND
 	register FILE *fp)
 {

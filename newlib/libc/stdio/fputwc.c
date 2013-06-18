@@ -118,7 +118,7 @@ C99, POSIX.1-2001
 #include "local.h"
 
 static wint_t
-_DEFUN(__fputwc, (ptr, wc, fp),
+_FUN(__fputwc, (ptr, wc, fp),
 	struct _reent *ptr _AND
 	wchar_t wc _AND
 	FILE *fp)

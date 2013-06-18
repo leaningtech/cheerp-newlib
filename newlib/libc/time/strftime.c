@@ -337,7 +337,7 @@ static _CONST int dname_len[7] =
    -1, 0, or 1 as the adjustment to add to the year for the ISO week
    numbering used in "%g%G%V", avoiding overflow.  */
 static int
-_DEFUN (iso_year_adjust, (tim_p),
+_FUN (iso_year_adjust, (tim_p),
 	_CONST struct tm *tim_p)
 {
   /* Account for fact that tm_year==0 is year 1900.  */

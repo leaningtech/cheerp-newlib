@@ -66,8 +66,12 @@
 #define _EXPARM(name, proto)		(* name) proto
 #define _EXFNPTR(name, proto)		(* name) proto
 #endif
-#define	_DEFUN(name, arglist, args)	name(args)
-#define	_DEFUN_VOID(name)		name(_NOARGS)
+#define	_DEFUN(name, arglist, args)	__attribute__((weak)) name(args)
+#define	_DEFUN_VOID(name)		__attribute__((weak)) name(_NOARGS)
+#define	_FUN(name, arglist, args)	name(args)
+#define	_FUN_VOID(name)			name(_NOARGS)
+#define	_MACDEFUN(name, arglist, args)	name(args)
+#define	_MACDEFUN_VOID(name)		name(_NOARGS)
 #define _CAST_VOID (void)
 #ifndef _LONG_DOUBLE
 #define _LONG_DOUBLE long double

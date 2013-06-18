@@ -337,7 +337,7 @@ int __sprint_r (struct _reent *, FILE *, register struct __suio *);
  * Make sure to avoid inlining.
  */
 _NOINLINE_STATIC int
-_DEFUN(__sbprintf, (rptr, fp, fmt, ap),
+_FUN(__sbprintf, (rptr, fp, fmt, ap),
        struct _reent *rptr _AND
        register FILE *fp   _AND
        _CONST char *fmt  _AND

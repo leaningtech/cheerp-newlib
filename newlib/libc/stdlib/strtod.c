@@ -147,7 +147,7 @@ static _CONST double tinytens[] = { 1e-16, 1e-32, 1e-64, 1e-128,
 #ifndef NO_HEX_FP
 
 static void
-_DEFUN (ULtod, (L, bits, exp, k),
+_FUN (ULtod, (L, bits, exp, k),
 	__ULong *L _AND
 	__ULong *bits _AND
 	Long exp _AND
@@ -186,7 +186,7 @@ _DEFUN (ULtod, (L, bits, exp, k),
 
 #ifdef INFNAN_CHECK
 static int
-_DEFUN (match, (sp, t),
+_FUN (match, (sp, t),
 	_CONST char **sp _AND
 	char *t)
 {

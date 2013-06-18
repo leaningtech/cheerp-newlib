@@ -33,7 +33,7 @@
 #include "mprec.h"
 
 static int
-_DEFUN (quorem,
+_FUN (quorem,
 	(b, S),
 	_Bigint * b _AND _Bigint * S)
 {

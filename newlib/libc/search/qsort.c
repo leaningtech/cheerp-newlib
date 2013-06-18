@@ -104,7 +104,7 @@ static inline void	 swapfunc _PARAMS((char *, char *, int, int));
 	es % sizeof(long) ? 2 : es == sizeof(long)? 0 : 1;
 
 static inline void
-_DEFUN(swapfunc, (a, b, n, swaptype),
+_FUN(swapfunc, (a, b, n, swaptype),
 	char *a _AND
 	char *b _AND
 	int n _AND
@@ -127,7 +127,7 @@ _DEFUN(swapfunc, (a, b, n, swaptype),
 #define vecswap(a, b, n) 	if ((n) > 0) swapfunc(a, b, n, swaptype)
 
 static inline char *
-_DEFUN(med3, (a, b, c, cmp),
+_FUN(med3, (a, b, c, cmp),
 	char *a _AND
 	char *b _AND
 	char *c _AND

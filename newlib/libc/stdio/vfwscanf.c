@@ -290,7 +290,7 @@ _DEFUN(_VFWSCANF_R, (data, fp, fmt, ap),
  * regular ungetwc which will drag in file I/O items we don't need.
  * So, we create our own trimmed-down version.  */
 static wint_t
-_DEFUN(_sungetwc_r, (data, fp, ch),
+_FUN(_sungetwc_r, (data, fp, ch),
 	struct _reent *data _AND
 	wint_t wc           _AND
 	register FILE *fp)
@@ -350,7 +350,7 @@ _DEFUN(_sungetwc_r, (data, fp, ch),
 extern int __ssrefill_r _PARAMS ((struct _reent *ptr, register FILE * fp));
 
 static size_t
-_DEFUN(_sfgetwc_r, (ptr, fp),
+_FUN(_sfgetwc_r, (ptr, fp),
        struct _reent * ptr _AND
        FILE * fp)
 {

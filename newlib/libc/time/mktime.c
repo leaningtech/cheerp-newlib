@@ -67,7 +67,7 @@ static _CONST int _DAYS_BEFORE_MONTH[12] =
 #define _DAYS_IN_YEAR(year) (_ISLEAP(year) ? 366 : 365)
 
 static void 
-_DEFUN(validate_structure, (tim_p),
+_FUN(validate_structure, (tim_p),
      struct tm *tim_p)
 {
   div_t res;

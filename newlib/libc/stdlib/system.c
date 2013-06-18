@@ -119,7 +119,7 @@ extern char **environ;
 static char ***p_environ = &environ;
 
 static int
-_DEFUN(do_system, (ptr, s),
+_FUN(do_system, (ptr, s),
      struct _reent *ptr _AND
      _CONST char *s)
 {
@@ -151,7 +151,7 @@ _DEFUN(do_system, (ptr, s),
 
 #if defined (__CYGWIN__)
 static int
-_DEFUN(do_system, (ptr, s),
+_FUN(do_system, (ptr, s),
      struct _reent *ptr _AND
      _CONST char *s)
 {
