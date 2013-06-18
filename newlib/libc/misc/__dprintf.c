@@ -177,7 +177,7 @@ parse_number (s, p)
 /* Fetch the number at S of SIZE bytes.  */
 
 static long
-_DEFUN(get_number, (s, size, unsigned_p),
+_FUN(get_number, (s, size, unsigned_p),
      char *s _AND
      long size _AND
      int unsigned_p)
@@ -220,7 +220,7 @@ _DEFUN(get_number, (s, size, unsigned_p),
 /* Print X in base BASE.  */
 
 static void
-_DEFUN(print_number, (base, unsigned_p, n),
+_FUN(print_number, (base, unsigned_p, n),
      int base _AND
      int unsigned_p _AND
      long n)
@@ -254,7 +254,7 @@ _DEFUN(print_number, (base, unsigned_p, n),
    stdio is working.  */
 
 static void
-_DEFUN(write_char, (c),
+_FUN(write_char, (c),
      char c)
 {
   _write_r (_REENT, CONSOLE_FD, &c, 1);
@@ -265,7 +265,7 @@ _DEFUN(write_char, (c),
    stdio is working.  */
 
 static void
-_DEFUN(write_string, (s),
+_FUN(write_string, (s),
      _CONST char *s)
 {
   _write_r (_REENT, CONSOLE_FD, s, strlen (s));

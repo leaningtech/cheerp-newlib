@@ -84,7 +84,7 @@ typedef struct fmemcookie {
 /* Read up to non-zero N bytes into BUF from stream described by
    COOKIE; return number of bytes read (0 on EOF).  */
 static _READ_WRITE_RETURN_TYPE
-_DEFUN(fmemreader, (ptr, cookie, buf, n),
+_FUN(fmemreader, (ptr, cookie, buf, n),
        struct _reent *ptr _AND
        void *cookie _AND
        char *buf _AND
@@ -104,7 +104,7 @@ _DEFUN(fmemreader, (ptr, cookie, buf, n),
 /* Write up to non-zero N bytes of BUF into the stream described by COOKIE,
    returning the number of bytes written or EOF on failure.  */
 static _READ_WRITE_RETURN_TYPE
-_DEFUN(fmemwriter, (ptr, cookie, buf, n),
+_FUN(fmemwriter, (ptr, cookie, buf, n),
        struct _reent *ptr _AND
        void *cookie _AND
        const char *buf _AND
@@ -160,7 +160,7 @@ _DEFUN(fmemwriter, (ptr, cookie, buf, n),
 /* Seek to position POS relative to WHENCE within stream described by
    COOKIE; return resulting position or fail with EOF.  */
 static _fpos_t
-_DEFUN(fmemseeker, (ptr, cookie, pos, whence),
+_FUN(fmemseeker, (ptr, cookie, pos, whence),
        struct _reent *ptr _AND
        void *cookie _AND
        _fpos_t pos _AND
@@ -215,7 +215,7 @@ _DEFUN(fmemseeker, (ptr, cookie, pos, whence),
    COOKIE; return resulting position or fail with EOF.  */
 #ifdef __LARGE64_FILES
 static _fpos64_t
-_DEFUN(fmemseeker64, (ptr, cookie, pos, whence),
+_FUN(fmemseeker64, (ptr, cookie, pos, whence),
        struct _reent *ptr _AND
        void *cookie _AND
        _fpos64_t pos _AND
@@ -257,7 +257,7 @@ _DEFUN(fmemseeker64, (ptr, cookie, pos, whence),
 
 /* Reclaim resources used by stream described by COOKIE.  */
 static int
-_DEFUN(fmemcloser, (ptr, cookie),
+_FUN(fmemcloser, (ptr, cookie),
        struct _reent *ptr _AND
        void *cookie)
 {

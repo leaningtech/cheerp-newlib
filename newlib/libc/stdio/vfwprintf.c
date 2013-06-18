@@ -174,7 +174,7 @@ int _EXFUN(__SPRINT, (struct _reent *, FILE *, _CONST char *, size_t));
  * worries about ungetc buffers and so forth.
  */
 static int
-_DEFUN(__sbwprintf, (rptr, fp, fmt, ap),
+_FUN(__sbwprintf, (rptr, fp, fmt, ap),
        struct _reent *rptr _AND
        register FILE *fp   _AND
        _CONST wchar_t *fmt  _AND

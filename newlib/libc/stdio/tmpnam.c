@@ -105,7 +105,7 @@ The global pointer <<environ>> is also required.
    another one.  Return nonzero if successful, otherwise zero.  */
 
 static int
-_DEFUN(worker, (ptr, result, part1, part2, part3, part4),
+_FUN(worker, (ptr, result, part1, part2, part3, part4),
        struct _reent *ptr _AND
        char *result       _AND
        _CONST char *part1 _AND

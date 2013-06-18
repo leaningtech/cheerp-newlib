@@ -23,7 +23,7 @@
 #include "local.h"
 
 static int
-_DEFUN(lflush, (fp),
+_FUN(lflush, (fp),
        FILE *fp)
 {
   if ((fp->_flags & (__SLBF | __SWR)) == (__SLBF | __SWR))

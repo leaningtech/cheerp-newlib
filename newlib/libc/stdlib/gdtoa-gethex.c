@@ -70,7 +70,7 @@ _DEFUN (__hexdig_fun, (c),
 #endif /* !defined(PREFER_SIZE_OVER_SPEED) && !defined(__OPTIMIZE_SIZE__) && !defined(_SMALL_HEXDIG) */
 
 static void
-_DEFUN(rshift, (b, k),
+_FUN(rshift, (b, k),
 	_Bigint *b _AND
 	int k)
 {
@@ -101,7 +101,7 @@ _DEFUN(rshift, (b, k),
 }
 
 static _Bigint *
-_DEFUN (increment, (ptr, b),
+_FUN (increment, (ptr, b),
 	struct _reent *ptr _AND
 	_Bigint *b)
 {

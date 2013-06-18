@@ -172,7 +172,7 @@ PORTABILITY
 #include "local.h"
 
 wint_t
-_DEFUN(__fgetwc, (ptr, fp),
+_FUN(__fgetwc, (ptr, fp),
 	struct _reent *ptr _AND
 	register FILE *fp)
 {

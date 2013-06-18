@@ -139,7 +139,7 @@ Supporting OS subroutines required: <<getpid>>, <<mkdir>>, <<open>>, <<stat>>.
 #include <ctype.h>
 
 static int
-_DEFUN(_gettemp, (ptr, path, doopen, domkdir, suffixlen, flags),
+_FUN(_gettemp, (ptr, path, doopen, domkdir, suffixlen, flags),
        struct _reent *ptr _AND
        char *path         _AND
        register int *doopen _AND

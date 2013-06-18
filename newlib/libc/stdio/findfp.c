@@ -40,7 +40,7 @@ _NOINLINE_STATIC _VOID
 #else
 static _VOID
 #endif
-_DEFUN(std, (ptr, flags, file, data),
+_FUN(std, (ptr, flags, file, data),
             FILE *ptr _AND
             int flags _AND
             int file  _AND
@@ -290,7 +290,7 @@ _DEFUN_VOID(__sinit_lock_release)
 
 /* Walkable file locking routine.  */
 static int
-_DEFUN(__fp_lock, (ptr),
+_FUN(__fp_lock, (ptr),
        FILE * ptr)
 {
   _flockfile (ptr);
@@ -300,7 +300,7 @@ _DEFUN(__fp_lock, (ptr),
 
 /* Walkable file unlocking routine.  */
 static int
-_DEFUN(__fp_unlock, (ptr),
+_FUN(__fp_unlock, (ptr),
        FILE * ptr)
 {
   _funlockfile (ptr);

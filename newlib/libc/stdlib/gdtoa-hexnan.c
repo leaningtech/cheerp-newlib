@@ -45,7 +45,7 @@ THIS SOFTWARE.
 
 #ifdef INFNAN_CHECK
 static void
-_DEFUN (L_shift, (x, x1, i),
+_FUN (L_shift, (x, x1, i),
 	__ULong *x _AND
 	__ULong *x1 _AND
 	int i)

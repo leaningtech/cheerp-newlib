@@ -105,7 +105,7 @@ typedef struct funcookie {
 } funcookie;
 
 static _READ_WRITE_RETURN_TYPE
-_DEFUN(funreader, (ptr, cookie, buf, n),
+_FUN(funreader, (ptr, cookie, buf, n),
        struct _reent *ptr _AND
        void *cookie _AND
        char *buf _AND
@@ -120,7 +120,7 @@ _DEFUN(funreader, (ptr, cookie, buf, n),
 }
 
 static _READ_WRITE_RETURN_TYPE
-_DEFUN(funwriter, (ptr, cookie, buf, n),
+_FUN(funwriter, (ptr, cookie, buf, n),
        struct _reent *ptr _AND
        void *cookie _AND
        const char *buf _AND
@@ -135,7 +135,7 @@ _DEFUN(funwriter, (ptr, cookie, buf, n),
 }
 
 static _fpos_t
-_DEFUN(funseeker, (ptr, cookie, off, whence),
+_FUN(funseeker, (ptr, cookie, off, whence),
        struct _reent *ptr _AND
        void *cookie _AND
        _fpos_t off _AND
@@ -163,7 +163,7 @@ _DEFUN(funseeker, (ptr, cookie, off, whence),
 
 #ifdef __LARGE64_FILES
 static _fpos64_t
-_DEFUN(funseeker64, (ptr, cookie, off, whence),
+_FUN(funseeker64, (ptr, cookie, off, whence),
        struct _reent *ptr _AND
        void *cookie _AND
        _fpos64_t off _AND
@@ -179,7 +179,7 @@ _DEFUN(funseeker64, (ptr, cookie, off, whence),
 #endif /* __LARGE64_FILES */
 
 static int
-_DEFUN(funcloser, (ptr, cookie),
+_FUN(funcloser, (ptr, cookie),
        struct _reent *ptr _AND
        void *cookie)
 {
