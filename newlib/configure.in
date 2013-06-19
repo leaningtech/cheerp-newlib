@@ -257,6 +257,9 @@ else
 fi
 AC_SUBST(CC_FOR_NEWLIB)
 
+CXX_FOR_NEWLIB="${CXX} -I$PWD/targ-include -I${abs_newlib_basedir}/libc/include"
+AC_SUBST(CXX_FOR_NEWLIB)
+
 AC_CONFIG_SUBDIRS(libc)
 AC_CONFIG_SUBDIRS(libm)
 
