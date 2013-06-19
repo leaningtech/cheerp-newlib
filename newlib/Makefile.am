@@ -54,6 +54,7 @@ AM_MAKEFLAGS = \
 	"AR=$(AR)" \
 	"AS=$(AS)" \
 	"CC=$(CC_FOR_NEWLIB)" \
+	"CXX=$(CXX_FOR_NEWLIB)" \
 	"LD=$(LD)" \
 	"LIBCFLAGS=$(LIBCFLAGS)" \
 	"NM=$(NM)" \
