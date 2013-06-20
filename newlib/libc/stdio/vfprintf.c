@@ -414,7 +414,7 @@ _DEFUN(__sprint_r, (ptr, fp, uio),
 		uio->uio_iovcnt = 0;
 		return (0);
 	}
-#ifdef _WIDE_ORIENT
+#if 0
 	if (fp->_flags2 & __SWID) {
 		struct __siov *iov;
 		wchar_t *p;
