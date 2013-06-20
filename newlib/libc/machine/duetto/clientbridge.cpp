@@ -31,6 +31,13 @@ _DEFUN(__duettowrite, (ptr, cookie, buf, n),
        int n)
 {
 	const client::String str(buf);
+	int realN=n;
+	if(str.charCodeAt(n-1)=='\n')
+	{
+		//As far as output is line buffered we can remove
+		//the newline, as JS print add it anyway
+		n--;
+	}
 	client::print(*str.substr(0,n));
-	return n;
+	return realN;
 }
