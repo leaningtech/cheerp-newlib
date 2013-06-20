@@ -301,6 +301,7 @@ _DEFUN(__sprint_r, (ptr, fp, uio),
 		uio->uio_iovcnt = 0;
 		return (0);
 	}
+#if 0
 	if (fp->_flags2 & __SWID) {
 		struct __siov *iov;
 		wchar_t *p;
@@ -319,6 +320,7 @@ _DEFUN(__sprint_r, (ptr, fp, uio),
 			}
 		}
 	} else
+#endif
 		err = __sfvwrite_r(ptr, fp, uio);
 out:
 	uio->uio_resid = 0;
