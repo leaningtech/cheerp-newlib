@@ -73,7 +73,7 @@ endif
 SUBDIRS = libc libm \
 	$(DOCDIR) . $(EXTRA_DIRS)
 
-tooldir = $(exec_prefix)/$(host_alias)
+tooldir = $(exec_prefix)
 toollibdir = $(tooldir)/lib$(MULTISUBDIR)
 
 AR_FLAGS = rc
