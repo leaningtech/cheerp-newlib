@@ -122,7 +122,7 @@ _PTR	_EXFUN(reallocf,(_PTR __r, size_t __size));
 _VOID	_EXFUN(srand,(unsigned __seed));
 double	_EXFUN(strtod,(const char *__n, char **__end_PTR));
 double	_EXFUN(_strtod_r,(struct _reent *,const char *__n, char **__end_PTR));
-#if !defined(__STRICT_ANSI__) || (__STDC_VERSION__ >= 199901L)
+#if !defined(__STRICT_ANSI__) || (__STDC_VERSION__ >= 199901L) || defined(_GNU_SOURCE)
 float	_EXFUN(strtof,(const char *__n, char **__end_PTR));
 #endif
 #ifndef __STRICT_ANSI__
@@ -217,7 +217,7 @@ _VOID	_EXFUN(__eprintf,(const char *, const char *, unsigned int, const char *))
 
 /* On platforms where long double equals double.  */
 #ifdef _LDBL_EQ_DBL
-#if !defined(__STRICT_ANSI__) || (__STDC_VERSION__ >= 199901L)
+#if !defined(__STRICT_ANSI__) || (__STDC_VERSION__ >= 199901L) || defined(_GNU_SOURCE)
 extern long double strtold (const char *, char **);
 #endif
 extern long double wcstold (const wchar_t *, wchar_t **);
