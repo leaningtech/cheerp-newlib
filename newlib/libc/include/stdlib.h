@@ -42,7 +42,7 @@ typedef struct
 
 #if !defined(__STRICT_ANSI__) || \
   (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L) || \
-  (defined(__cplusplus) && __cplusplus >= 201103L)
+  (defined(__cplusplus) && __cplusplus >= 201103L) || defined(_GNU_SOURCE)
 typedef struct
 {
   long long int quot; /* quotient */
