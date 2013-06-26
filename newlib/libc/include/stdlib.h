@@ -133,7 +133,7 @@ double	_EXFUN(strtod,(const char *__restrict __n, char **__restrict __end_PTR));
 double	_EXFUN(_strtod_r,(struct _reent *,const char *__restrict __n, char **__restrict __end_PTR));
 #if !defined(__STRICT_ANSI__) || \
   (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L) || \
-  (defined(__cplusplus) && __cplusplus >= 201103L)
+  (defined(__cplusplus) && __cplusplus >= 201103L) || defined(_GNU_SOURCE)
 float	_EXFUN(strtof,(const char *__restrict __n, char **__restrict __end_PTR));
 #endif
 #ifndef __STRICT_ANSI__
@@ -268,7 +268,7 @@ _VOID	_EXFUN(qsort_r,(_PTR __base, size_t __nmemb, size_t __size, int (*_compar)
 #ifdef _HAVE_LONG_DOUBLE
 #if !defined(__STRICT_ANSI__) || \
   (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L) || \
-  (defined(__cplusplus) && __cplusplus >= 201103L)
+  (defined(__cplusplus) && __cplusplus >= 201103L) || defined(_GNU_SOURCE)
 extern long double strtold (const char *__restrict, char **__restrict);
 #endif
 #endif /* _HAVE_LONG_DOUBLE */
