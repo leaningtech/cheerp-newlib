@@ -237,7 +237,7 @@ int	_EXFUN(fseeko, (FILE *, off_t, int));
 off_t	_EXFUN(ftello, ( FILE *));
 #endif
 #endif
-#if !defined(__STRICT_ANSI__) || (__STDC_VERSION__ >= 199901L)
+#if !defined(__STRICT_ANSI__) || (__STDC_VERSION__ >= 199901L) || defined(_GNU_SOURCE)
 #ifndef _REENT_ONLY
 int	_EXFUN(asiprintf, (char **, const char *, ...)
                _ATTRIBUTE ((__format__ (__printf__, 2, 3))));
