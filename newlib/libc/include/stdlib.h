@@ -138,7 +138,7 @@ unsigned long _EXFUN(_strtoul_r,(struct _reent *,const char *__n, char **__end_P
 
 int	_EXFUN(system,(const char *__string));
 
-#ifndef __STRICT_ANSI__
+#if !defined( __STRICT_ANSI__) || defined(_GNU_SOURCE)
 long    _EXFUN(a64l,(const char *__input));
 char *  _EXFUN(l64a,(long __input));
 char *  _EXFUN(_l64a_r,(struct _reent *,long __input));
@@ -186,13 +186,13 @@ long long _EXFUN(_atoll_r,(struct _reent *, const char *__nptr));
 long long _EXFUN(llabs,(long long));
 lldiv_t	_EXFUN(lldiv,(long long __numer, long long __denom));
 #endif /* ! __STRICT_ANSI__ */
-#if !defined(__STRICT_ANSI__) || (__STDC_VERSION__ >= 199901L)
+#if !defined(__STRICT_ANSI__) || (__STDC_VERSION__ >= 199901L) || defined(_GNU_SOURCE)
 long long _EXFUN(strtoll,(const char *__n, char **__end_PTR, int __base));
 #endif
 #ifndef __STRICT_ANSI__
 long long _EXFUN(_strtoll_r,(struct _reent *, const char *__n, char **__end_PTR, int __base));
 #endif /* ! __STRICT_ANSI__ */
-#if !defined(__STRICT_ANSI__) || (__STDC_VERSION__ >= 199901L)
+#if !defined(__STRICT_ANSI__) || (__STDC_VERSION__ >= 199901L) || defined(_GNU_SOURCE)
 unsigned long long _EXFUN(strtoull,(const char *__n, char **__end_PTR, int __base));
 #endif
 #ifndef __STRICT_ANSI__
