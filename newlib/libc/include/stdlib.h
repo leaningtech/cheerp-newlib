@@ -39,7 +39,7 @@ typedef struct
   long rem; /* remainder */
 } ldiv_t;
 
-#ifndef __STRICT_ANSI__
+#if !defined(__STRICT_ANSI__) || defined(_GNU_SOURCE)
 typedef struct
 {
   long long int quot; /* quotient */
