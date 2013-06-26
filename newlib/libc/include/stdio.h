@@ -242,7 +242,7 @@ off_t	_EXFUN(ftello, ( FILE *));
 #if __GNU_VISIBLE
 int	_EXFUN(fcloseall, (_VOID));
 #endif
-#if !defined(__STRICT_ANSI__) || (__STDC_VERSION__ >= 199901L) || (__cplusplus >= 201103L)
+#if !defined(__STRICT_ANSI__) || (__STDC_VERSION__ >= 199901L) || (__cplusplus >= 201103L) || defined(_GNU_SOURCE)
 #ifndef _REENT_ONLY
 int	_EXFUN(asiprintf, (char **, const char *, ...)
                _ATTRIBUTE ((__format__ (__printf__, 2, 3))));
