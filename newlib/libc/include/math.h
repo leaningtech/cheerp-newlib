@@ -237,11 +237,14 @@ extern double nan _PARAMS((const char *));
 extern int finite _PARAMS((double));
 extern double copysign _PARAMS((double, double));
 extern double logb _PARAMS((double));
+extern long double logbl _PARAMS((long double));
 extern int ilogb _PARAMS((double));
 
 extern double asinh _PARAMS((double));
 extern double cbrt _PARAMS((double));
 extern double nextafter _PARAMS((double, double));
+extern double nexttoward _PARAMS((double, long double));
+extern long double nexttowardl _PARAMS((long double, long double));
 extern double rint _PARAMS((double));
 extern double scalbn _PARAMS((double, int));
 
@@ -275,6 +278,7 @@ extern double lgamma _PARAMS((double));
 extern double erf _PARAMS((double));
 extern double erfc _PARAMS((double));
 extern double log2 _PARAMS((double));
+extern long double log2l _PARAMS((long double));
 #if !defined(__cplusplus)
 #define log2(x) (log (x) / _M_LN2)
 #endif
@@ -341,6 +345,7 @@ extern int ilogbf _PARAMS((float));
 extern float asinhf _PARAMS((float));
 extern float cbrtf _PARAMS((float));
 extern float nextafterf _PARAMS((float, float));
+extern float nexttowardf _PARAMS((float, long double));
 extern float rintf _PARAMS((float));
 extern float scalbnf _PARAMS((float, int));
 extern float log1pf _PARAMS((float));
