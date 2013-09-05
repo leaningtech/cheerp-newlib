@@ -1,3 +1,26 @@
+/****************************************************************
+ *
+ * This file incorporates work covered by the following copyright and
+ * permission notice:
+ *
+ * Copyright (C) 2013 Alessandro Pignotti <alessandro@leaningtech.com>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ ***************************************************************/
+
 /*
 FUNCTION
 <<rand>>, <<srand>>---pseudo-random numbers
@@ -79,13 +102,20 @@ _DEFUN (srand, (seed), unsigned int seed)
 int
 _DEFUN_VOID (rand)
 {
+  _REENT_CHECK_RAND48(_REENT);
+  _REENT_RAND_NEXT(_REENT) = 
+#ifdef __DUETTO__
+  /* This multiplier was obtained from Wikipedia's "Linear congruential generator" article
+   * and selected because it is 32bit compatible. It is the traditional ANSI C algorithm. */
+     _REENT_RAND_NEXT(_REENT) * __extension__ 1103515245L + 12345;
+  return (int)(_REENT_RAND_NEXT(_REENT) & RAND_MAX);
+#else
   /* This multiplier was obtained from Knuth, D.E., "The Art of
      Computer Programming," Vol 2, Seminumerical Algorithms, Third
      Edition, Addison-Wesley, 1998, p. 106 (line 26) & p. 108 */
-  _REENT_CHECK_RAND48(_REENT);
-  _REENT_RAND_NEXT(_REENT) = 
      _REENT_RAND_NEXT(_REENT) * __extension__ 6364136223846793005LL + 1;
   return (int)((_REENT_RAND_NEXT(_REENT) >> 32) & RAND_MAX);
+#endif
 }
 
 #endif /* _REENT_ONLY */
