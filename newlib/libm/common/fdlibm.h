@@ -1,6 +1,26 @@
 
 /* @(#)fdlibm.h 5.1 93/09/24 */
-/*
+/****************************************************************
+ *
+ * Copyright (C) 2013 Alessandro Pignotti <alessandro@leaningtech.com>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * This file incorporates work covered by the following copyright and
+ * permission notice:
+ *
  * ====================================================
  * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
  *
@@ -249,32 +269,18 @@ extern int   __kernel_rem_pio2f __P((float*,float*,int,int,int,const __int32_t*)
 /* A union which permits us to convert between a double and two 32 bit
    ints.  */
 
-#ifdef __IEEE_BIG_ENDIAN
-
 typedef union 
 {
   double value;
-  struct 
-  {
-    __uint32_t msw;
-    __uint32_t lsw;
-  } parts;
+  __uint32_t parts[2];
 } ieee_double_shape_type;
 
+#ifdef __IEEE_BIG_ENDIAN
+enum DOUBLE_PARTS { MSW = 0, LSW=1 };
 #endif
 
 #ifdef __IEEE_LITTLE_ENDIAN
-
-typedef union 
-{
-  double value;
-  struct 
-  {
-    __uint32_t lsw;
-    __uint32_t msw;
-  } parts;
-} ieee_double_shape_type;
-
+enum DOUBLE_PARTS { LSW = 0, MSW=1 };
 #endif
 
 /* Get two 32 bit ints from a double.  */
@@ -283,8 +289,8 @@ typedef union
 do {								\
   ieee_double_shape_type ew_u;					\
   ew_u.value = (d);						\
-  (ix0) = ew_u.parts.msw;					\
-  (ix1) = ew_u.parts.lsw;					\
+  (ix0) = ew_u.parts[MSW];					\
+  (ix1) = ew_u.parts[LSW];					\
 } while (0)
 
 /* Get the more significant 32 bit int from a double.  */
@@ -293,7 +299,7 @@ do {								\
 do {								\
   ieee_double_shape_type gh_u;					\
   gh_u.value = (d);						\
-  (i) = gh_u.parts.msw;						\
+  (i) = gh_u.parts[MSW];						\
 } while (0)
 
 /* Get the less significant 32 bit int from a double.  */
@@ -302,7 +308,7 @@ do {								\
 do {								\
   ieee_double_shape_type gl_u;					\
   gl_u.value = (d);						\
-  (i) = gl_u.parts.lsw;						\
+  (i) = gl_u.parts[LSW];						\
 } while (0)
 
 /* Set a double from two 32 bit ints.  */
@@ -310,8 +316,8 @@ do {								\
 #define INSERT_WORDS(d,ix0,ix1)					\
 do {								\
   ieee_double_shape_type iw_u;					\
-  iw_u.parts.msw = (ix0);					\
-  iw_u.parts.lsw = (ix1);					\
+  iw_u.parts[MSW] = (ix0);					\
+  iw_u.parts[LSW] = (ix1);					\
   (d) = iw_u.value;						\
 } while (0)
 
@@ -321,7 +327,7 @@ do {								\
 do {								\
   ieee_double_shape_type sh_u;					\
   sh_u.value = (d);						\
-  sh_u.parts.msw = (v);						\
+  sh_u.parts[MSW] = (v);						\
   (d) = sh_u.value;						\
 } while (0)
 
@@ -331,7 +337,7 @@ do {								\
 do {								\
   ieee_double_shape_type sl_u;					\
   sl_u.value = (d);						\
-  sl_u.parts.lsw = (v);						\
+  sl_u.parts[LSW] = (v);						\
   (d) = sl_u.value;						\
 } while (0)
 
