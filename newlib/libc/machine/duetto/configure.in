@@ -11,6 +11,12 @@ AC_CONFIG_SRCDIR([Makefile.am])
 dnl Can't be done in NEWLIB_CONFIGURE because that confuses automake. 
 AC_CONFIG_AUX_DIR(../../../..)
 
+dnl Duetto needs C++ support, if bootstrapping specify where headers are
+AC_ARG_WITH(cxx-headers,
+[  --with-cxx-headers=path   set the path where c++ headers can be found],
+[cxx_headers_path=${withval}],
+[])
+
 NEWLIB_CONFIGURE(../../..)
 
 AC_CONFIG_FILES([Makefile])
