@@ -579,8 +579,7 @@ _DEFUN(_VFPRINTF_R, (data, fp, fmt0, ap),
 	char *decimal_point = _localeconv_r (data)->decimal_point;
 	size_t decp_len = strlen (decimal_point);
 	char softsign;		/* temporary negative sign for floats */
-	union { int i; _PRINTF_FLOAT_TYPE fp; } _double_ = {0};
-# define _fpvalue (_double_.fp)
+	_PRINTF_FLOAT_TYPE _fpvalue = 0;
 	int expt;		/* integer value of exponent */
 	int expsize = 0;	/* character count for expstr */
 	char expstr[MAXEXPLEN];	/* buffer for exponent string */
