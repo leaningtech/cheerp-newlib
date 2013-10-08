@@ -133,6 +133,10 @@ case "${host_cpu}" in
 	newlib_cflags="${newlib_cflags} -DSIGNAL_PROVIDED"
 	newlib_cflags="${newlib_cflags} -emit-llvm -target duetto"
 	newlib_cxxflags="${newlib_cflags} -std=c++11 -O2"
+	if [ -n ${cxx_headers_path} ]
+	then
+		newlib_cxxflags="${newlib_cxxflags} -I${cxx_headers_path}"
+	fi
 	machine_dir=duetto
 	;;
   epiphany)
