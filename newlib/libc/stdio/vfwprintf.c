@@ -416,8 +416,7 @@ _DEFUN(_VFWPRINTF_R, (data, fp, fmt0, ap),
 #ifdef FLOATING_POINT
 	wchar_t decimal_point;
 	wchar_t softsign;		/* temporary negative sign for floats */
-	union { int i; _PRINTF_FLOAT_TYPE fp; } _double_ = {0};
-# define _fpvalue (_double_.fp)
+	_PRINTF_FLOAT_TYPE _fpvalue = 0;
 	int expt;		/* integer value of exponent */
 	int expsize = 0;	/* character count for expstr */
 	wchar_t expstr[MAXEXPLEN];	/* buffer for exponent string */
