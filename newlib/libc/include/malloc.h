@@ -43,7 +43,7 @@ extern _PTR _malloc_r _PARAMS ((struct _reent *, size_t));
 #endif
 
 extern _VOID free _PARAMS ((_PTR));
-#ifdef __CYGWIN__
+#if defined(__CYGWIN__) || defined(__DUETTO__)
 #undef _free_r
 #define _free_r(r, p) free (p)
 #else
@@ -51,7 +51,7 @@ extern _VOID _free_r _PARAMS ((struct _reent *, _PTR));
 #endif
 
 extern _PTR realloc _PARAMS ((_PTR, size_t));
-#ifdef __CYGWIN__
+#if defined(__CYGWIN__) || defined(__DUETTO__)
 #undef _realloc_r
 #define _realloc_r(r, p, s) realloc (p, s)
 #else
@@ -59,9 +59,9 @@ extern _PTR _realloc_r _PARAMS ((struct _reent *, _PTR, size_t));
 #endif
 
 extern _PTR calloc _PARAMS ((size_t, size_t));
-#ifdef __CYGWIN__
+#if defined(__CYGWIN__) || defined(__DUETTO__)
 #undef _calloc_r
-#define _calloc_r(r, s1, s2) calloc (s1, s2);
+#define _calloc_r(r, s1, s2) malloc (s1*s2);
 #else
 extern _PTR _calloc_r _PARAMS ((struct _reent *, size_t, size_t));
 #endif
