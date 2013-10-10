@@ -11,3 +11,4 @@ build_lib(){
 }
 
 build_lib libc
+build_lib libm
