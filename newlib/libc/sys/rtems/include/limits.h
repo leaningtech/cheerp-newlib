@@ -7,7 +7,7 @@
  *       to our implementation.  We also need to set the Run-Time Invariant
  *       and other related values.
  *
- *  $Id: limits.h,v 1.4 2011/08/23 05:51:04 corsepiu Exp $
+ *  $Id$
  */
 
 #ifndef _GCC_LIMITS_H_  /* if we have not seen gcc's limits.h yet */
@@ -32,6 +32,7 @@
 #define _POSIX_ARG_MAX          4096
 #define _POSIX_CHILD_MAX        6
 #define _POSIX_DELAYTIMER_MAX   32
+#define _POSIX_HOST_NAME_MAX    255
 #define _POSIX_LINK_MAX         8
 #define _POSIX_MAX_CANON        255
 #define _POSIX_MAX_INPUT        255
