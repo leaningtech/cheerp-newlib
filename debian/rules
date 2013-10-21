@@ -13,6 +13,3 @@ override_dh_auto_build:
 override_dh_auto_install:
 	dh_auto_install -D newlib -Bnewlib/build --destdir=debian/tmp
 	make -f newlib/build-bc-libs.mk DESTDIR="debian/tmp"
-
-override_dh_install:
-	dh_install
