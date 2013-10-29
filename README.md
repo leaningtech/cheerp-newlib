@@ -4,7 +4,7 @@ Duetto: A C++ compiler for the Web
 Duetto libc build instructions
 ------------------------------
 
-Building the duetto-enabled libc requires to have the duetto compiler
+Building the duetto-enabled libc requires having the duetto compiler
 and duetto-utils headers already installed in /opt/duetto. It also require
 libcxx-duetto headers.
 
