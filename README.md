@@ -5,7 +5,8 @@ Duetto libc build instructions
 ------------------------------
 
 Building the duetto-enabled libc requires to have the duetto compiler
-already installed in /opt/duetto. It also require libcxx-duetto headers.
+and duetto-utils headers already installed in /opt/duetto. It also require
+libcxx-duetto headers.
 
 ```
 cd newlib
