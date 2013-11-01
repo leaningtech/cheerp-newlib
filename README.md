@@ -14,7 +14,6 @@ libcxx-duetto headers.
 ```
 cd newlib
 git clone <libcxx-duetto-repo> libcxx
-./autogen.sh
 mkdir build
 cd build
 ../configure --host=duetto --with-cxx-headers=$PWD/../libcxx/include --prefix=/opt/duetto
