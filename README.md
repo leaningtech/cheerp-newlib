@@ -12,7 +12,11 @@ and duetto-utils headers already installed in /opt/duetto. It also require
 libcxx-duetto headers.
 
 ```
+#Please note that newlib is a subdirectory of the duetto-newlib repository and not the
+#repository itself
 cd newlib
+#duetto-libcxx is only required to access headers and it not necessary (or possible) to build
+#it before duetto-newlib
 git clone <libcxx-duetto-repo> libcxx
 mkdir build
 cd build
