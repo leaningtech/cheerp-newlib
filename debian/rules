@@ -5,7 +5,7 @@
 
 override_dh_auto_configure:
 	cd newlib; ./autogen.sh
-	dh_auto_configure -D newlib -Bnewlib/build -- --host=duetto --with-cxx-headers=$(CURDIR)/libcxx/include --prefix=/opt/duetto
+	dh_auto_configure -D newlib -Bnewlib/build -- --host=duetto --with-cxx-headers=$(CURDIR)/libcxx/include:$(CURDIR)/duetto-utils/include --prefix=/opt/duetto
 
 override_dh_auto_build:
 	dh_auto_build -D newlib -Bnewlib/build
