@@ -137,7 +137,7 @@ case "${host_cpu}" in
 	newlib_cxxflags="${newlib_cflags} -std=c++11 -O2"
 	if [ -n ${cxx_headers_path} ]
 	then
-		newlib_cxxflags="${newlib_cxxflags} `IFS=:; for elem in ${cxx_headers_path}; do echo -n \"-I$elem \"; done`"
+		newlib_cxxflags="${newlib_cxxflags} -I${cxx_headers_path}"
 	fi
 	machine_dir=duetto
 	;;
