@@ -4,12 +4,12 @@
 	dh $@
 
 override_dh_auto_configure:
-	cd newlib; ./autogen.sh
 	dh_auto_configure -D newlib -Bnewlib/build -- --host=duetto --with-cxx-headers=$(CURDIR)/libcxx/include --prefix=/opt/duetto
 
 override_dh_auto_build:
 	dh_auto_build -D newlib -Bnewlib/build
+	make -C newlib -f build-bc-libs.mk DESTDIR="debian/tmp"
 
 override_dh_auto_install:
 	dh_auto_install -D newlib -Bnewlib/build --destdir=debian/tmp
-	make -f newlib/build-bc-libs.mk DESTDIR="debian/tmp"
+	cp -v newlib/build/libc/libc.bc newlib/build/libm/libm.bc debian/tmp/opt/duetto/lib
