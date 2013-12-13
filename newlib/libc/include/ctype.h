@@ -23,12 +23,10 @@ int _EXFUN(toupper, (int __c));
 int _EXFUN(isblank, (int __c));
 #endif
 
-#ifndef __STRICT_ANSI__
 int _EXFUN(isascii, (int __c));
 int _EXFUN(toascii, (int __c));
 #define _tolower(__c) ((unsigned char)(__c) - 'A' + 'a')
 #define _toupper(__c) ((unsigned char)(__c) - 'a' + 'A')
-#endif
 
 #define	_U	01
 #define	_L	02
@@ -100,10 +98,8 @@ extern	__IMPORT char	*__ctype_ptr__;
 # endif /* __GNUC__ */
 #endif /* !__cplusplus */
 
-#ifndef __STRICT_ANSI__
 #define isascii(__c)	((unsigned)(__c)<=0177)
 #define toascii(__c)	((__c)&0177)
-#endif
 
 /* For C++ backward-compatibility only.  */
 extern	__IMPORT _CONST char	_ctype_[];
