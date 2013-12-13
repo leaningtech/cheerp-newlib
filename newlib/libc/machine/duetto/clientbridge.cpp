@@ -38,6 +38,12 @@ _DEFUN(__duettowrite, (ptr, cookie, buf, n),
 		//the newline, as JS print add it anyway
 		n--;
 	}
-	client::print(*str.substr(0,n));
+	//We need to use a volatile pointer to force
+	//runtime checking of the console existance
+	client::Console* volatile c = &client::console;
+	if(c)
+		client::console.log(*str.substr(0,n));
+	else
+		client::print(*str.substr(0,n));
 	return realN;
 }
