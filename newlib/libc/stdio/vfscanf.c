@@ -747,12 +747,14 @@ _DEFUN(__SVFSCANF_R, (rptr, fp, fmt0, ap),
 	  c = CT_CHAR;
 	  break;
 
+#ifndef __DUETTO__
 	case 'p':		/* pointer format is like hex */
 	  flags |= POINTER | PFXOK;
 	  c = CT_INT;
 	  ccfn = _strtoul_r;
 	  base = 16;
 	  break;
+#endif
 
 	case 'n':
 	  if (flags & SUPPRESS)	/* ??? */
@@ -1220,6 +1222,7 @@ _DEFUN(__SVFSCANF_R, (rptr, fp, fmt0, ap),
 	      res = (*ccfn) (rptr, buf, (char **) NULL, base);
 	      if (flags & POINTER)
 		{
+#ifndef __DUETTO__
 		  void **vp = GET_ARG (N, ap, void **);
 #ifndef _NO_LONGLONG
 		  if (sizeof (uintptr_t) > sizeof (u_long))
@@ -1231,6 +1234,7 @@ _DEFUN(__SVFSCANF_R, (rptr, fp, fmt0, ap),
 		  else
 #endif /* !_NO_LONGLONG */
 		    *vp = (void *) (uintptr_t) res;
+#endif
 		}
 #ifdef _WANT_IO_C99_FORMATS
 	      else if (flags & CHAR)
