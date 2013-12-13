@@ -50,6 +50,12 @@ struct lconv
   char int_p_sign_posn;
 };
 
+typedef void* locale_t;
+
+void freelocale(locale_t);
+locale_t newlocale(int, const char *, locale_t);
+locale_t uselocale(locale_t);
+
 #ifndef _REENT_ONLY
 char *_EXFUN(setlocale,(int category, const char *locale));
 struct lconv *_EXFUN(localeconv,(void));
