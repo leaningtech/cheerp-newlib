@@ -76,9 +76,7 @@ int	 _EXFUN(strcasecmp,(const char *, const char *));
 char	*_EXFUN(strcasestr,(const char *, const char *));
 char 	*_EXFUN(strchrnul,(const char *, int));
 #endif
-#if __XSI_VISIBLE >= 500
 char 	*_EXFUN(strdup,(const char *));
-#endif
 #ifndef __STRICT_ANSI__
 char 	*_EXFUN(_strdup_r,(struct _reent *, const char *));
 #endif
