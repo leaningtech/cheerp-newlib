@@ -120,6 +120,9 @@ _DEFUN (Balloc, (ptr, k), struct _reent *ptr _AND int k)
 
 #ifdef __DUETTO__
   rv = malloc(sizeof(struct _Bigint));
+  x = 1 << k;
+  rv->_k = k;
+  rv->_maxwds = x;
 #else
   _REENT_CHECK_MP(ptr);
   if (_REENT_MP_FREELIST(ptr) == NULL)
