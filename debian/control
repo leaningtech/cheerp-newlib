@@ -7,6 +7,7 @@ Build-Depends: debhelper (>=8), duetto-llvm-clang, autoconf, automake, libtool, 
 
 Package: duetto-newlib
 Architecture: any
+Conflicts: duetto
 Depends: ${shlibs:Depends}, ${misc:Depends}, duetto-llvm-clang, duetto-utils
 Description: A C++ compiler for the Web, C library implementation
  Duetto is a tool to bring C++ programming to the Web,
