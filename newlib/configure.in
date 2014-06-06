@@ -6,8 +6,8 @@ AC_INIT([newlib],[NEWLIB_VERSION])
 AC_CONFIG_SRCDIR([libc])
 AC_CONFIG_HEADER(newlib.h:newlib.hin)
 
-CC=/opt/duetto/bin/clang
-CXX=/opt/duetto/bin/clang
+CC=/opt/cheerp/bin/clang
+CXX=/opt/cheerp/bin/clang
 
 dnl Can't be done in NEWLIB_CONFIGURE because that confuses automake. 
 AC_CONFIG_AUX_DIR(..)

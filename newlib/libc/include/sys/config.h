@@ -189,7 +189,7 @@
 #define __DYNAMIC_REENT__
 #endif
 
-#ifdef __DUETTO__
+#ifdef __CHEERP__
 #define _REENT_SMALL
 #endif
 

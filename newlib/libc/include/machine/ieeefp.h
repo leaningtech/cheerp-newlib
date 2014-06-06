@@ -419,7 +419,7 @@
 #define __IEEE_BIG_ENDIAN
 #endif
 
-#if (defined(__DUETTO__))
+#if (defined(__CHEERP__))
 /* Fake little endianness */
 #define __IEEE_LITTLE_ENDIAN
 #endif

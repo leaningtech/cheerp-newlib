@@ -15,7 +15,7 @@ doDir()
 doDir .
 doDir libc
 doDir libc/machine
-doDir libc/machine/duetto
+doDir libc/machine/cheerp
 doDir libc/sys
 doDir libm
 doDir libm/machine

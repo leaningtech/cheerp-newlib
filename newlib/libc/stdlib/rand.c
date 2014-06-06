@@ -108,7 +108,7 @@ _DEFUN_VOID (rand)
 
   _REENT_CHECK_RAND48(reent);
   _REENT_RAND_NEXT(reent) =
-#ifdef __DUETTO__
+#ifdef __CHEERP__
   /* This multiplier was obtained from Wikipedia's "Linear congruential generator" article
    * and selected because it is 32bit compatible. It is the traditional ANSI C algorithm. */
      _REENT_RAND_NEXT(reent) * __extension__ 1103515245L + 12345;

@@ -1,15 +1,15 @@
-Source: duetto-newlib
+Source: cheerp-newlib
 Maintainer: Alessandro Pignotti <alessandro@leaningtech.com>
 Section: devel
 Priority: optional
 Standards-Version: 3.9.2
-Build-Depends: debhelper (>=8), duetto-llvm-clang, autoconf, automake, libtool, duetto-utils
+Build-Depends: debhelper (>=8), cheerp-llvm-clang, autoconf, automake, libtool, cheerp-utils
 
-Package: duetto-newlib
+Package: cheerp-newlib
 Architecture: any
-Conflicts: duetto
-Depends: ${shlibs:Depends}, ${misc:Depends}, duetto-llvm-clang, duetto-utils
+Conflicts: cheerp
+Depends: ${shlibs:Depends}, ${misc:Depends}, cheerp-llvm-clang, cheerp-utils
 Description: A C++ compiler for the Web, C library implementation
- Duetto is a tool to bring C++ programming to the Web,
+ Cheerp is a tool to bring C++ programming to the Web,
  designed to provide a seamless experience for client/server
  development.

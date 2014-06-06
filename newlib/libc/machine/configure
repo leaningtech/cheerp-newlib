@@ -788,6 +788,7 @@ ac_subdirs_all='a29k
 aarch64
 arm
 bfin
+cheerp
 cr16
 cris
 crx
@@ -11836,6 +11837,8 @@ subdirs="$subdirs a29k"
 	arm) subdirs="$subdirs arm"
  ;;
 	bfin) subdirs="$subdirs bfin"
+ ;;
+	cheerp) subdirs="$subdirs cheerp"
  ;;
 	cr16) subdirs="$subdirs cr16"
  ;;
