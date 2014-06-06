@@ -18,13 +18,13 @@
  *
  ***************************************************************/
 
-#include <duetto/client.h>
-#include <duetto/clientlib.h>
+#include <cheerp/client.h>
+#include <cheerp/clientlib.h>
 #include <malloc.h>
 #include "clientbridge.h"
 
 _READ_WRITE_RETURN_TYPE
-_DEFUN(__duettowrite, (ptr, cookie, buf, n),
+_DEFUN(__cheerpwrite, (ptr, cookie, buf, n),
        struct _reent *ptr _AND
        void *cookie _AND
        char const *buf _AND

@@ -166,7 +166,7 @@
 #define __CUSTOM_FILE_IO__
 #endif
 
-#ifdef __DUETTO__
+#ifdef __CHEERP__
 #define _REENT_SMALL
 #endif
 

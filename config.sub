@@ -1306,8 +1306,8 @@ case $basic_machine in
 	*-unknown)
 		# Make sure to match an already-canonicalized machine name.
 		;;
-	duetto)
-		basic_machine=duetto-client
+	cheerp)
+		basic_machine=cheerp-client
 		;;
 	*)
 		echo Invalid configuration \`$1\': machine \`$basic_machine\' not recognized 1>&2

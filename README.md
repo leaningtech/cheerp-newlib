@@ -1,26 +1,26 @@
-Duetto: A C++ compiler for the Web
+Cheerp: A C++ compiler for the Web
 ==================================
 
 Please report bugs on launchpad:
-https://bugs.launchpad.net/duetto
+https://bugs.launchpad.net/cheerp
 
-Duetto libc build instructions
+Cheerp libc build instructions
 ------------------------------
 
-Building the duetto-enabled libc requires having the duetto compiler
-and duetto-utils headers already installed in /opt/duetto. It also require
-libcxx-duetto headers.
+Building the cheerp-enabled libc requires having the cheerp compiler
+and cheerp-utils headers already installed in /opt/cheerp. It also require
+libcxx-cheerp headers.
 
 ```
-#Please note that newlib is a subdirectory of the duetto-newlib repository and not the
+#Please note that newlib is a subdirectory of the cheerp-newlib repository and not the
 #repository itself
 cd newlib
-#duetto-libcxx is only required to access headers and it not necessary (or possible) to build
-#it before duetto-newlib
-git clone <libcxx-duetto-repo> libcxx
+#cheerp-libcxx is only required to access headers and it not necessary (or possible) to build
+#it before cheerp-newlib
+git clone <libcxx-cheerp-repo> libcxx
 mkdir build
 cd build
-../configure --host=duetto --with-cxx-headers=$PWD/../libcxx/include --prefix=/opt/duetto
+../configure --host=cheerp --with-cxx-headers=$PWD/../libcxx/include --prefix=/opt/cheerp
 make
 make install
 ../build-bc-libs.sh

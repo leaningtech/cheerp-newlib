@@ -70,7 +70,7 @@ _FUN(std, (ptr, flags, file, data),
   __builtin_memset (&ptr->_mbstate, 0, sizeof (_mbstate_t));
   ptr->_cookie = ptr;
 #ifndef __LARGE64_FILES
-  ptr->_write = __duettowrite;
+  ptr->_write = __cheerpwrite;
 #endif /* __LARGE64_FILES */
 
 #ifdef __SCLE

@@ -817,7 +817,7 @@ cris
 crx
 d10v
 d30v
-duetto
+cheerp
 epiphany
 fr30
 frv
@@ -12568,7 +12568,7 @@ subdirs="$subdirs a29k"
  ;;
 	d30v) subdirs="$subdirs d30v"
  ;;
-	duetto) subdirs="$subdirs duetto"
+	cheerp) subdirs="$subdirs cheerp"
  ;;
 	epiphany) subdirs="$subdirs epiphany"
  ;;

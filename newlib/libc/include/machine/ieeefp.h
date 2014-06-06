@@ -388,7 +388,7 @@
 #define __SMALL_BITFIELDS	/* 16 Bit INT */
 #endif
 
-#if (defined(__DUETTO__))
+#if (defined(__CHEERP__))
 /* Fake little endianness */
 #define __IEEE_LITTLE_ENDIAN
 #endif

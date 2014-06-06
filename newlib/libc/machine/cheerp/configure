@@ -1830,7 +1830,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
-CXX=/opt/duetto/bin/clang
+CXX=/opt/cheerp/bin/clang
 
 
 

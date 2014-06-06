@@ -2210,8 +2210,8 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 ac_config_headers="$ac_config_headers newlib.h:newlib.hin"
 
 
-CC=/opt/duetto/bin/clang
-CXX=/opt/duetto/bin/clang
+CC=/opt/cheerp/bin/clang
+CXX=/opt/cheerp/bin/clang
 
 ac_aux_dir=
 for ac_dir in .. "$srcdir"/..; do

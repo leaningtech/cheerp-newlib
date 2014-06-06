@@ -60,8 +60,8 @@ register_fini(void)
  * otherwise only the handlers from that DSO are called.
  */
 
-// Duetto: we don't actually run exit proc anyway
-#ifndef __DUETTO__
+// Cheerp: we don't actually run exit proc anyway
+#ifndef __CHEERP__
 void 
 _DEFUN (__call_exitprocs, (code, d),
 	int code _AND _PTR d)
