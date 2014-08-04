@@ -46,7 +46,11 @@ struct _Bigint
 {
   struct _Bigint *_next;
   int _k, _maxwds, _sign, _wds;
+#ifdef __CHEERP__
+  __ULong *_x;
+#else
   __ULong _x[1];
+#endif
 };
 
 /* needed by reentrant structure */
