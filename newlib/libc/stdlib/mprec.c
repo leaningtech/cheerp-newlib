@@ -123,6 +123,7 @@ _DEFUN (Balloc, (ptr, k), struct _reent *ptr _AND int k)
   x = 1 << k;
   rv->_k = k;
   rv->_maxwds = x;
+  rv->_x = (__ULong*)malloc(x * sizeof(__ULong));
 #else
   _REENT_CHECK_MP(ptr);
   if (_REENT_MP_FREELIST(ptr) == NULL)
@@ -162,7 +163,11 @@ void
 _DEFUN (Bfree, (ptr, v), struct _reent *ptr _AND _Bigint * v)
 {
 #ifdef __CHEERP__
-  free(ptr);
+  if (v)
+  {
+    free(v->_x);
+    free(v);
+  }
 #else
   _REENT_CHECK_MP(ptr);
   if (v)
