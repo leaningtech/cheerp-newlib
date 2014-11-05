@@ -423,12 +423,16 @@ _DEFUN (_dtoa_r,
       if (i <= 0)
 	i = 1;
     }
+#ifdef __CHEERP__
+  s = s0 = (char *) malloc(i + 1);
+#else
   j = sizeof (__ULong);
   for (_REENT_MP_RESULT_K(ptr) = 0; sizeof (_Bigint) - sizeof (__ULong) + j <= i;
        j <<= 1)
     _REENT_MP_RESULT_K(ptr)++;
   _REENT_MP_RESULT(ptr) = Balloc (ptr, _REENT_MP_RESULT_K(ptr));
   s = s0 = (char *) _REENT_MP_RESULT(ptr);
+#endif
 
   if (ilim >= 0 && ilim <= Quick_max && try_quick)
     {
