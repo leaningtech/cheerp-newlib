@@ -103,7 +103,7 @@ _DEFUN(__submore, (rptr, fp),
   p = (unsigned char *) _realloc_r (rptr, (_PTR) (fp->_ub._base), i << 1);
   if (p == NULL)
     return EOF;
-  _CAST_VOID memcpy ((_PTR) (p + i), (_PTR) p, (size_t) i);
+  _CAST_VOID memcpy ((p + i), p, (size_t) i);
   fp->_p = p + i;
   fp->_ub._base = p;
   fp->_ub._size = i << 1;

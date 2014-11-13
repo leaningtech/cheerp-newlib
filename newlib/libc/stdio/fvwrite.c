@@ -26,7 +26,7 @@
 #include "fvwrite.h"
 
 #define	MIN(a, b) ((a) < (b) ? (a) : (b))
-#define	COPY(n)	  _CAST_VOID memmove ((_PTR) fp->_p, (_PTR) p, (size_t) (n))
+#define	COPY(n)	  _CAST_VOID memmove ((char*) fp->_p, p, (size_t) (n))
 
 #define GETIOV(extra_work) \
   while (len == 0) \

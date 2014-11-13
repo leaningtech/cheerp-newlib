@@ -30,6 +30,7 @@
 
 #include <malloc.h>
 
+#ifndef __CHEERP__
 _PTR
 _DEFUN (_reallocf_r, (reentptr, ptr, size),
 	struct _reent *reentptr _AND
@@ -43,6 +44,7 @@ _DEFUN (_reallocf_r, (reentptr, ptr, size),
 		_free_r(reentptr, ptr);
 	return (nptr);
 }
+#endif
 
 #ifndef _REENT_ONLY
 _PTR

@@ -3317,7 +3317,7 @@ if test "$GCC" = yes; then
   nvcc*)
     _LT_TAGVAR(lt_prog_compiler_no_builtin_flag, $1)=' -Xcompiler -fno-builtin' ;;
   *)
-    _LT_TAGVAR(lt_prog_compiler_no_builtin_flag, $1)=' -fno-builtin' ;;
+    _LT_TAGVAR(lt_prog_compiler_no_builtin_flag, $1)='' ;;
   esac
 
   _LT_COMPILER_OPTION([if $compiler supports -fno-rtti -fno-exceptions],

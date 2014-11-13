@@ -49,6 +49,7 @@ extern char *_findenv_r _PARAMS ((struct _reent *, const char *, int *));
  *	set to EINVAL;
  */
 
+#ifndef __CHEERP__
 int
 _DEFUN (_setenv_r, (reent_ptr, name, value, rewrite),
         struct _reent *reent_ptr _AND
@@ -135,6 +136,7 @@ _DEFUN (_setenv_r, (reent_ptr, name, value, rewrite),
 
   return 0;
 }
+#endif
 
 /*
  * _unsetenv_r(name) --

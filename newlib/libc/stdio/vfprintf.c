@@ -339,7 +339,7 @@ _DEFUN(__ssprint_r, (ptr, fp, uio),
 		}
 		if (len < w)
 			w = len;
-		(void)memmove ((_PTR) fp->_p, (_PTR) p, (size_t) (w));
+		(void)memmove ((char*) fp->_p, p, (size_t) (w));
 		fp->_w -= w;
 		fp->_p += w;
 		w = len;          /* pretend we copied all */

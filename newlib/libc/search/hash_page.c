@@ -94,6 +94,7 @@ static int	 ugly_split
  * the pair (PAIRFITS has returned true) so we go right ahead and start moving
  * stuff on.
  */
+#ifndef __CHEERP__
 static void
 putpair(p, key, val)
 	char *p;
@@ -120,6 +121,7 @@ putpair(p, key, val)
 	bp[n + 1] = off - ((n + 3) * sizeof(__uint16_t));
 	bp[n + 2] = off;
 }
+#endif
 
 /*
  * Returns:
@@ -881,6 +883,7 @@ open_temp(hashp)
  * We have to know that the key will fit, but the last entry on the page is
  * an overflow pair, so we need to shift things.
  */
+#ifndef __CHEERP__
 static void
 squeeze_key(sp, key, val)
 	__uint16_t *sp;
@@ -907,6 +910,7 @@ squeeze_key(sp, key, val)
 	FREESPACE(sp) = free_space - PAIRSIZE(key, val);
 	OFFSET(sp) = off;
 }
+#endif
 
 static __uint32_t *
 fetch_bitmap(hashp, ndx)
