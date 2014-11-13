@@ -906,6 +906,7 @@ __expand_table(hashp)
  * If realloc guarantees that the pointer is not destroyed if the realloc
  * fails, then this routine can go away.
  */
+#ifndef __CHEERP__
 static void *
 hash_realloc(p_ptr, oldsize, newsize)
 	SEGMENT **p_ptr;
@@ -921,6 +922,7 @@ hash_realloc(p_ptr, oldsize, newsize)
 	}
 	return (p);
 }
+#endif
 
 extern __uint32_t
 __call_hash(hashp, k, len)

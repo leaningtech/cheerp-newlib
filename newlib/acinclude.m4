@@ -200,8 +200,8 @@ fi
 
 . [$]{newlib_basedir}/configure.host
 
-newlib_cflags="[$]{newlib_cflags} -fno-builtin"
-newlib_cxxflags="[$]{newlib_cxxflags} -fno-builtin"
+newlib_cflags="[$]{newlib_cflags}"
+newlib_cxxflags="[$]{newlib_cxxflags}"
 
 NEWLIB_CFLAGS=${newlib_cflags}
 AC_SUBST(NEWLIB_CFLAGS)

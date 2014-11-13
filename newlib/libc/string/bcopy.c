@@ -29,6 +29,7 @@ QUICKREF
 #include <string.h>
 #include <strings.h>
 
+#ifndef __CHEERP__
 void
 _DEFUN (bcopy, (b1, b2, length),
 	_CONST void *b1 _AND
@@ -37,3 +38,4 @@ _DEFUN (bcopy, (b1, b2, length),
 {
   memmove (b2, b1, length);
 }
+#endif
