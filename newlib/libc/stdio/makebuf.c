@@ -40,7 +40,7 @@ _DEFUN(__smakebuf_r, (ptr, fp),
        register FILE *fp)
 {
   register size_t size, couldbetty;
-  register _PTR p;
+  register unsigned char * p;
 #ifdef __USE_INTERNAL_STAT64
   struct stat64 st;
 #else
@@ -105,7 +105,7 @@ _DEFUN(__smakebuf_r, (ptr, fp),
     {
       ptr->__cleanup = _cleanup_r;
       fp->_flags |= __SMBF;
-      fp->_bf._base = fp->_p = (unsigned char *) p;
+      fp->_bf._base = fp->_p = p;
       fp->_bf._size = size;
       if (couldbetty && _isatty_r (ptr, fp->_file))
 	fp->_flags |= __SLBF;

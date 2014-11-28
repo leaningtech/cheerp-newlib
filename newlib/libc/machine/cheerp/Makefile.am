@@ -8,7 +8,7 @@ noinst_LIBRARIES = lib.a
 
 AM_CCASFLAGS = $(INCLUDES)
 
-lib_a_SOURCES = stdio.c clientbridge.cpp
+lib_a_SOURCES = malloc.c stdio.c clientbridge.cpp
 
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
 lib_a_CFLAGS = $(AM_CFLAGS)
