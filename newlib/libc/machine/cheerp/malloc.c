@@ -20,7 +20,7 @@
 
 #include <malloc.h>
 
-void* fakeMallocPtr = NULL;
+void* fakeMallocPtr = 0;
 
 void*
 _MACDEFUN(malloc, (s),
