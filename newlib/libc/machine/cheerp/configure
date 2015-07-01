@@ -581,11 +581,9 @@ PACKAGE_STRING='newlib 2.2.0'
 PACKAGE_BUGREPORT=''
 PACKAGE_URL=''
 
-ac_unique_file="makedoc.c"
+ac_unique_file="Makefile.am"
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
-EXEEXT_FOR_BUILD
-CC_FOR_BUILD
 sys_dir
 machine_dir
 libm_machine_dir
@@ -663,6 +661,7 @@ build
 newlib_basedir
 MAY_SUPPLY_SYSCALLS_FALSE
 MAY_SUPPLY_SYSCALLS_TRUE
+CXX
 target_alias
 host_alias
 build_alias
@@ -704,6 +703,7 @@ SHELL'
 ac_subst_files=''
 ac_user_opts='
 enable_option_checking
+with_cxx_headers
 enable_multilib
 enable_target_optspace
 enable_malloc_debugging
@@ -1351,6 +1351,11 @@ Optional Features:
   --enable-maintainer-mode  enable make rules and dependencies not useful
 			  (and sometimes confusing) to the casual installer
 
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-cxx-headers=path   set the path where c++ headers can be found
+
 Some influential environment variables:
   CCAS        assembler compiler command (defaults to CC)
   CCASFLAGS   assembler compiler flags (defaults to CFLAGS)
@@ -1825,9 +1830,13 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
+CXX=/opt/cheerp/bin/clang
+
+
+
 
 ac_aux_dir=
-for ac_dir in ../.. "$srcdir"/../..; do
+for ac_dir in ../../../.. "$srcdir"/../../../..; do
   if test -f "$ac_dir/install-sh"; then
     ac_aux_dir=$ac_dir
     ac_install_sh="$ac_aux_dir/install-sh -c"
@@ -1843,7 +1852,7 @@ for ac_dir in ../.. "$srcdir"/../..; do
   fi
 done
 if test -z "$ac_aux_dir"; then
-  as_fn_error $? "cannot find install-sh, install.sh, or shtool in ../.. \"$srcdir\"/../.." "$LINENO" 5
+  as_fn_error $? "cannot find install-sh, install.sh, or shtool in ../../../.. \"$srcdir\"/../../../.." "$LINENO" 5
 fi
 
 # These three variables are undocumented and unsupported,
@@ -1854,6 +1863,13 @@ ac_config_guess="$SHELL $ac_aux_dir/config.guess"  # Please don't use this var.
 ac_config_sub="$SHELL $ac_aux_dir/config.sub"  # Please don't use this var.
 ac_configure="$SHELL $ac_aux_dir/configure"  # Please don't use this var.
 
+
+
+
+# Check whether --with-cxx-headers was given.
+if test "${with_cxx_headers+set}" = set; then :
+  withval=$with_cxx_headers; cxx_headers_path=${withval}
+fi
 
 
 
@@ -2515,12 +2531,12 @@ test -z "${with_target_subdir}" && with_target_subdir=.
 
 if test "${srcdir}" = "."; then
   if test "${with_target_subdir}" != "."; then
-    newlib_basedir="${srcdir}/${with_multisrctop}../.."
+    newlib_basedir="${srcdir}/${with_multisrctop}../../../.."
   else
-    newlib_basedir="${srcdir}/${with_multisrctop}.."
+    newlib_basedir="${srcdir}/${with_multisrctop}../../.."
   fi
 else
-  newlib_basedir="${srcdir}/.."
+  newlib_basedir="${srcdir}/../../.."
 fi
 
 
@@ -3433,42 +3449,6 @@ OBJEXT=${oext}
 
 
 
-
-
-# Put a plausible default for CC_FOR_BUILD in Makefile.
-if test -z "$CC_FOR_BUILD"; then
-  if test "x$cross_compiling" = "xno"; then
-    CC_FOR_BUILD='$(CC)'
-  else
-    CC_FOR_BUILD=gcc
-  fi
-fi
-
-
-# Also set EXEEXT_FOR_BUILD.
-if test "x$cross_compiling" = "xno"; then
-  EXEEXT_FOR_BUILD='$(EXEEXT)'
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for build system executable suffix" >&5
-$as_echo_n "checking for build system executable suffix... " >&6; }
-if ${newlib_cv_build_exeext+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  cat > ac_c_test.c << 'EOF'
-int main() {
-/* Nothing needed here */
-}
-EOF
-    ${CC_FOR_BUILD} -o ac_c_test am_c_test.c 1>&5 2>&5
-    newlib_cv_build_exeext=`echo ac_c_test.* | grep -v ac_c_test.c | sed -e s/ac_c_test//`
-    rm -f ac_c_test*
-    test x"${newlib_cv_build_exeext}" = x && newlib_cv_build_exeext=no
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $newlib_cv_build_exeext" >&5
-$as_echo "$newlib_cv_build_exeext" >&6; }
-  EXEEXT_FOR_BUILD=""
-  test x"${newlib_cv_build_exeext}" != xno && EXEEXT_FOR_BUILD=${newlib_cv_build_exeext}
-fi
 
 
 ac_config_files="$ac_config_files Makefile"

@@ -57,12 +57,7 @@ DIST_COMMON = $(srcdir)/../../Makefile.shared $(srcdir)/Makefile.in \
 	$(srcdir)/Makefile.am
 subdir = errno
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/../../libtool.m4 \
-	$(top_srcdir)/../../ltoptions.m4 \
-	$(top_srcdir)/../../ltsugar.m4 \
-	$(top_srcdir)/../../ltversion.m4 \
-	$(top_srcdir)/../../lt~obsolete.m4 \
-	$(top_srcdir)/../acinclude.m4 $(top_srcdir)/configure.in
+am__aclocal_m4_deps = $(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/../../mkinstalldirs
@@ -165,8 +160,10 @@ LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
 NEWLIB_CFLAGS = @NEWLIB_CFLAGS@
+NEWLIB_CXXFLAGS = @NEWLIB_CXXFLAGS@
 NM = @NM@
 NMEDIT = @NMEDIT@
 NO_INCLUDE_LIST = @NO_INCLUDE_LIST@
@@ -193,6 +190,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 aext = @aext@

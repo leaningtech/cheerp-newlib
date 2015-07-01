@@ -59,10 +59,8 @@ DIST_COMMON = NEWS README ChangeLog $(srcdir)/Makefile.in \
 	$(am__configure_deps) acconfig.h $(srcdir)/newlib.hin \
 	$(srcdir)/../mkinstalldirs
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/../libtool.m4 \
-	$(top_srcdir)/../ltoptions.m4 $(top_srcdir)/../ltsugar.m4 \
-	$(top_srcdir)/../ltversion.m4 $(top_srcdir)/../lt~obsolete.m4 \
-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
+	$(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
@@ -191,6 +189,7 @@ CRT0 = @CRT0@
 CRT0_DIR = @CRT0_DIR@
 CRT1 = @CRT1@
 CRT1_DIR = @CRT1_DIR@
+CXX_FOR_NEWLIB = @CXX_FOR_NEWLIB@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
@@ -222,8 +221,10 @@ LTLIBOBJS = @LTLIBOBJS@
 MACHINE_OBJECTLIST = @MACHINE_OBJECTLIST@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
 NEWLIB_CFLAGS = @NEWLIB_CFLAGS@
+NEWLIB_CXXFLAGS = @NEWLIB_CXXFLAGS@
 NM = @NM@
 NMEDIT = @NMEDIT@
 NO_INCLUDE_LIST = @NO_INCLUDE_LIST@
@@ -257,6 +258,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 aext = @aext@
@@ -364,6 +366,7 @@ AM_MAKEFLAGS = \
 	"AR=$(AR)" \
 	"AS=$(AS)" \
 	"CC=$(CC_FOR_NEWLIB)" \
+	"CXX=$(CXX_FOR_NEWLIB)" \
 	"LD=$(LD)" \
 	"LIBCFLAGS=$(LIBCFLAGS)" \
 	"NM=$(NM)" \
@@ -377,7 +380,7 @@ FLAGS_TO_PASS = $(AM_MAKEFLAGS)
 SUBDIRS = libc libm \
 	$(DOCDIR) . $(EXTRA_DIRS)
 
-tooldir = $(exec_prefix)/$(host_alias)
+tooldir = $(exec_prefix)
 toollibdir = $(tooldir)/lib$(MULTISUBDIR)
 AR_FLAGS = rc
 @USE_LIBTOOL_TRUE@toollib_LTLIBRARIES = libm.la \
