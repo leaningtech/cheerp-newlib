@@ -152,7 +152,7 @@ static _CONST double tinytens[] = { 1e-16, 1e-32,
 
 #ifdef Avoid_Underflow /*{*/
  static double
-_DEFUN (sulp, (x, scale),
+_FUN (sulp, (x, scale),
        	U x _AND
 	int scale)
 {
@@ -1254,7 +1254,7 @@ _DEFUN (_strtod_r, (ptr, s00, se),
 #ifndef _REENT_ONLY
 
 double
-_DEFUN (strtod, (s00, se),
+_FUN (strtod, (s00, se),
 	_CONST char *__restrict s00 _AND char **__restrict se)
 {
   return _strtod_r (_REENT, s00, se);
