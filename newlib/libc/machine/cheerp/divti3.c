@@ -22,7 +22,7 @@
 unsigned long long
 divmodti4(int modwanted, unsigned long long num, unsigned long long den)
 {
-  long long int bit = 1;
+  unsigned long long int bit = 1;
   long long int res = 0;
   long long prevden;
   while (den < num && bit && !(den & (1LL<<63)))
