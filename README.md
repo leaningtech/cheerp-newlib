@@ -20,7 +20,7 @@ cd newlib
 git clone <libcxx-cheerp-repo> libcxx
 mkdir build
 cd build
-../configure --host=cheerp --with-cxx-headers=$PWD/../libcxx/include --prefix=/opt/cheerp
+../configure --host=cheerp --with-cxx-headers=$PWD/../libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long
 make
 make install
 ../build-bc-libs.sh
