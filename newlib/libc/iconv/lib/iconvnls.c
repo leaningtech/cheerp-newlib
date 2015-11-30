@@ -29,6 +29,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <sys/iconvnls.h>
+#include <malloc.h>
 #ifdef _MB_CAPABLE
 #include <wchar.h>
 #include <iconv.h>

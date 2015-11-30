@@ -34,6 +34,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <wchar.h>
+#include <malloc.h>
 #include "../lib/local.h"
 #include "../lib/ucsconv.h"
 #include "../lib/endian.h"
@@ -58,7 +59,7 @@
 #define UTF_16LE "utf_16le"
 
 static size_t
-_DEFUN(utf_16_close, (rptr, data),
+_FUN(utf_16_close, (rptr, data),
                      struct _reent *rptr _AND
                      _VOID_PTR data)
 {
@@ -68,7 +69,7 @@ _DEFUN(utf_16_close, (rptr, data),
 
 #if defined (ICONV_FROM_UCS_CES_UTF_16)
 static _VOID_PTR
-_DEFUN(utf_16_init_from_ucs, (rptr, encoding),
+_FUN(utf_16_init_from_ucs, (rptr, encoding),
                              struct _reent *rptr _AND
                              _CONST char *encoding)
 {
@@ -88,7 +89,7 @@ _DEFUN(utf_16_init_from_ucs, (rptr, encoding),
 }
 
 static size_t
-_DEFUN(utf_16_convert_from_ucs, (data, in, outbuf, outbytesleft),
+_FUN(utf_16_convert_from_ucs, (data, in, outbuf, outbytesleft),
                                 _VOID_PTR data         _AND
                                 register ucs4_t in     _AND
                                 unsigned char **outbuf _AND
@@ -170,7 +171,7 @@ _DEFUN(utf_16_convert_from_ucs, (data, in, outbuf, outbytesleft),
 
 #if defined (ICONV_TO_UCS_CES_UTF_16)
 static _VOID_PTR
-_DEFUN(utf_16_init_to_ucs, (rptr, encoding),
+_FUN(utf_16_init_to_ucs, (rptr, encoding),
                            struct _reent *rptr _AND
                            _CONST char *encoding)
 {
@@ -190,7 +191,7 @@ _DEFUN(utf_16_init_to_ucs, (rptr, encoding),
 }
 
 static ucs4_t
-_DEFUN(utf_16_convert_to_ucs, (data, inbuf, inbytesleft),
+_FUN(utf_16_convert_to_ucs, (data, inbuf, inbytesleft),
                               _VOID_PTR data               _AND
                               _CONST unsigned char **inbuf _AND
                               size_t *inbytesleft)
@@ -268,7 +269,7 @@ _DEFUN(utf_16_convert_to_ucs, (data, inbuf, inbytesleft),
 #endif /* ICONV_TO_UCS_CES_UTF_16 */
 
 static int
-_DEFUN(utf_16_get_mb_cur_max, (data),
+_FUN(utf_16_get_mb_cur_max, (data),
                               _VOID_PTR data)
 {
   return 6;

@@ -254,7 +254,7 @@ _DEFUN(__ssputs_r, (ptr, fp, buf, len),
 	}
 	if (len < w)
 		w = len;
-	(void)memmove ((_PTR) fp->_p, (_PTR) buf, (size_t) (w));
+	(void)memmove ((char*) fp->_p, buf, (size_t) (w));
 	fp->_w -= w;
 	fp->_p += w;
 

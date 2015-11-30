@@ -33,6 +33,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
+#include <malloc.h>
 #include "../lib/local.h"
 #include "../lib/ucsconv.h"
 #include "../lib/endian.h"
@@ -50,7 +51,7 @@
 #define UCS_2LE "ucs_2le"
 
 static _VOID_PTR
-_DEFUN(ucs_2_init, (rptr, encoding),
+_FUN(ucs_2_init, (rptr, encoding),
                    struct _reent *rptr _AND
                    _CONST char *encoding)
 {
@@ -68,7 +69,7 @@ _DEFUN(ucs_2_init, (rptr, encoding),
 }
 
 static size_t
-_DEFUN(ucs_2_close, (rptr, data),
+_FUN(ucs_2_close, (rptr, data),
                     struct _reent *rptr _AND
                     _VOID_PTR data)
 {
@@ -78,7 +79,7 @@ _DEFUN(ucs_2_close, (rptr, data),
 
 #if defined (ICONV_FROM_UCS_CES_UCS_2)
 static size_t
-_DEFUN(ucs_2_convert_from_ucs, (data, in, outbuf, outbytesleft),
+_FUN(ucs_2_convert_from_ucs, (data, in, outbuf, outbytesleft),
                                _VOID_PTR data         _AND
                                ucs4_t in              _AND
                                unsigned char **outbuf _AND
@@ -92,9 +93,17 @@ _DEFUN(ucs_2_convert_from_ucs, (data, in, outbuf, outbytesleft),
     return (size_t)ICONV_CES_NOSPACE;
 
   if (*((int *)data) == UCS_2_BIG_ENDIAN)
-    *((ucs2_t *)(*outbuf)) = ICONV_HTOBES ((ucs2_t)in);
+  {
+    ucs2_t val = ICONV_HTOBES ((ucs2_t)in);
+    (*outbuf)[0] = val&0xff;
+    (*outbuf)[1] = val>>8;
+  }
   else
-    *((ucs2_t *)(*outbuf)) = ICONV_HTOLES ((ucs2_t)in);
+  {
+    ucs2_t val = ICONV_HTOLES ((ucs2_t)in);
+    (*outbuf)[0] = val&0xff;
+    (*outbuf)[1] = val>>8;
+  }
     
   *outbuf += sizeof (ucs2_t);
   *outbytesleft -= sizeof (ucs2_t);
@@ -105,7 +114,7 @@ _DEFUN(ucs_2_convert_from_ucs, (data, in, outbuf, outbytesleft),
 
 #if defined (ICONV_TO_UCS_CES_UCS_2)
 static ucs4_t
-_DEFUN(ucs_2_convert_to_ucs, (data, inbuf, inbytesleft),
+_FUN(ucs_2_convert_to_ucs, (data, inbuf, inbytesleft),
                              _VOID_PTR data               _AND
                              _CONST unsigned char **inbuf _AND
                              size_t *inbytesleft)
@@ -132,7 +141,7 @@ _DEFUN(ucs_2_convert_to_ucs, (data, inbuf, inbytesleft),
 #endif /* ICONV_TO_UCS_CES_UCS_2 */
 
 static int
-_DEFUN(ucs_2_get_mb_cur_max, (data),
+_FUN(ucs_2_get_mb_cur_max, (data),
                              _VOID_PTR data)
 {
   return 2;

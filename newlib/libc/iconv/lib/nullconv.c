@@ -36,7 +36,7 @@ static int null_conversion_dummy_data;
 
 
 static _VOID_PTR
-_DEFUN(null_conversion_open, (rptr, to, from),
+_FUN(null_conversion_open, (rptr, to, from),
                              struct _reent *rptr _AND
                              _CONST char *to     _AND
                              _CONST char *from)
@@ -46,7 +46,7 @@ _DEFUN(null_conversion_open, (rptr, to, from),
 
 
 static size_t
-_DEFUN(null_conversion_close, (rptr, data),
+_FUN(null_conversion_close, (rptr, data),
                               struct _reent *rptr _AND
                               _VOID_PTR data)
 {
@@ -55,7 +55,7 @@ _DEFUN(null_conversion_close, (rptr, data),
 
 
 static size_t
-_DEFUN(null_conversion_convert,
+_FUN(null_conversion_convert,
                      (rptr, data, inbuf, inbytesleft, outbuf, outbytesleft),
                      struct _reent *rptr          _AND
                      _VOID_PTR data               _AND
@@ -93,7 +93,7 @@ _DEFUN(null_conversion_convert,
 
 
 static int
-_DEFUN(null_conversion_get_mb_cur_max, (data, direction),
+_FUN(null_conversion_get_mb_cur_max, (data, direction),
                                        _VOID_PTR data     _AND
                                        int direction)
 {
@@ -102,7 +102,7 @@ _DEFUN(null_conversion_get_mb_cur_max, (data, direction),
 
 
 static _VOID
-_DEFUN(null_conversion_get_state, (data, state, size),
+_FUN(null_conversion_get_state, (data, state, size),
                                   _VOID_PTR data   _AND
                                   mbstate_t *state _AND
                                   int direction)
@@ -112,7 +112,7 @@ _DEFUN(null_conversion_get_state, (data, state, size),
 
 
 static int
-_DEFUN(null_conversion_set_state, (data, state, direction),
+_FUN(null_conversion_set_state, (data, state, direction),
                                   _VOID_PTR data   _AND
                                   mbstate_t *state _AND
                                   int direction)
@@ -121,7 +121,7 @@ _DEFUN(null_conversion_set_state, (data, state, direction),
 }
 
 static int
-_DEFUN(null_conversion_is_stateful, (data, direction),
+_FUN(null_conversion_is_stateful, (data, direction),
                                     _VOID_PTR data _AND
                                     int direction)
 {

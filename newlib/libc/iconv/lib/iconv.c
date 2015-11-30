@@ -149,6 +149,7 @@ No supporting OS subroutine calls are required.
 #include <iconv.h>
 #include <wchar.h>
 #include <sys/iconvnls.h>
+#include <malloc.h>
 #include "local.h"
 #include "conv.h"
 #include "ucsconv.h"
@@ -196,20 +197,20 @@ _DEFUN(_iconv_open_r, (rptr, to, from),
   iconv_conversion_t *ic;
     
   if (to == NULL || from == NULL || *to == '\0' || *from == '\0')
-    return (iconv_t)-1;
+    return NULL;
 
   if ((to = (_CONST char *)_iconv_resolve_encoding_name (rptr, to)) == NULL)
-    return (iconv_t)-1;
+    return NULL;
 
   if ((from = (_CONST char *)_iconv_resolve_encoding_name (rptr, from)) == NULL)
     {
       _free_r (rptr, (_VOID_PTR)to);
-      return (iconv_t)-1;
+      return NULL;
     }
 
   ic = (iconv_conversion_t *)_malloc_r (rptr, sizeof (iconv_conversion_t));
   if (ic == NULL)
-    return (iconv_t)-1;
+    return NULL;
 
   /* Select which conversion type to use */
   if (strcmp (from, to) == 0)
@@ -231,7 +232,7 @@ _DEFUN(_iconv_open_r, (rptr, to, from),
   if (ic->data == NULL)
     {
       _free_r (rptr, (_VOID_PTR)ic);
-      return (iconv_t)-1;
+      return NULL;
     }
 
   return (_VOID_PTR)ic;
@@ -249,7 +250,11 @@ _DEFUN(_iconv_r, (rptr, cd, inbuf, inbytesleft, outbuf, outbytesleft),
 {
   iconv_conversion_t *ic = (iconv_conversion_t *)cd;
 
+#ifdef __CHEERP__
+  if (cd == NULL || ic->data == NULL
+#else
   if ((_VOID_PTR)cd == NULL || cd == (iconv_t)-1 || ic->data == NULL
+#endif
        || (ic->handlers != &_iconv_null_conversion_handlers
            && ic->handlers != &_iconv_ucs_conversion_handlers))
     {
@@ -287,7 +292,7 @@ _DEFUN(_iconv_r, (rptr, cd, inbuf, inbytesleft, outbuf, outbytesleft),
           
           if (*outbytesleft >= state_null.__count)
             {
-              memcpy ((_VOID_PTR)(*outbuf), (_VOID_PTR)&state_null, state_null.__count);
+              memcpy (*outbuf, state_null.__value.__wchb, state_null.__count);
               
               *outbuf += state_null.__count;
               *outbytesleft -= state_null.__count;

@@ -31,6 +31,7 @@
 #include <errno.h>
 #include <ctype.h>
 #include <sys/iconvnls.h>
+#include <malloc.h>
 #include "local.h"
 
 /*
@@ -50,7 +51,7 @@
  *   was not found.
  */
 static char *
-_DEFUN(strnstr, (haystack, needle, length),
+_FUN(strnstr, (haystack, needle, length),
                 _CONST char *haystack _AND
                 _CONST char *needle   _AND
                 int length)
@@ -91,7 +92,7 @@ _DEFUN(strnstr, (haystack, needle, length),
  *   Returns canonical form of 'str' if success, NULL if failure.
  */
 static _CONST char *
-_DEFUN(canonical_form, (rptr, str), 
+_FUN(canonical_form, (rptr, str), 
                        struct _reent *rptr _AND
                        _CONST char *str)
 {
@@ -136,7 +137,7 @@ _DEFUN(canonical_form, (rptr, str),
  *   and sets current thread's/process's errno.
  */
 static char *
-_DEFUN(find_alias, (rptr, alias, table, len),
+_FUN(find_alias, (rptr, alias, table, len),
                    struct _reent *rptr _AND
                    _CONST char *alias  _AND
                    _CONST char *table  _AND

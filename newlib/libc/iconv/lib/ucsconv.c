@@ -29,6 +29,7 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
+#include <malloc.h>
 #include "local.h"
 #include "conv.h"
 #include "ucsconv.h"
@@ -45,7 +46,7 @@ _EXFUN(find_encoding_name, (_CONST char *searchee,
  */
 
 static _VOID_PTR
-_DEFUN(ucs_based_conversion_open, (rptr, to, from),
+_FUN(ucs_based_conversion_open, (rptr, to, from),
                                   struct _reent *rptr _AND
                                   _CONST char *to     _AND
                                   _CONST char *from)
@@ -63,7 +64,7 @@ _DEFUN(ucs_based_conversion_open, (rptr, to, from),
    * Find CES converter for "from" encoding ("from" source encoding corresponds
    * to "to_ucs" CES converter).
    */
-  for (to_ucs_bices = &_iconv_to_ucs_ces[0];
+  for (to_ucs_bices = _iconv_to_ucs_ces;
        to_ucs_bices->names != NULL;
        to_ucs_bices++)
     {
@@ -75,7 +76,7 @@ _DEFUN(ucs_based_conversion_open, (rptr, to, from),
    * Find CES converter for "to" encoding ("to" source encoding corresponds
    * to "from_ucs" CES converter).
    */
-  for (from_ucs_bices = &_iconv_from_ucs_ces[0];
+  for (from_ucs_bices = _iconv_from_ucs_ces;
        from_ucs_bices->names != NULL;
        from_ucs_bices++)
     {
@@ -123,7 +124,7 @@ error:
 
 
 static size_t
-_DEFUN(ucs_based_conversion_close, (rptr, data),
+_FUN(ucs_based_conversion_close, (rptr, data),
                                    struct _reent *rptr _AND
                                    _VOID_PTR data)
 {
@@ -144,7 +145,7 @@ _DEFUN(ucs_based_conversion_close, (rptr, data),
 
 
 static size_t
-_DEFUN(ucs_based_conversion_convert,
+_FUN(ucs_based_conversion_convert,
                  (rptr, data, inbuf, inbytesleft, outbuf, outbytesleft, flags),
                  struct _reent *rptr          _AND
                  _VOID_PTR data               _AND
@@ -238,7 +239,7 @@ _DEFUN(ucs_based_conversion_convert,
 
 
 static int
-_DEFUN(ucs_based_conversion_get_mb_cur_max, (data, direction),
+_FUN(ucs_based_conversion_get_mb_cur_max, (data, direction),
                                             _VOID_PTR data _AND
                                             int direction)
 {
@@ -252,7 +253,7 @@ _DEFUN(ucs_based_conversion_get_mb_cur_max, (data, direction),
 
 
 static _VOID
-_DEFUN(ucs_based_conversion_get_state, (data, state, direction),
+_FUN(ucs_based_conversion_get_state, (data, state, direction),
                                        _VOID_PTR data   _AND
                                        mbstate_t *state _AND
                                        int direction)
@@ -280,7 +281,7 @@ _DEFUN(ucs_based_conversion_get_state, (data, state, direction),
 
 
 static int
-_DEFUN(ucs_based_conversion_set_state, (data, state, direction),
+_FUN(ucs_based_conversion_set_state, (data, state, direction),
                                        _VOID_PTR data   _AND
                                        mbstate_t *state _AND
                                        int direction)
@@ -302,7 +303,7 @@ _DEFUN(ucs_based_conversion_set_state, (data, state, direction),
 }
 
 static int
-_DEFUN(ucs_based_conversion_is_stateful, (data, direction),
+_FUN(ucs_based_conversion_is_stateful, (data, direction),
                                          _VOID_PTR data _AND
                                          int direction)
 {
@@ -342,7 +343,7 @@ _iconv_ucs_conversion_handlers =
  */
 
 static int
-_DEFUN(find_encoding_name, (searchee, names),
+_FUN(find_encoding_name, (searchee, names),
                            _CONST char *searchee _AND
                            _CONST char **names)
 {
