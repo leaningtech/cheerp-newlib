@@ -67,4 +67,9 @@ _MACDEFUN(malloc, (s),
 {
 	return fakeMallocPtr;
 }
+
+void
+_MACDEFUN(free, (void*), void* p)
+{
+}
 #endif
