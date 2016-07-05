@@ -53,6 +53,9 @@ Supporting OS subroutines required: <<_exit>> and optionally, <<write>>.
 _VOID
 _DEFUN_VOID (abort)
 {
+#ifdef __CHEERP__
+  __asm("throw \"Abort called\";");
+#else
 #ifdef ABORT_MESSAGE
   write (2, "Abort called\n", sizeof ("Abort called\n")-1);
 #endif
@@ -62,6 +65,7 @@ _DEFUN_VOID (abort)
       raise (SIGABRT);
       _exit (1);
     }
+#endif
 }
 
 #endif
