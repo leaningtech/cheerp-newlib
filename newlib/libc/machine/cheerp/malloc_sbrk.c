@@ -59,7 +59,7 @@ void* _sbrk_r(void* reent, int nbytes)
 #else
 #include <malloc.h>
 
-void* fakeMallocPtr = 0;
+void* volatile fakeMallocPtr = 0;
 
 void*
 _MACDEFUN(malloc, (s),
