@@ -173,7 +173,7 @@ _DEFUN(qsort_r, (a, n, es, cmp, thunk),
 	void *thunk)
 #else
 #define thunk NULL
-void
+__attribute__((cheerp_bytelayout)) void
 _DEFUN(qsort, (a, n, es, cmp),
 	void *a _AND
 	size_t n _AND
