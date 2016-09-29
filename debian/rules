@@ -4,7 +4,7 @@
 	dh $@
 
 override_dh_auto_configure:
-	dh_auto_configure -D newlib -Bnewlib/build -- --host=cheerp --with-cxx-headers=$(CURDIR)/libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2
+	dh_auto_configure -D newlib -Bnewlib/build -- --host=cheerp-unknown-none --with-cxx-headers=$(CURDIR)/libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2
 
 override_dh_auto_build:
 	dh_auto_build -D newlib -Bnewlib/build
