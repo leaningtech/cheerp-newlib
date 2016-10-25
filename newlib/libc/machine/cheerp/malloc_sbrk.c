@@ -18,6 +18,29 @@
  *
  ***************************************************************/
 
+#ifdef __ASMJS__
+// HACK: we only need the address of this variable. The compiler magically sets
+// its address to the beginning of the heap.
+extern char _heapStart = 0;
+
+void* sbrk(int nbytes)
+{
+	static char* heap_end = 0;
+
+	if (heap_end == 0)
+		heap_end = &_heapStart;
+	char* prev_end = heap_end;
+	heap_end += nbytes;
+	//TODO: check if we reached end of heap
+	return prev_end;
+}
+
+void* _sbrk_r(void* reent, int nbytes)
+{
+	(void)reent;
+	return sbrk(nbytes);
+}
+#else
 #include <malloc.h>
 
 void* fakeMallocPtr = 0;
@@ -28,3 +51,4 @@ _MACDEFUN(malloc, (s),
 {
 	return fakeMallocPtr;
 }
+#endif

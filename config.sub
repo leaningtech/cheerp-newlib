@@ -1320,7 +1320,7 @@ case $basic_machine in
 	*-unknown)
 		# Make sure to match an already-canonicalized machine name.
 		;;
-	cheerp)
+	cheerp*)
 		basic_machine=cheerp-client
 		;;
 	*)
@@ -1529,6 +1529,10 @@ case $os in
 	-nacl*)
 		;;
 	-none)
+		;;
+	-asmjs)
+		;;
+	-genericjs)
 		;;
 	*)
 		# Get rid of the `-' at the beginning of $os.

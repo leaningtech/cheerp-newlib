@@ -409,7 +409,7 @@ unsigned char _EXFUN(__hexdig_fun,(unsigned char));
 int		_EXFUN(hexnan,(_CONST char **sp, _CONST struct FPI *fpi, __ULong *x0));
 #endif
 
-#ifdef __CHEERP__
+#if defined(__CHEERP__) && !defined(__ASMJS__)
 inline void Bcopy(_Bigint* x, _Bigint* y)
 {
 	x->_sign = y->_sign;

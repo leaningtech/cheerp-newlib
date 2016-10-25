@@ -129,7 +129,15 @@ case "${host_cpu}" in
 	machine_dir=d30v
 	;;
   cheerp)
-	newlib_cflags="${newlib_cflags} -DMALLOC_PROVIDED"
+	case "${host}" in
+	cheerp-client-asmjs)
+		newlib_cflags="${newlib_cflags} -cheerp-mode=asmjs"
+		;;
+	*)
+		newlib_cflags="${newlib_cflags} -DMALLOC_PROVIDED"
+		newlib_cflags="${newlib_cflags} -cheerp-mode=genericjs"
+		;;
+	esac
 	newlib_cflags="${newlib_cflags} -DPREFER_SIZE_OVER_SPEED"
 	newlib_cflags="${newlib_cflags} -DSIGNAL_PROVIDED"
 	newlib_cflags="${newlib_cflags} -DREENTRANT_SYSCALLS_PROVIDED"

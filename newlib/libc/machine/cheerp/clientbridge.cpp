@@ -24,6 +24,13 @@
 #include <sys/time.h>
 #include "clientbridge.h"
 
+#ifdef __ASMJS__
+namespace client
+{
+	void printString(const char* str, int n);
+}
+#endif
+
 _READ_WRITE_RETURN_TYPE
 _DEFUN(__cheerpwrite, (ptr, cookie, buf, n),
        struct _reent *ptr _AND
@@ -31,15 +38,19 @@ _DEFUN(__cheerpwrite, (ptr, cookie, buf, n),
        char const *buf _AND
        int n)
 {
-	const client::String str(buf);
 	int realN=n;
-	if(str.charCodeAt(n-1)=='\n')
+	if(buf[n-1]=='\n')
 	{
 		//As far as output is line buffered we can remove
-		//the newline, as JS print add it anyway
+		//the newline, as JS print adds it anyway
 		n--;
 	}
+#ifdef __ASMJS__
+	client::printString(buf,n);
+#else
+	const client::String str(buf);
 	client::console.log(*str.substr(0,n));
+#endif
 	return realN;
 }
 

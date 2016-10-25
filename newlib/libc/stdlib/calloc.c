@@ -54,6 +54,7 @@ Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
 
 #include <string.h>
 #include <stdlib.h>
+#include <malloc.h>
 
 #ifndef _REENT_ONLY
 

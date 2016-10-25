@@ -22,6 +22,9 @@
 #include <malloc.h>
 #include "clientbridge.h"
 
+_VOID _EXFUN(__sinit_lock_acquire,(_VOID));
+_VOID _EXFUN(__sinit_lock_release,(_VOID));
+
 FILE *
 _MACDEFUN (__sfp, (d),
 	struct _reent *d)
