@@ -338,7 +338,11 @@ _DEFUN(_iconv_close_r, (rptr, cd),
   int res;
   iconv_conversion_t *ic = (iconv_conversion_t *)cd;
   
+#ifdef __CHEERP__
+  if (cd == NULL || ic->data == NULL
+#else
   if ((_VOID_PTR)cd == NULL || cd == (iconv_t)-1 || ic->data == NULL
+#endif
        || (ic->handlers != &_iconv_null_conversion_handlers
            && ic->handlers != &_iconv_ucs_conversion_handlers))
     {
