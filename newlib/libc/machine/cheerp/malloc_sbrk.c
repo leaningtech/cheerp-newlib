@@ -68,8 +68,8 @@ _MACDEFUN(malloc, (s),
 	return fakeMallocPtr;
 }
 
-void
-_MACDEFUN(free, (void*), void* p)
+void __attribute__((cheerp_bytelayout))
+_DEFUN(free, (void*), void* p)
 {
 }
 #endif
