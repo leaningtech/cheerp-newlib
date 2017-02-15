@@ -21,6 +21,7 @@
 #include <cheerp/client.h>
 #include <cheerp/clientlib.h>
 #include <malloc.h>
+#include <sys/time.h>
 #include "clientbridge.h"
 
 _READ_WRITE_RETURN_TYPE
@@ -40,4 +41,27 @@ _DEFUN(__cheerpwrite, (ptr, cookie, buf, n),
 	}
 	client::console.log(*str.substr(0,n));
 	return realN;
+}
+
+extern "C" {
+
+int gettimeofday (timeval* tv, void* tz_)
+{
+	timezone *tz = (timezone*)tz_;
+	if(tv)
+	{
+		// 'now' is in milliseconds
+		double now = client::Date::now();
+		tv->tv_sec = now / 1000;
+		tv->tv_usec = (now-(tv->tv_sec*1000.0))*1000.0;
+	}
+	if(tz)
+	{
+		// The man page says this is an obsolete feature
+		tz->tz_minuteswest = 0;
+		tz->tz_dsttime = 0;
+	}
+	return 0;
+}
+
 }
