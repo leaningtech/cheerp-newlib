@@ -156,7 +156,7 @@ __unused
 }
 
 #if defined(I_AM_QSORT_R)
-void
+__attribute__((cheerp_bytelayout)) void
 _DEFUN(__bsd_qsort_r, (a, n, es, thunk, cmp),
 	void *a _AND
 	size_t n _AND
@@ -164,7 +164,7 @@ _DEFUN(__bsd_qsort_r, (a, n, es, thunk, cmp),
 	void *thunk _AND
 	cmp_t *cmp)
 #elif defined(I_AM_GNU_QSORT_R)
-void
+__attribute__((cheerp_bytelayout)) void
 _DEFUN(qsort_r, (a, n, es, cmp, thunk),
 	void *a _AND
 	size_t n _AND
