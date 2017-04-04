@@ -54,6 +54,12 @@ _DEFUN(__cheerpwrite, (ptr, cookie, buf, n),
 	return realN;
 }
 
+[[cheerp::genericjs]]
+double date_now()
+{
+	return client::Date::now();
+}
+
 extern "C" {
 
 int gettimeofday (timeval* tv, void* tz_)
@@ -62,7 +68,7 @@ int gettimeofday (timeval* tv, void* tz_)
 	if(tv)
 	{
 		// 'now' is in milliseconds
-		double now = client::Date::now();
+		double now = date_now();
 		tv->tv_sec = now / 1000;
 		tv->tv_usec = (now-(tv->tv_sec*1000.0))*1000.0;
 	}
