@@ -1,5 +1,7 @@
-opt/cheerp/lib/libm.bc
-opt/cheerp/lib/libc.bc
+opt/cheerp/lib/genericjs/libm.bc
+opt/cheerp/lib/genericjs/libc.bc
+opt/cheerp/lib/asmjs/libm.bc
+opt/cheerp/lib/asmjs/libc.bc
 opt/cheerp/include/inttypes.h
 opt/cheerp/include/envlock.h
 opt/cheerp/include/rpc
