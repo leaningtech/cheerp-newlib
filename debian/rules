@@ -16,5 +16,6 @@ override_dh_auto_build:
 override_dh_auto_install:
 	# Install only once the headers
 	dh_auto_install -D newlib -Bnewlib/build_genericjs --destdir=debian/tmp
+	mkdir -p debian/tmp/opt/cheerp/lib/genericjs debian/tmp/opt/cheerp/lib/asmjs
 	cp -v newlib/build_genericjs/libc/libc.bc newlib/build_genericjs/libm/libm.bc debian/tmp/opt/cheerp/lib/genericjs
 	cp -v newlib/build_asmjs/libc/libc.bc newlib/build_asmjs/libm/libm.bc debian/tmp/opt/cheerp/lib/asmjs
