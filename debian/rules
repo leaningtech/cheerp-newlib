@@ -13,6 +13,9 @@ override_dh_auto_build:
 	dh_auto_build -D newlib -Bnewlib/build_asmjs
 	make -C newlib/build_asmjs -f ../build-bc-libs.mk DESTDIR="debian/tmp"
 
+override_dh_update_autotools_config:
+	
+
 override_dh_auto_install:
 	# Install only once the headers
 	dh_auto_install -D newlib -Bnewlib/build_genericjs --destdir=debian/tmp
