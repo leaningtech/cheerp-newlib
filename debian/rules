@@ -4,12 +4,17 @@
 	dh $@
 
 override_dh_auto_configure:
-	dh_auto_configure -D newlib -Bnewlib/build -- --host=cheerp-unknown-none --with-cxx-headers=$(CURDIR)/libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2
+	dh_auto_configure -D newlib -Bnewlib/build_genericjs -- --host=cheerp-genericjs --with-cxx-headers=$(CURDIR)/libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2
+	dh_auto_configure -D newlib -Bnewlib/build_asmjs -- --host=cheerp-asmjs --with-cxx-headers=$(CURDIR)/libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2
 
 override_dh_auto_build:
-	dh_auto_build -D newlib -Bnewlib/build
-	make -C newlib -f build-bc-libs.mk DESTDIR="debian/tmp"
+	dh_auto_build -D newlib -Bnewlib/build_genericjs
+	make -C newlib/build_genericjs -f ../build-bc-libs.mk DESTDIR="debian/tmp"
+	dh_auto_build -D newlib -Bnewlib/build_asmjs
+	make -C newlib/build_asmjs -f ../build-bc-libs.mk DESTDIR="debian/tmp"
 
 override_dh_auto_install:
-	dh_auto_install -D newlib -Bnewlib/build --destdir=debian/tmp
-	cp -v newlib/build/libc/libc.bc newlib/build/libm/libm.bc debian/tmp/opt/cheerp/lib
+	# Install only once the headers
+	dh_auto_install -D newlib -Bnewlib/build_genericjs --destdir=debian/tmp
+	cp -v newlib/build_genericjs/libc/libc.bc newlib/build_genericjs/libm/libm.bc debian/tmp/opt/cheerp/lib/genericjs
+	cp -v newlib/build_asmjs/libc/libc.bc newlib/build_asmjs/libm/libm.bc debian/tmp/opt/cheerp/lib/asmjs
