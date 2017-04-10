@@ -64,7 +64,11 @@ int	_EXFUN(__locale_mb_cur_max,(_VOID));
 
 #define MB_CUR_MAX __locale_mb_cur_max()
 
-_VOID	_EXFUN(abort,(_VOID) _ATTRIBUTE ((__noreturn__)));
+_VOID	_EXFUN(abort,(_VOID) _ATTRIBUTE ((__noreturn__)))
+#ifdef __CHEERP__
+_ATTRIBUTE ((cheerp_genericjs))
+#endif
+;
 int	_EXFUN(abs,(int));
 int	_EXFUN(atexit,(_VOID (*__func)(_VOID)));
 double	_EXFUN(atof,(const char *__nptr));

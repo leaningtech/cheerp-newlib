@@ -51,6 +51,9 @@ Supporting OS subroutines required: <<_exit>> and optionally, <<write>>.
 #include <signal.h>
 
 _VOID
+#ifdef __CHEERP__
+__attribute__((cheerp_genericjs))
+#endif
 _DEFUN_VOID (abort)
 {
 #ifdef __CHEERP__
