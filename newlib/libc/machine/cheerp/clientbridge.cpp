@@ -21,15 +21,9 @@
 #include <cheerp/client.h>
 #include <cheerp/clientlib.h>
 #include <malloc.h>
+#include <string.h>
 #include <sys/time.h>
 #include "clientbridge.h"
-
-#ifdef __ASMJS__
-namespace client
-{
-	void printString(const char* str, int n);
-}
-#endif
 
 _READ_WRITE_RETURN_TYPE
 _DEFUN(__cheerpwrite, (ptr, cookie, buf, n),
@@ -38,16 +32,26 @@ _DEFUN(__cheerpwrite, (ptr, cookie, buf, n),
        char const *buf _AND
        int n)
 {
-	int realN=n;
+	int realN = n;
+#ifdef __ASMJS__
+	char* newbuf = new char[n];
+	memcpy(newbuf, buf,n);
+	if(buf[n-1]=='\n')
+	{
+		//As far as output is line buffered we can remove
+		//the newline, as JS print adds it anyway
+		newbuf[n-1] = '\0';
+	}
+
+	cheerp::console_log(newbuf);
+	delete[] newbuf;
+#else
 	if(buf[n-1]=='\n')
 	{
 		//As far as output is line buffered we can remove
 		//the newline, as JS print adds it anyway
 		n--;
 	}
-#ifdef __ASMJS__
-	client::printString(buf,n);
-#else
 	const client::String str(buf);
 	client::console.log(*str.substr(0,n));
 #endif
