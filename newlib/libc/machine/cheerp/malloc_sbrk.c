@@ -19,18 +19,17 @@
  ***************************************************************/
 
 #ifdef __ASMJS__
-// HACK: we only need the address of this variable. The compiler magically sets
-// its address to the beginning of the heap.
-extern char _heapStart = 0;
+// HACK: The value of this variable will be rewritten to the correct heap start
+// by the compiler backend
+char* volatile _heapStart = (char*)0xdeadbeef;
 
 void* sbrk(int nbytes)
 {
-	static char* heap_end = 0;
-
-	if (heap_end == 0)
-		heap_end = &_heapStart;
-	char* prev_end = heap_end;
-	heap_end += nbytes;
+	static char* heapEnd = 0;
+	if (heapEnd == 0)
+		heapEnd = _heapStart;
+	char* prev_end = heapEnd;
+	heapEnd += nbytes;
 	//TODO: check if we reached end of heap
 	return prev_end;
 }
