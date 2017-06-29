@@ -34,7 +34,7 @@ _DEFUN(__cheerpwrite, (ptr, cookie, buf, n),
 {
 	int realN = n;
 #ifdef __ASMJS__
-	char* newbuf = new char[n];
+	char* newbuf = (char*)malloc(sizeof(char) * n);
 	memcpy(newbuf, buf,n);
 	if(buf[n-1]=='\n')
 	{
@@ -44,7 +44,7 @@ _DEFUN(__cheerpwrite, (ptr, cookie, buf, n),
 	}
 
 	cheerp::console_log(newbuf);
-	delete[] newbuf;
+	free(newbuf);
 #else
 	if(buf[n-1]=='\n')
 	{
