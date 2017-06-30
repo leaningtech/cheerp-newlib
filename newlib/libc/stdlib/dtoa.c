@@ -423,7 +423,7 @@ _DEFUN (_dtoa_r,
       if (i <= 0)
 	i = 1;
     }
-#ifdef __CHEERP__
+#if defined(__CHEERP__) && !defined(__ASMJS__)
   s = s0 = (char *) malloc(i + 1);
 #else
   j = sizeof (__ULong);

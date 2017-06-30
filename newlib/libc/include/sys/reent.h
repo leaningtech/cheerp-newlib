@@ -46,7 +46,7 @@ struct _Bigint
 {
   struct _Bigint *_next;
   int _k, _maxwds, _sign, _wds;
-#ifdef __CHEERP__
+#if defined(__CHEERP__) && !defined(__ASMJS__)
   __ULong *_x;
 #else
   __ULong _x[1];

@@ -118,7 +118,7 @@ _DEFUN (Balloc, (ptr, k), struct _reent *ptr _AND int k)
   int x;
   _Bigint *rv ;
 
-#ifdef __CHEERP__
+#if defined(__CHEERP__) && !defined(__ASMJS__)
   rv = malloc(sizeof(struct _Bigint));
   x = 1 << k;
   rv->_k = k;
@@ -162,7 +162,7 @@ _DEFUN (Balloc, (ptr, k), struct _reent *ptr _AND int k)
 void
 _DEFUN (Bfree, (ptr, v), struct _reent *ptr _AND _Bigint * v)
 {
-#ifdef __CHEERP__
+#if defined(__CHEERP__) && !defined(__ASMJS__)
   if (v)
   {
     free(v->_x);
