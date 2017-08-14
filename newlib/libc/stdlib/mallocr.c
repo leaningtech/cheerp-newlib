@@ -2619,6 +2619,10 @@ Void_t* mALLOc(RARG bytes) RDECL size_t bytes;
 
 */
 
+#if defined(__CHEERP__) && defined(__ASMJS__)
+// This value is defined in libc/machine/cheerp/malloc_sbrk.c
+extern char* volatile _heapStart;
+#endif
 
 #if __STD_C
 void fREe(RARG Void_t* mem)
@@ -2645,6 +2649,13 @@ void fREe(RARG mem) RDECL Void_t* mem;
 
   if (mem == 0)                              /* free(0) has no effect */
     return;
+
+
+#if defined(__CHEERP__) && defined(__ASMJS__)
+  // This memory was promoted to a global in PreExecuter
+  if (mem < _heapStart)
+    return;
+#endif
 
   MALLOC_LOCK;
 
