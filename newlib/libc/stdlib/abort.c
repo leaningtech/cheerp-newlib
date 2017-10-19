@@ -57,7 +57,7 @@ __attribute__((cheerp_genericjs))
 _DEFUN_VOID (abort)
 {
 #ifdef __CHEERP__
-  __asm("throw \"Abort called\";");
+  __asm("throw new Error(\"Abort called\")");
 #else
 #ifdef ABORT_MESSAGE
   write (2, "Abort called\n", sizeof ("Abort called\n")-1);
