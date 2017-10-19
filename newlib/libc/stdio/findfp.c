@@ -87,7 +87,15 @@ _FUN(std, (ptr, flags, file, data),
 
 struct glue_with_file {
   struct _glue glue;
+#ifdef __CHEERP__
+  // NOTE: Adding this level of indirection means that we will not clean up the
+  // memory pointed by this during cleanup_glue. It should not be a problem, since
+  // it should be called only at the very end, and we don't call _reclaim_reent
+  // anyways
+  FILE* file;
+#else
   FILE file;
+#endif
 };
 
 struct _glue *
@@ -98,13 +106,23 @@ _DEFUN(__sfmoreglue, (d, n),
   struct glue_with_file *g;
 
   g = (struct glue_with_file *)
+#ifdef __CHEERP__
+  _malloc_r (d, sizeof (*g));
+  g->file = _malloc_r(d, n * sizeof (FILE));
+#else
     _malloc_r (d, sizeof (*g) + (n - 1) * sizeof (FILE));
+#endif
   if (g == NULL)
     return NULL;
   g->glue._next = NULL;
   g->glue._niobs = n;
+#ifdef __CHEERP__
+  g->glue._iobs = g->file;
+  memset (g->file, 0, n * sizeof (FILE));
+#else
   g->glue._iobs = &g->file;
   memset (&g->file, 0, n * sizeof (FILE));
+#endif
   return &g->glue;
 }
 
