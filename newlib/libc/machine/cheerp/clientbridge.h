@@ -25,9 +25,8 @@ extern "C"
 {
 #endif
 _READ_WRITE_RETURN_TYPE
-_EXFUN(__cheerpwrite, (struct _reent *ptr _AND
-       void *cookie _AND
-       char const *buf _AND
+_EXFUN(__cheerpwrite, (int fd _AND
+       const char *buf _AND
        int n));
 const char *
 _EXFUN (_dtoa_r, (struct _reent *ptr _AND

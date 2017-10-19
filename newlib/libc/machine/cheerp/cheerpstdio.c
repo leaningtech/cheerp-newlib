@@ -20,108 +20,40 @@
 
 #include <stdio.h>
 #include <malloc.h>
+#include <sys/stat.h>
+#include <errno.h>
 #include "clientbridge.h"
 
-_VOID _EXFUN(__sinit_lock_acquire,(_VOID));
-_VOID _EXFUN(__sinit_lock_release,(_VOID));
-
-FILE *
-_MACDEFUN (__sfp, (d),
-	struct _reent *d)
+_READ_WRITE_RETURN_TYPE
+_DEFUN(write, (fd, buf, n),
+       int fd _AND
+       const char *buf _AND
+       int n)
 {
-  FILE *fp;
-  int n;
-  struct _glue *g;
-
-  fp=(FILE*)_malloc_r(d, sizeof(FILE));
-
-  fp->_file = -1;		/* no file */
-  fp->_flags = 1;		/* reserve this slot; caller sets real flags */
-  fp->_flags2 = 0;
-  fp->_p = NULL;		/* no current pointer */
-  fp->_w = 0;			/* nothing to read or write */
-  fp->_r = 0;
-  fp->_bf._base = NULL;		/* no buffer */
-  fp->_bf._size = 0;
-  fp->_lbfsize = 0;		/* not line buffered */
-  __builtin_memset (&fp->_mbstate, 0, sizeof (_mbstate_t));
-  /* fp->_cookie = <any>; */	/* caller sets cookie, _read/_write etc */
-  fp->_ub._base = NULL;		/* no ungetc buffer */
-  fp->_ub._size = 0;
-  fp->_lb._base = NULL;		/* no line buffer */
-  fp->_lb._size = 0;
-
-  return fp;
+	if (fd!=1 && fd!=2)
+		abort();
+	return __cheerpwrite(fd, buf, n);
 }
 
-static _VOID
-_FUN(std, (ptr, flags, file, data),
-            FILE *ptr _AND
-            int flags _AND
-            int file  _AND
-            struct _reent *data)
+int isatty(int fd)
 {
-  ptr->_p = 0;
-  ptr->_r = 0;
-  ptr->_w = 0;
-  ptr->_flags = flags;
-  ptr->_flags2 = 0;
-  ptr->_file = file;
-  ptr->_bf._base = 0;
-  ptr->_bf._size = 0;
-  ptr->_lbfsize = 0;
-  __builtin_memset (&ptr->_mbstate, 0, sizeof (_mbstate_t));
-  ptr->_cookie = ptr;
-#ifndef __LARGE64_FILES
-  ptr->_write = __cheerpwrite;
-#endif /* __LARGE64_FILES */
-
-#ifdef __SCLE
-  if (__stextmode (ptr->_file))
-    ptr->_flags |= __SCLE;
-#endif
+  if (fd < 0 || fd > 3)
+  {
+    return 0;
+  }
+  return 1;
 }
 
-_VOID
-_MACDEFUN(__sinit, (s),
-       struct _reent *s)
+int fstat(int fd, struct stat *st)
 {
-  __sinit_lock_acquire ();
-
-  if (s->__sdidinit)
-    {
-      __sinit_lock_release ();
-      return;
-    }
-
-  /* make sure we clean up on exit */
-  //s->__cleanup = _cleanup_r;	/* conservative */
-
-  s->__sglue._next = NULL;
-  s->__sglue._niobs = 0;
-  s->__sglue._iobs = NULL;
-  /* Avoid infinite recursion when calling __sfp  for _GLOBAL_REENT.  The
-     problem is that __sfp checks for _GLOBAL_REENT->__sdidinit and calls
-     __sinit if it's 0. */
-  if (s == _GLOBAL_REENT)
-    s->__sdidinit = 1;
-  s->_stdin = __sfp(s);
-  s->_stdout = __sfp(s);
-  s->_stderr = __sfp(s);
-
-  std (s->_stdin,  __SRD, -1, s);
-
-  /* On platforms that have true file system I/O, we can verify
-     whether stdout is an interactive terminal or not, as part of
-     __smakebuf on first use of the stream.  For all other platforms,
-     we will default to line buffered mode here.  Technically, POSIX
-     requires both stdin and stdout to be line-buffered, but tradition
-     leaves stdin alone on systems without fcntl.  */
-  std (s->_stdout, __SWR | __SLBF, -2, s);
-
-  std (s->_stderr, __SWR | __SLBF, -2, s);
-
-  s->__sdidinit = 1;
-
-  __sinit_lock_release ();
+  if (fd >= 0 && fd < 3)
+  {
+      st->st_mode = S_IFCHR;
+      st->st_blksize = 0;
+      return 0;
+  }
+  else
+  {
+      return -1;
+  }
 }

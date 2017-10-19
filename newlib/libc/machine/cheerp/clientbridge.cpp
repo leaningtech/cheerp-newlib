@@ -26,10 +26,9 @@
 #include "clientbridge.h"
 
 _READ_WRITE_RETURN_TYPE
-_DEFUN(__cheerpwrite, (ptr, cookie, buf, n),
-       struct _reent *ptr _AND
-       void *cookie _AND
-       char const *buf _AND
+_DEFUN(__cheerpwrite, (fd, buf, n),
+       int fd _AND
+       const char *buf _AND
        int n)
 {
 	int realN = n;

@@ -63,6 +63,14 @@ PORTABILITY
 #include "local.h"
 #include <_syslist.h>
 
+#ifdef __CHEERP__
+_READ_WRITE_RETURN_TYPE
+_EXFUN(__cheerpwrite, (struct _reent *ptr _AND
+       void *cookie _AND
+       char const *buf _AND
+       int n));
+#endif
+
 FILE *
 _DEFUN(_fdopen_r, (ptr, fd, mode),
        struct _reent *ptr _AND
@@ -113,6 +121,11 @@ _DEFUN(_fdopen_r, (ptr, fd, mode),
 #undef _close
 
   fp->_read = __sread;
+#ifdef __CHEERP__
+  if (fd==1 || fd == 2)
+    fp->_write = __cheerpwrite;
+  else
+#endif
   fp->_write = __swrite;
   fp->_seek = __sseek;
   fp->_close = __sclose;
