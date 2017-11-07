@@ -15,6 +15,13 @@
 
 #include "fdlibm.h"
 
+/* Small multiples of pi/2 rounded to double precision. */
+static const double
+s1pio2 = 1*M_PI_2, /* 0x3FF921FB, 0x54442D18 */
+s2pio2 = 2*M_PI_2, /* 0x400921FB, 0x54442D18 */
+s3pio2 = 3*M_PI_2, /* 0x4012D97C, 0x7F3321D2 */
+s4pio2 = 4*M_PI_2; /* 0x401921FB, 0x54442D18 */
+
 #ifdef __STDC__
 	float sinf(float x)
 #else
@@ -22,27 +29,48 @@
 	float x;
 #endif
 {
-	float y[2],z=0.0;
+	double y;
 	__int32_t n,ix;
 
 	GET_FLOAT_WORD(ix,x);
 
+	unsigned sign = ix >> 31;
+
     /* |x| ~< pi/4 */
 	ix &= 0x7fffffff;
-	if(ix <= 0x3f490fd8) return __kernel_sinf(x,z,0);
+	if(ix <= 0x3f490fd8) return __sindf(x);
+
+	if (ix <= 0x407b53d1) {  /* |x| ~<= 5*pi/4 */
+		if (ix <= 0x4016cbe3) {  /* |x| ~<= 3pi/4 */
+			if (sign)
+				return -__cosdf(x + s1pio2);
+			else
+				return __cosdf(x - s1pio2);
+		}
+		return __sindf(sign ? -(x + s2pio2) : -(x - s2pio2));
+	}
+	if (ix <= 0x40e231d5) {  /* |x| ~<= 9*pi/4 */
+		if (ix <= 0x40afeddf) {  /* |x| ~<= 7*pi/4 */
+			if (sign)
+				return __cosdf(x + s3pio2);
+			else
+				return -__cosdf(x - s3pio2);
+		}
+		return __sindf(sign ? x + s4pio2 : x - s4pio2);
+	}
 
     /* sin(Inf or NaN) is NaN */
 	else if (!FLT_UWORD_IS_FINITE(ix)) return x-x;
 
     /* argument reduction needed */
 	else {
-	    n = __ieee754_rem_pio2f(x,y);
+	    n = __rem_pio2f(x,&y);
 	    switch(n&3) {
-		case 0: return  __kernel_sinf(y[0],y[1],1);
-		case 1: return  __kernel_cosf(y[0],y[1]);
-		case 2: return -__kernel_sinf(y[0],y[1],1);
+		case 0: return  __sindf(y);
+		case 1: return  __cosdf(y);
+		case 2: return -__sindf(y);
 		default:
-			return -__kernel_cosf(y[0],y[1]);
+			return -__cosdf(y);
 	    }
 	}
 }

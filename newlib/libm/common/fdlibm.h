@@ -199,6 +199,11 @@ extern double __ieee754_scalb __P((double,int));
 extern double __ieee754_scalb __P((double,double));
 #endif
 
+extern int __rem_pio2_large(double *x, double *y, int e0, int nx, int prec);
+extern int __rem_pio2f(float x, double *y);
+extern float __cosdf(double x);
+extern float __sindf(double x);
+
 /* fdlibm kernel function */
 extern double __kernel_standard __P((double,double,int));
 extern double __kernel_sin __P((double,double,int));

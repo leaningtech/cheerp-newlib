@@ -69,6 +69,7 @@ lib_a_AR = $(AR) $(ARFLAGS)
 lib_a_LIBADD =
 am__objects_1 = lib_a-k_standard.$(OBJEXT) lib_a-k_rem_pio2.$(OBJEXT) \
 	lib_a-k_cos.$(OBJEXT) lib_a-k_sin.$(OBJEXT) \
+	lib_a-__cosdf.$(OBJEXT) lib_a-__sindf.$(OBJEXT) \
 	lib_a-k_tan.$(OBJEXT) lib_a-e_acos.$(OBJEXT) \
 	lib_a-e_acosh.$(OBJEXT) lib_a-e_asin.$(OBJEXT) \
 	lib_a-e_atan2.$(OBJEXT) lib_a-e_atanh.$(OBJEXT) \
@@ -79,6 +80,7 @@ am__objects_1 = lib_a-k_standard.$(OBJEXT) lib_a-k_rem_pio2.$(OBJEXT) \
 	lib_a-er_lgamma.$(OBJEXT) lib_a-e_log.$(OBJEXT) \
 	lib_a-e_log10.$(OBJEXT) lib_a-e_pow.$(OBJEXT) \
 	lib_a-e_rem_pio2.$(OBJEXT) lib_a-e_remainder.$(OBJEXT) \
+	lib_a-__rem_pio2f.$(OBJEXT) lib_a-__rem_pio2_large.$(OBJEXT) \
 	lib_a-e_scalb.$(OBJEXT) lib_a-e_sinh.$(OBJEXT) \
 	lib_a-e_sqrt.$(OBJEXT) lib_a-w_acos.$(OBJEXT) \
 	lib_a-w_acosh.$(OBJEXT) lib_a-w_asin.$(OBJEXT) \
@@ -140,10 +142,12 @@ lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 LTLIBRARIES = $(noinst_LTLIBRARIES)
 libmath_la_LIBADD =
 am__objects_4 = k_standard.lo k_rem_pio2.lo k_cos.lo k_sin.lo k_tan.lo \
+	__cosdf.lo __sindf.lo \
 	e_acos.lo e_acosh.lo e_asin.lo e_atan2.lo e_atanh.lo e_cosh.lo \
 	e_exp.lo e_fmod.lo er_gamma.lo e_hypot.lo e_j0.lo e_j1.lo \
 	e_jn.lo er_lgamma.lo e_log.lo e_log10.lo e_pow.lo \
 	e_rem_pio2.lo e_remainder.lo e_scalb.lo e_sinh.lo e_sqrt.lo \
+	__rem_pio2f.lo __rem_pio2_large.lo \
 	w_acos.lo w_acosh.lo w_asin.lo w_atan2.lo w_atanh.lo w_cosh.lo \
 	w_exp.lo w_fmod.lo w_gamma.lo wr_gamma.lo w_hypot.lo w_j0.lo \
 	w_j1.lo w_jn.lo w_lgamma.lo wr_lgamma.lo w_log.lo w_log10.lo \
@@ -330,11 +334,13 @@ AUTOMAKE_OPTIONS = cygnus
 INCLUDES = -I$(srcdir)/../common $(NEWLIB_CFLAGS) $(CROSS_CFLAGS) $(TARGET_CFLAGS)
 src = k_standard.c k_rem_pio2.c \
 	k_cos.c k_sin.c k_tan.c \
+	__cosdf.c __sindf.c \
 	e_acos.c e_acosh.c e_asin.c e_atan2.c \
 	e_atanh.c e_cosh.c e_exp.c e_fmod.c \
 	er_gamma.c e_hypot.c e_j0.c \
 	e_j1.c e_jn.c er_lgamma.c \
 	e_log.c e_log10.c e_pow.c e_rem_pio2.c e_remainder.c \
+	__rem_pio2f.c __rem_pio2_large.c \
 	e_scalb.c e_sinh.c e_sqrt.c \
 	w_acos.c w_acosh.c w_asin.c w_atan2.c \
 	w_atanh.c w_cosh.c w_exp.c w_fmod.c \
@@ -488,6 +494,30 @@ lib_a-k_sin.o: k_sin.c
 
 lib_a-k_sin.obj: k_sin.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-k_sin.obj `if test -f 'k_sin.c'; then $(CYGPATH_W) 'k_sin.c'; else $(CYGPATH_W) '$(srcdir)/k_sin.c'; fi`
+
+lib_a-__cosdf.o: __cosdf.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-__cosdf.o `test -f '__cosdf.c' || echo '$(srcdir)/'`__cosdf.c
+
+lib_a-__cosdf.obj: __cosdf.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-__cosdf.obj `if test -f '__cosdf.c'; then $(CYGPATH_W) '__cosdf.c'; else $(CYGPATH_W) '$(srcdir)/__cosdf.c'; fi`
+
+lib_a-__sindf.o: __sindf.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-__sindf.o `test -f '__sindf.c' || echo '$(srcdir)/'`__sindf.c
+
+lib_a-__sindf.obj: __sindf.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-__sindf.obj `if test -f '__sindf.c'; then $(CYGPATH_W) '__sindf.c'; else $(CYGPATH_W) '$(srcdir)/__sindf.c'; fi`
+
+lib_a-__rem_pio2f.o: __rem_pio2f.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-__rem_pio2f.o `test -f '__rem_pio2f.c' || echo '$(srcdir)/'`__rem_pio2f.c
+
+lib_a-__rem_pio2f.obj: __rem_pio2f.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-__rem_pio2f.obj `if test -f '__rem_pio2f.c'; then $(CYGPATH_W) '__rem_pio2f.c'; else $(CYGPATH_W) '$(srcdir)/__rem_pio2f.c'; fi`
+
+lib_a-__rem_pio2_large.o: __rem_pio2_large.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-__rem_pio2_large.o `test -f '__rem_pio2_large.c' || echo '$(srcdir)/'`__rem_pio2_large.c
+
+lib_a-__rem_pio2_large.obj: __rem_pio2_large.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-__rem_pio2_large.obj `if test -f '__rem_pio2_large.c'; then $(CYGPATH_W) '__rem_pio2_large.c'; else $(CYGPATH_W) '$(srcdir)/__rem_pio2_large.c'; fi`
 
 lib_a-k_tan.o: k_tan.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-k_tan.o `test -f 'k_tan.c' || echo '$(srcdir)/'`k_tan.c
