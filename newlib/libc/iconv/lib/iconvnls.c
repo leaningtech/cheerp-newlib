@@ -260,7 +260,7 @@ _DEFUN(_iconv_nls_set_state, (cd, ps, direction),
 
 /* Same as iconv_open() but don't perform name resolving */
 static iconv_t
-_DEFUN(iconv_open1, (rptr, to, from),
+_FUN(iconv_open1, (rptr, to, from),
                      struct _reent *rptr _AND
                      _CONST char *to     _AND
                      _CONST char *from)
