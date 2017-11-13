@@ -25,36 +25,27 @@
 #include <sys/time.h>
 #include "clientbridge.h"
 
+[[cheerp::genericjs]]
+void println(const char* line, size_t len)
+{
+	client::String* jsline = client::String::fromUtf8(line, len);
+	if (line[len-1] == '\n')
+	{
+		//As far as output is line buffered we can remove
+		//the newline, as JS print adds it anyway
+		jsline = jsline->substr(0, len-1);
+	}
+	client::console.log(jsline);
+}
+
 _READ_WRITE_RETURN_TYPE
 _DEFUN(__cheerpwrite, (fd, buf, n),
        int fd _AND
        const char *buf _AND
        int n)
 {
-	int realN = n;
-#ifdef __ASMJS__
-	char* newbuf = (char*)malloc(sizeof(char) * n);
-	memcpy(newbuf, buf,n);
-	if(buf[n-1]=='\n')
-	{
-		//As far as output is line buffered we can remove
-		//the newline, as JS print adds it anyway
-		newbuf[n-1] = '\0';
-	}
-
-	cheerp::console_log(newbuf);
-	free(newbuf);
-#else
-	if(buf[n-1]=='\n')
-	{
-		//As far as output is line buffered we can remove
-		//the newline, as JS print adds it anyway
-		n--;
-	}
-	const client::String str(buf);
-	client::console.log(*str.substr(0,n));
-#endif
-	return realN;
+	println(buf, n);
+	return n;
 }
 
 
