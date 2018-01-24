@@ -28,14 +28,6 @@ _READ_WRITE_RETURN_TYPE
 _EXFUN(__cheerpwrite, (int fd _AND
        const char *buf _AND
        int n));
-const char *
-_EXFUN (_dtoa_r, (struct _reent *ptr _AND
-	double _d _AND
-	int mode _AND
-	int ndigits _AND
-	int *decpt _AND
-	int *sign _AND
-	const char **rve));
 #ifdef __cplusplus
 }
 #endif
