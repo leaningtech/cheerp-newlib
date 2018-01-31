@@ -343,6 +343,10 @@ _BEGIN_STD_C
 #define _JBLEN 12
 #endif
 
+#ifdef __CHEERP__
+#define _JBLEN 1
+#endif
+
 #ifdef _JBLEN
 #ifdef _JBTYPE
 typedef	_JBTYPE jmp_buf[_JBLEN];
