@@ -229,6 +229,11 @@ extern "C" {
   #endif
 #endif
 
+#ifdef __CHEERP__
+#define _POSIX_TIMERS				     1
+#define _POSIX_MONOTONIC_CLOCK			200112L
+#endif
+
 #ifdef __cplusplus
 }
 #endif
