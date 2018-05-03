@@ -632,6 +632,7 @@ hash_delete(dbp, key, flag)
 /*
  * Assume that hashp has been set in wrapper routine.
  */
+#ifdef __ASMJS__
 static int
 hash_access(hashp, action, key, val)
 	HTAB *hashp;
@@ -760,6 +761,7 @@ found:
 	save_bufp->flags &= ~BUF_PIN;
 	return (SUCCESS);
 }
+#endif
 
 static int
 hash_seq(dbp, key, data, flag)

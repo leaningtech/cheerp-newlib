@@ -265,6 +265,7 @@ __big_delete(hashp, bufp)
  * -2 means key not found and this is big key/data
  * -3 error
  */
+#ifdef __ASMJS__
 extern int
 __find_bigpair(hashp, bufp, ndx, key, size)
 	HTAB *hashp;
@@ -307,6 +308,7 @@ __find_bigpair(hashp, bufp, ndx, key, size)
 	} else
 		return (ndx);
 }
+#endif
 
 /*
  * Given the buffer pointer of the first overflow page of a big pair,

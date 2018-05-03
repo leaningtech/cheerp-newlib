@@ -279,11 +279,11 @@ getopt_internal (int argc, char *const argv[], const char *shortopts,
 
   /* first, is it a long option? */
   if (longopts != 0
-      && (memcmp (argv[data->optind], "--", 2) == 0
+      && (strncmp (argv[data->optind], "--", 2) == 0
 	  || (only && argv[data->optind][0] == '+')) && data->optwhere == 1)
     {
       /* handle long options */
-      if (memcmp (argv[data->optind], "--", 2) == 0)
+      if (strncmp (argv[data->optind], "--", 2) == 0)
 	data->optwhere = 2;
       longopt_match = -1;
       possible_arg = strchr (argv[data->optind] + data->optwhere, '=');
@@ -298,7 +298,7 @@ getopt_internal (int argc, char *const argv[], const char *shortopts,
 	match_chars = (possible_arg - argv[data->optind]) - data->optwhere;
       for (optindex = 0; longopts[optindex].name != 0; ++optindex)
 	{
-	  if (memcmp
+	  if (strncmp
 	      (argv[data->optind] + data->optwhere, longopts[optindex].name,
 	       match_chars) == 0)
 	    {

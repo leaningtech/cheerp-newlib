@@ -45,6 +45,7 @@ QUICKREF
 # include "str-two-way.h"
 #endif
 
+#ifdef __ASMJS__
 void *
 _DEFUN (memmem, (haystack_start, haystack_len, needle_start, needle_len),
 	const void *haystack_start _AND
@@ -100,3 +101,4 @@ _DEFUN (memmem, (haystack_start, haystack_len, needle_start, needle_len),
   return two_way_long_needle (haystack, haystack_len, needle, needle_len);
 #endif /* compilation for speed */
 }
+#endif

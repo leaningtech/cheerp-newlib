@@ -38,6 +38,7 @@ QUICKREF
 #include <string.h>
 #include <strings.h>
 
+#ifdef __ASMJS__
 int
 _DEFUN (bcmp, (m1, m2, n),
 	_CONST void *m1 _AND
@@ -47,3 +48,4 @@ _DEFUN (bcmp, (m1, m2, n),
 {
   return memcmp (m1, m2, n);
 }
+#endif
