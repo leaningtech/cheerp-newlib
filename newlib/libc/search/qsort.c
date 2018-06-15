@@ -155,7 +155,7 @@ __unused
               :(CMP(thunk, b, c) > 0 ? b : (CMP(thunk, a, c) < 0 ? a : c ));
 }
 
-#ifndef __CHEERP__
+#if !defined(__CHEERP__) || defined(__ASMJS__)
 #if defined(I_AM_QSORT_R)
 void
 _DEFUN(__bsd_qsort_r, (a, n, es, thunk, cmp),
