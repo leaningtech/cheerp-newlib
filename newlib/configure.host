@@ -134,8 +134,6 @@ case "${host_cpu}" in
 		newlib_cflags="${newlib_cflags} -cheerp-mode=asmjs"
 		;;
 	*)
-		newlib_cflags="${newlib_cflags} -DMALLOC_PROVIDED"
-		newlib_cflags="${newlib_cflags} -cheerp-mode=genericjs"
 		newlib_cflags="${newlib_cflags} -DPREFER_SIZE_OVER_SPEED"
 		;;
 	esac

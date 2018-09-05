@@ -53,17 +53,19 @@ Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
 */
 
 #include <string.h>
-#include <stdlib.h>
+#ifdef __CHEERP__
+#define INTERNAL_NEWLIB
+#endif
 #include <malloc.h>
 
 #ifndef _REENT_ONLY
 
 _PTR
-_DEFUN (calloc, (n, size),
+__attribute__((cheerp_asmjs)) _DEFUN (calloc, (n, size),
 	size_t n _AND
 	size_t size)
 {
-  return _calloc_r (_REENT, n, size);
+  return _calloc_r (NULL, n, size);
 }
 
 #endif

@@ -1,6 +1,6 @@
 /****************************************************************
  *
- * Copyright (C) 2014 Alessandro Pignotti <alessandro@leaningtech.com>
+ * Copyright (C) 2014,2018 Alessandro Pignotti <alessandro@leaningtech.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,19 +18,18 @@
  *
  ***************************************************************/
 
-#ifdef __ASMJS__
 #include <errno.h>
 
 extern int __builtin_cheerp_grow_memory(int);
 
 // HACK: The value of this variables will be rewritten to the correct heap start
 // and end by the compiler backend
-char* volatile _heapStart = (char*)0xdeadbeef;
-char* volatile _heapEnd = (char*)0xdeadbeef;
+__attribute__((cheerp_asmjs)) char* volatile _heapStart = (char*)0xdeadbeef;
+__attribute__((cheerp_asmjs)) char* volatile _heapEnd = (char*)0xdeadbeef;
 
-char* _heapCur = 0;
+__attribute__((cheerp_asmjs)) char* _heapCur = 0;
 
-void* sbrk(int nbytes)
+__attribute__((cheerp_asmjs)) void* sbrk(int nbytes)
 {
 	if (_heapCur == 0)
 		_heapCur = _heapStart;
@@ -51,20 +50,8 @@ void* sbrk(int nbytes)
 	return prevCur;
 }
 
-void* _sbrk_r(void* reent, int nbytes)
+__attribute__((cheerp_asmjs)) void* _sbrk_r(void* reent, int nbytes)
 {
 	(void)reent;
 	return sbrk(nbytes);
 }
-#else
-#include <malloc.h>
-
-void* fakeMallocPtr = 0;
-
-void*
-_MACDEFUN(malloc, (s),
-       size_t s)
-{
-	return fakeMallocPtr;
-}
-#endif
