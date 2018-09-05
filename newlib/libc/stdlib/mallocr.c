@@ -327,16 +327,16 @@ extern "C" {
 #endif
 
 #if __STD_C
-extern void __malloc_lock(struct _reent *);
-extern void __malloc_unlock(struct _reent *);
+extern void __attribute__((cheerp_asmjs)) __malloc_lock(void*);
+extern void __attribute__((cheerp_asmjs)) __malloc_unlock(void*);
 #else
 extern void __malloc_lock();
 extern void __malloc_unlock();
 #endif
 
 #if __STD_C
-#define RARG struct _reent *reent_ptr,
-#define RONEARG struct _reent *reent_ptr
+#define RARG void *reent_ptr,
+#define RONEARG void *reent_ptr
 #else
 #define RARG reent_ptr
 #define RONEARG reent_ptr
@@ -727,7 +727,7 @@ do {                                                                          \
 
 /* SVID2/XPG mallinfo structure */
 
-struct mallinfo {
+struct __attribute__((cheerp_asmjs)) mallinfo {
   int arena;    /* total space allocated from system */
   int ordblks;  /* number of non-inuse chunks */
   int smblks;   /* unused -- always zero */
@@ -1043,19 +1043,19 @@ extern Void_t*     sbrk();
 
 #if __STD_C
 
-Void_t* mALLOc(RARG size_t);
-void    fREe(RARG Void_t*);
-Void_t* rEALLOc(RARG Void_t*, size_t);
-Void_t* mEMALIGn(RARG size_t, size_t);
-Void_t* vALLOc(RARG size_t);
-Void_t* pvALLOc(RARG size_t);
-Void_t* cALLOc(RARG size_t, size_t);
-void    cfree(Void_t*);
-int     malloc_trim(RARG size_t);
-size_t  malloc_usable_size(RARG Void_t*);
-void    malloc_stats(RONEARG);
-int     mALLOPt(RARG int, int);
-struct mallinfo mALLINFo(RONEARG);
+__attribute__((cheerp_asmjs)) Void_t* mALLOc(RARG size_t);
+__attribute__((cheerp_asmjs)) void    fREe(RARG Void_t*);
+__attribute__((cheerp_asmjs)) Void_t* rEALLOc(RARG Void_t*, size_t);
+__attribute__((cheerp_asmjs)) Void_t* mEMALIGn(RARG size_t, size_t);
+__attribute__((cheerp_asmjs)) Void_t* vALLOc(RARG size_t);
+__attribute__((cheerp_asmjs)) Void_t* pvALLOc(RARG size_t);
+__attribute__((cheerp_asmjs)) Void_t* cALLOc(RARG size_t, size_t);
+__attribute__((cheerp_asmjs)) void    cfree(Void_t*);
+__attribute__((cheerp_asmjs)) int     malloc_trim(RARG size_t);
+__attribute__((cheerp_asmjs)) size_t  malloc_usable_size(RARG Void_t*);
+__attribute__((cheerp_asmjs)) void    malloc_stats(RONEARG);
+__attribute__((cheerp_asmjs)) int     mALLOPt(RARG int, int);
+__attribute__((cheerp_asmjs)) struct mallinfo mALLINFo(RONEARG);
 #else
 Void_t* mALLOc();
 void    fREe();
@@ -1252,7 +1252,7 @@ gAllocatedSize))
 */
 
 
-struct malloc_chunk
+struct __attribute__((cheerp_asmjs)) malloc_chunk
 {
   INTERNAL_SIZE_T prev_size; /* Size of previous chunk (if free). */
   INTERNAL_SIZE_T size;      /* Size in bytes, including overhead. */
@@ -1592,7 +1592,7 @@ typedef struct malloc_chunk* mbinptr;
 #define IAV(i)  bin_at(i), bin_at(i)
 
 #ifdef DEFINE_MALLOC
-STATIC mbinptr av_[NAV * 2 + 2] = {
+__attribute__((cheerp_asmjs)) STATIC mbinptr av_[NAV * 2 + 2] = {
  0, 0,
  IAV(0),   IAV(1),   IAV(2),   IAV(3),   IAV(4),   IAV(5),   IAV(6),   IAV(7),
  IAV(8),   IAV(9),   IAV(10),  IAV(11),  IAV(12),  IAV(13),  IAV(14),  IAV(15),
@@ -1612,7 +1612,7 @@ STATIC mbinptr av_[NAV * 2 + 2] = {
  IAV(120), IAV(121), IAV(122), IAV(123), IAV(124), IAV(125), IAV(126), IAV(127)
 };
 #else
-extern mbinptr av_[NAV * 2 + 2];
+__attribute__((cheerp_asmjs)) extern mbinptr av_[NAV * 2 + 2];
 #endif
 
 
@@ -1707,16 +1707,16 @@ STATIC unsigned long mmap_threshold   = DEFAULT_MMAP_THRESHOLD;
 #endif
 
 /* The first value returned from sbrk */
-STATIC char* sbrk_base = (char*)(-1);
+__attribute__((cheerp_asmjs)) STATIC char* sbrk_base = (char*)(-1);
 
 /* The maximum memory obtained from system via sbrk */
-STATIC unsigned long max_sbrked_mem = 0; 
+__attribute__((cheerp_asmjs)) STATIC unsigned long max_sbrked_mem = 0; 
 
 /* The maximum via either sbrk or mmap */
-STATIC unsigned long max_total_mem = 0; 
+__attribute__((cheerp_asmjs)) STATIC unsigned long max_total_mem = 0; 
 
 /* internal working copy of mallinfo */
-STATIC struct mallinfo current_mallinfo = {  0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+__attribute__((cheerp_asmjs)) STATIC struct mallinfo current_mallinfo = {  0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 #if HAVE_MMAP
 
@@ -1740,7 +1740,7 @@ extern unsigned long mmap_threshold;
 extern char* sbrk_base;
 extern unsigned long max_sbrked_mem;
 extern unsigned long max_total_mem;
-extern struct mallinfo current_mallinfo;
+extern __attribute__((cheerp_asmjs)) struct mallinfo current_mallinfo;
 #if HAVE_MMAP
 extern unsigned int n_mmaps;
 extern unsigned int max_n_mmaps;
@@ -2132,9 +2132,9 @@ static mchunkptr mremap_chunk(p, new_size) mchunkptr p; size_t new_size;
 */
 
 #if __STD_C
-static void malloc_extend_top(RARG INTERNAL_SIZE_T nb)
+__attribute__((cheerp_asmjs)) static void malloc_extend_top(RARG INTERNAL_SIZE_T nb)
 #else
-static void malloc_extend_top(RARG nb) RDECL INTERNAL_SIZE_T nb;
+__attribute__((cheerp_asmjs)) static void malloc_extend_top(RARG nb) RDECL INTERNAL_SIZE_T nb;
 #endif
 {
   char*     brk;                  /* return value from sbrk */
@@ -2319,9 +2319,9 @@ static void malloc_extend_top(RARG nb) RDECL INTERNAL_SIZE_T nb;
 */
 
 #if __STD_C
-Void_t* mALLOc(RARG size_t bytes)
+__attribute__((cheerp_asmjs)) Void_t* mALLOc(RARG size_t bytes)
 #else
-Void_t* mALLOc(RARG bytes) RDECL size_t bytes;
+__attribute__((cheerp_asmjs)) Void_t* mALLOc(RARG bytes) RDECL size_t bytes;
 #endif
 {
 #ifdef MALLOC_PROVIDED
@@ -2348,7 +2348,7 @@ Void_t* mALLOc(RARG bytes) RDECL size_t bytes;
   /* Check for overflow and just fail, if so. */
   if (nb > INT_MAX || nb < bytes)
   {
-    RERRNO = ENOMEM;
+    //RERRNO = ENOMEM;
     return 0;
   }
 
@@ -2621,13 +2621,13 @@ Void_t* mALLOc(RARG bytes) RDECL size_t bytes;
 
 #if defined(__CHEERP__) && defined(__ASMJS__)
 // This value is defined in libc/machine/cheerp/malloc_sbrk.c
-extern char* volatile _heapStart;
+__attribute__((cheerp_asmjs)) extern char* volatile _heapStart;
 #endif
 
 #if __STD_C
-void fREe(RARG Void_t* mem)
+__attribute__((cheerp_asmjs)) void fREe(RARG Void_t* mem)
 #else
-void fREe(RARG mem) RDECL Void_t* mem;
+__attribute__((cheerp_asmjs)) void fREe(RARG mem) RDECL Void_t* mem;
 #endif
 {
 #ifdef MALLOC_PROVIDED
@@ -2782,9 +2782,9 @@ void fREe(RARG mem) RDECL Void_t* mem;
 
 
 #if __STD_C
-Void_t* rEALLOc(RARG Void_t* oldmem, size_t bytes)
+__attribute__((cheerp_asmjs)) Void_t* rEALLOc(RARG Void_t* oldmem, size_t bytes)
 #else
-Void_t* rEALLOc(RARG oldmem, bytes) RDECL Void_t* oldmem; size_t bytes;
+__attribute__((cheerp_asmjs)) Void_t* rEALLOc(RARG oldmem, bytes) RDECL Void_t* oldmem; size_t bytes;
 #endif
 {
 #ifdef MALLOC_PROVIDED
@@ -2833,7 +2833,7 @@ Void_t* rEALLOc(RARG oldmem, bytes) RDECL Void_t* oldmem; size_t bytes;
   /* Check for overflow and just fail, if so. */
   if (nb > INT_MAX || nb < bytes)
   {
-    RERRNO = ENOMEM;
+    //RERRNO = ENOMEM;
     return 0;
   }
 
@@ -3043,9 +3043,9 @@ Void_t* rEALLOc(RARG oldmem, bytes) RDECL Void_t* oldmem; size_t bytes;
 
 
 #if __STD_C
-Void_t* mEMALIGn(RARG size_t alignment, size_t bytes)
+__attribute__((cheerp_asmjs)) Void_t* mEMALIGn(RARG size_t alignment, size_t bytes)
 #else
-Void_t* mEMALIGn(RARG alignment, bytes) RDECL size_t alignment; size_t bytes;
+__attribute__((cheerp_asmjs)) Void_t* mEMALIGn(RARG alignment, bytes) RDECL size_t alignment; size_t bytes;
 #endif
 {
   INTERNAL_SIZE_T    nb;      /* padded  request size */
@@ -3073,7 +3073,7 @@ Void_t* mEMALIGn(RARG alignment, bytes) RDECL size_t alignment; size_t bytes;
   /* Check for overflow. */
   if (nb > INT_MAX || nb < bytes)
   {
-    RERRNO = ENOMEM;
+    //RERRNO = ENOMEM;
     return 0;
   }
 
@@ -3163,9 +3163,9 @@ Void_t* mEMALIGn(RARG alignment, bytes) RDECL size_t alignment; size_t bytes;
 */
 
 #if __STD_C
-Void_t* vALLOc(RARG size_t bytes)
+__attribute__((cheerp_asmjs)) Void_t* vALLOc(RARG size_t bytes)
 #else
-Void_t* vALLOc(RARG bytes) RDECL size_t bytes;
+__attribute__((cheerp_asmjs)) Void_t* vALLOc(RARG bytes) RDECL size_t bytes;
 #endif
 {
   return mEMALIGn (RCALL malloc_getpagesize, bytes);
@@ -3182,9 +3182,9 @@ Void_t* vALLOc(RARG bytes) RDECL size_t bytes;
 
 
 #if __STD_C
-Void_t* pvALLOc(RARG size_t bytes)
+__attribute__((cheerp_asmjs)) Void_t* pvALLOc(RARG size_t bytes)
 #else
-Void_t* pvALLOc(RARG bytes) RDECL size_t bytes;
+__attribute__((cheerp_asmjs)) Void_t* pvALLOc(RARG bytes) RDECL size_t bytes;
 #endif
 {
   size_t pagesize = malloc_getpagesize;
@@ -3202,9 +3202,9 @@ Void_t* pvALLOc(RARG bytes) RDECL size_t bytes;
 */
 
 #if __STD_C
-Void_t* cALLOc(RARG size_t n, size_t elem_size)
+__attribute__((cheerp_asmjs)) Void_t* cALLOc(RARG size_t n, size_t elem_size)
 #else
-Void_t* cALLOc(RARG n, elem_size) RDECL size_t n; size_t elem_size;
+__attribute__((cheerp_asmjs)) Void_t* cALLOc(RARG n, elem_size) RDECL size_t n; size_t elem_size;
 #endif
 {
   mchunkptr p;
@@ -3285,13 +3285,13 @@ Void_t* cALLOc(RARG n, elem_size) RDECL size_t n; size_t elem_size;
 #if !defined(INTERNAL_LINUX_C_LIB) || !defined(__ELF__)
 #if !defined(INTERNAL_NEWLIB) || !defined(_REENT_ONLY)
 #if __STD_C
-void cfree(Void_t *mem)
+__attribute__((cheerp_asmjs)) void cfree(Void_t *mem)
 #else
-void cfree(mem) Void_t *mem;
+__attribute__((cheerp_asmjs)) void cfree(mem) Void_t *mem;
 #endif
 {
 #ifdef INTERNAL_NEWLIB
-  fREe(_REENT, mem);
+  fREe(NULL/*_REENT*/, mem);
 #else
   fREe(mem);
 #endif
@@ -3327,7 +3327,7 @@ void cfree(mem) Void_t *mem;
 */
 
 #if __STD_C
-int malloc_trim(RARG size_t pad)
+__attribute__((cheerp_asmjs)) int malloc_trim(RARG size_t pad)
 #else
 int malloc_trim(RARG pad) RDECL size_t pad;
 #endif
@@ -3408,9 +3408,9 @@ int malloc_trim(RARG pad) RDECL size_t pad;
 */
 
 #if __STD_C
-size_t malloc_usable_size(RARG Void_t* mem)
+__attribute__((cheerp_asmjs)) size_t malloc_usable_size(RARG Void_t* mem)
 #else
-size_t malloc_usable_size(RARG mem) RDECL Void_t* mem;
+__attribute__((cheerp_asmjs)) size_t malloc_usable_size(RARG mem) RDECL Void_t* mem;
 #endif
 {
   mchunkptr p;
@@ -3439,7 +3439,7 @@ size_t malloc_usable_size(RARG mem) RDECL Void_t* mem;
 
 /* Utility to update current_mallinfo for malloc_stats and mallinfo() */
 
-STATIC void malloc_update_mallinfo() 
+__attribute__((cheerp_asmjs)) STATIC void malloc_update_mallinfo() 
 {
   int i;
   mbinptr b;
@@ -3507,9 +3507,9 @@ extern void malloc_update_mallinfo();
 */
 
 #if __STD_C
-void malloc_stats(RONEARG)
+__attribute__((cheerp_asmjs)) void malloc_stats(RONEARG)
 #else
-void malloc_stats(RONEARG) RDECL
+__attribute__((cheerp_asmjs)) void malloc_stats(RONEARG) RDECL
 #endif
 {
   unsigned long local_max_total_mem;
@@ -3518,6 +3518,8 @@ void malloc_stats(RONEARG) RDECL
 #if HAVE_MMAP
   unsigned long local_mmapped_mem, local_max_n_mmaps;
 #endif
+assert(0);
+#if 0
   FILE *fp;
 
   MALLOC_LOCK;
@@ -3556,6 +3558,7 @@ void malloc_stats(RONEARG) RDECL
   fprintf(fp, "max mmap regions = %10u\n", 
 	  (unsigned int)local_max_n_mmaps);
 #endif
+#endif
 }
 
 #endif /* DEFINE_MALLOC_STATS */
@@ -3567,9 +3570,9 @@ void malloc_stats(RONEARG) RDECL
 */
 
 #if __STD_C
-struct mallinfo mALLINFo(RONEARG)
+__attribute__((cheerp_asmjs)) struct mallinfo mALLINFo(RONEARG)
 #else
-struct mallinfo mALLINFo(RONEARG) RDECL
+__attribute__((cheerp_asmjs)) struct mallinfo mALLINFo(RONEARG) RDECL
 #endif
 {
   struct mallinfo ret;
@@ -3599,9 +3602,9 @@ struct mallinfo mALLINFo(RONEARG) RDECL
 */
 
 #if __STD_C
-int mALLOPt(RARG int param_number, int value)
+__attribute__((cheerp_asmjs)) int mALLOPt(RARG int param_number, int value)
 #else
-int mALLOPt(RARG param_number, value) RDECL int param_number; int value;
+__attribute__((cheerp_asmjs)) int mALLOPt(RARG param_number, value) RDECL int param_number; int value;
 #endif
 {
   MALLOC_LOCK;

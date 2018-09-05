@@ -203,23 +203,25 @@ Supporting OS subroutines required: <<sbrk>>.  */
 
 #include <_ansi.h>
 #include <reent.h>
-#include <stdlib.h>
+#ifdef __CHEERP__
+#define INTERNAL_NEWLIB
+#endif
 #include <malloc.h>
 
 #ifndef _REENT_ONLY
 
 _PTR
-_DEFUN (malloc, (nbytes),
+__attribute__((cheerp_asmjs)) _DEFUN (malloc, (nbytes),
 	size_t nbytes)		/* get a block */
 {
-  return _malloc_r (_REENT, nbytes);
+  return _malloc_r (NULL, nbytes);
 }
 
 void
-_DEFUN (free, (aptr),
+__attribute__((cheerp_asmjs)) _DEFUN (free, (aptr),
 	_PTR aptr)
 {
-  _free_r (_REENT, aptr);
+  _free_r (NULL, aptr);
 }
 
 #endif

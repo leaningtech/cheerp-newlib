@@ -5,17 +5,19 @@ extern int _dummy_calloc;
 
 #include <_ansi.h>
 #include <reent.h>
-#include <stdlib.h>
+#ifdef __CHEERP__
+#define INTERNAL_NEWLIB
+#endif
 #include <malloc.h>
 
 #ifndef _REENT_ONLY
 
 _PTR
-_DEFUN (realloc, (ap, nbytes),
+__attribute__((cheerp_asmjs)) _DEFUN (realloc, (ap, nbytes),
 	_PTR ap _AND
 	size_t nbytes)
 {
-  return _realloc_r (_REENT, ap, nbytes);
+  return _realloc_r (NULL, ap, nbytes);
 }
 
 #endif

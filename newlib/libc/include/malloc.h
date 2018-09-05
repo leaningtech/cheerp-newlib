@@ -34,36 +34,48 @@ struct mallinfo {
 
 /* The routines.  */
 
+#if defined(__CHEERP__) && defined(INTERNAL_NEWLIB)
+__attribute__((cheerp_asmjs))
+#endif
 extern _PTR malloc _PARAMS ((size_t));
-#if defined(__CYGWIN__) || (defined(__CHEERP__) && !defined(__ASMJS__))
+#if defined(__CYGWIN__) || (defined(__CHEERP__) && !defined(INTERNAL_NEWLIB))
 #undef _malloc_r
 #define _malloc_r(r, s) malloc (s)
 #else
-extern _PTR _malloc_r _PARAMS ((struct _reent *, size_t));
+__attribute__((cheerp_asmjs)) extern _PTR _malloc_r _PARAMS ((void *, size_t));
 #endif
 
+#if defined(__CHEERP__) && defined(INTERNAL_NEWLIB)
+__attribute__((cheerp_asmjs))
+#endif
 extern _VOID free _PARAMS ((_PTR));
-#if defined(__CYGWIN__) || (defined(__CHEERP__) && !defined(__ASMJS__))
+#if defined(__CYGWIN__) || (defined(__CHEERP__) && !defined(INTERNAL_NEWLIB))
 #undef _free_r
 #define _free_r(r, p) free (p)
 #else
-extern _VOID _free_r _PARAMS ((struct _reent *, _PTR));
+__attribute__((cheerp_asmjs)) extern _VOID _free_r _PARAMS ((void *, _PTR));
 #endif
 
+#if defined(__CHEERP__) && defined(INTERNAL_NEWLIB)
+__attribute__((cheerp_asmjs))
+#endif
 extern _PTR realloc _PARAMS ((_PTR, size_t));
-#if defined(__CYGWIN__) || (defined(__CHEERP__) && !defined(__ASMJS__))
+#if defined(__CYGWIN__) || (defined(__CHEERP__) && !defined(INTERNAL_NEWLIB))
 #undef _realloc_r
 #define _realloc_r(r, p, s) realloc (p, s)
 #else
-extern _PTR _realloc_r _PARAMS ((struct _reent *, _PTR, size_t));
+__attribute__((cheerp_asmjs)) extern _PTR _realloc_r _PARAMS ((void *, _PTR, size_t));
 #endif
 
+#if defined(__CHEERP__) && defined(INTERNAL_NEWLIB)
+__attribute__((cheerp_asmjs))
+#endif
 extern _PTR calloc _PARAMS ((size_t, size_t));
-#if defined(__CYGWIN__) || (defined(__CHEERP__) && !defined(__ASMJS__))
+#if defined(__CYGWIN__) || (defined(__CHEERP__) && !defined(INTERNAL_NEWLIB))
 #undef _calloc_r
 #define _calloc_r(r, s1, s2) malloc (s1*s2);
 #else
-extern _PTR _calloc_r _PARAMS ((struct _reent *, size_t, size_t));
+__attribute__((cheerp_asmjs)) extern _PTR _calloc_r _PARAMS ((void *, size_t, size_t));
 #endif
 
 extern _PTR memalign _PARAMS ((size_t, size_t));
