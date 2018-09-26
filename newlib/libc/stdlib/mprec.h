@@ -410,13 +410,12 @@ int		_EXFUN(hexnan,(_CONST char **sp, _CONST struct FPI *fpi, __ULong *x0));
 #endif
 
 #if defined(__CHEERP__) && !defined(__ASMJS__)
-inline void Bcopy(_Bigint* x, _Bigint* y)
-{
-	x->_sign = y->_sign;
-	x->_wds = y->_wds;
-	for(int i=0;i<y->_wds;i++)
-		x->_x[i] = y->_x[i];
-}
+#define Bcopy(x,y) do{\
+	x->_sign = y->_sign;\
+	x->_wds = y->_wds;\
+	for(int i=0;i<y->_wds;i++)\
+		x->_x[i] = y->_x[i];\
+}while(0)
 #else
 #define Bcopy(x,y) memcpy((char *)&x->_sign, (char *)&y->_sign, y->_wds*sizeof(__Long) + 2*sizeof(int))
 #endif
