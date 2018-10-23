@@ -1004,11 +1004,7 @@ extern Void_t*     sbrk();
 
 #ifdef INTERNAL_NEWLIB
 
-#define cALLOc		_calloc_r
-#define fREe		_free_r
-#define mALLOc		_malloc_r
 #define mEMALIGn	_memalign_r
-#define rEALLOc		_realloc_r
 #define vALLOc		_valloc_r
 #define pvALLOc		_pvalloc_r
 #define mALLINFo	_mallinfo_r
@@ -2594,6 +2590,10 @@ Void_t* mALLOc(RARG bytes) RDECL size_t bytes;
 #endif /* MALLOC_PROVIDED */
 }
 
+#ifdef INTERNAL_NEWLIB
+#pragma weak _malloc_r = mALLOc
+#endif
+
 #endif /* DEFINE_MALLOC */
 
 #ifdef DEFINE_FREE
@@ -2736,6 +2736,10 @@ void fREe(RARG mem) RDECL Void_t* mem;
 
 #endif /* MALLOC_PROVIDED */
 }
+
+#ifdef INTERNAL_NEWLIB
+#pragma weak _free_r = fREe
+#endif
 
 #endif /* DEFINE_FREE */
 
@@ -3011,6 +3015,10 @@ Void_t* rEALLOc(RARG oldmem, bytes) RDECL Void_t* oldmem; size_t bytes;
 #endif /* MALLOC_PROVIDED */
 }
 
+#ifdef INTERNAL_NEWLIB
+#pragma weak _realloc_r = rEALLOc
+#endif
+
 #endif /* DEFINE_REALLOC */
 
 #ifdef DEFINE_MEMALIGN
@@ -3258,6 +3266,10 @@ Void_t* cALLOc(RARG n, elem_size) RDECL size_t n; size_t elem_size;
     return mem;
   }
 }
+
+#ifdef INTERNAL_NEWLIB
+#pragma weak _calloc_r = cALLOc
+#endif
 
 #endif /* DEFINE_CALLOC */
 
