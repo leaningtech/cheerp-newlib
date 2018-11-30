@@ -159,6 +159,7 @@ static char *rcsid = "$Id$";
 #include <string.h>
 #include <limits.h>
 #include <stdint.h>
+#include <malloc.h>
 #include <wchar.h>
 #include <sys/lock.h>
 #include <stdarg.h>
@@ -229,7 +230,7 @@ _DEFUN(__ssputs_r, (ptr, fp, buf, len),
   if (len < w)
     w = len;
 
-  (void)memmove ((_PTR) fp->_p, (_PTR) buf, (size_t) (w));
+  (void)memmove ((_PTR) fp->_p, buf, (size_t) (w));
   fp->_w -= w;
   fp->_p += w;
   return 0;
@@ -321,7 +322,7 @@ _DEFUN(__ssprint_r, (ptr, fp, uio),
       if (len < w)
 	w = len;
 
-      (void)memmove ((_PTR) fp->_p, (_PTR) p, (size_t) (w));
+      (void)memmove ((_PTR) fp->_p, p, (size_t) (w));
       fp->_w -= w;
       fp->_p += w;
       /* Pretend we copied all.  */
