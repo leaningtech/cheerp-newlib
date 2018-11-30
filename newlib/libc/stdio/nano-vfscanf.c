@@ -353,8 +353,13 @@ _DEFUN(__SVFSCANF_R, (rptr, fp, fmt0, ap),
       /* The length modifiers.  */
       p = "hlL";
       if ((cp = memchr (p, *fmt, 3)) != NULL) {
-	scan_data.flags |= (SHORT << (cp - p));
+        int f = (SHORT << (cp - p));
 	fmt++;
+        if (f == LONG && *fmt == 'l') {
+          f = LONGDBL;
+	  fmt++;
+        }
+	scan_data.flags |= f;
       }
 
       /* Switch on the format.  continue if done; break once format
@@ -412,6 +417,8 @@ _DEFUN(__SVFSCANF_R, (rptr, fp, fmt0, ap),
 	    *GET_ARG (N, ap, short *) = scan_data.nread;
 	  else if (scan_data.flags & LONG)
 	    *GET_ARG (N, ap, long *) = scan_data.nread;
+	  else if (scan_data.flags & LONGDBL)
+	    *GET_ARG (N, ap, long long *) = scan_data.nread;
 	  else
 	    *GET_ARG (N, ap, int *) = scan_data.nread;
 

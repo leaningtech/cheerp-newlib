@@ -73,8 +73,6 @@
    preferred over _dtoa_r.  */
 #define _NO_LONGDBL
 
-#define _NO_LONGLONG
-
 #define _PRINTF_FLOAT_TYPE double
 
 #if defined (FLOATING_POINT)
@@ -110,8 +108,8 @@ extern char *_dtoa_r _PARAMS((struct _reent *, double, int,
    value, we should use a conservative value.  */
 #define	BUF		40
 
-#define quad_t long
-#define u_quad_t unsigned long
+#define quad_t long long
+#define u_quad_t unsigned long long
 
 typedef quad_t * quad_ptr_t;
 typedef _PTR     void_ptr_t;
@@ -135,10 +133,7 @@ typedef short *  short_ptr_t;
 #define	SHORTINT	0x040		/* Short integer.  */
 #define	LONGINT		0x080		/* Long integer.  */
 #define	LONGDBL		0x100		/* Long double.  */
-/* ifdef _NO_LONGLONG, make QUADINT equivalent to LONGINT, so
-   that %lld behaves the same as %ld, not as %d, as expected if:
-   sizeof (long long) = sizeof long > sizeof int.  */
-#define QUADINT		LONGINT
+#define QUADINT		0x200
 #define FPT		0x400		/* Floating point number.  */
 /* Define as 0, to make SARG and UARG occupy fewer instructions.  */
 # define CHARINT	0
@@ -150,15 +145,17 @@ typedef short *  short_ptr_t;
    argument extraction methods.  Also they should be used in nano-vfprintf_i.c
    and nano-vfprintf_float.c only, since ap is a pointer to va_list.  */
 #define	SARG(flags) \
-	(flags&LONGINT ? GET_ARG (N, (*ap), long) : \
-	    flags&SHORTINT ? (long)(short)GET_ARG (N, (*ap), int) : \
-	    flags&CHARINT ? (long)(signed char)GET_ARG (N, (*ap), int) : \
-	    (long)GET_ARG (N, (*ap), int))
+	(flags&QUADINT ? GET_ARG (N, (*ap), quad_t) : \
+	    flags&LONGINT ? (quad_t)GET_ARG (N, (*ap), long) : \
+	    flags&SHORTINT ? (quad_t)(short)GET_ARG (N, (*ap), int) : \
+	    flags&CHARINT ? (quad_t)(signed char)GET_ARG (N, (*ap), int) : \
+	    (quad_t)GET_ARG (N, (*ap), int))
 #define	UARG(flags) \
-	(flags&LONGINT ? GET_ARG (N, (*ap), u_long) : \
-	    flags&SHORTINT ? (u_long)(u_short)GET_ARG (N, (*ap), int) : \
-	    flags&CHARINT ? (u_long)(unsigned char)GET_ARG (N, (*ap), int) : \
-	    (u_long)GET_ARG (N, (*ap), u_int))
+	(flags&QUADINT ? GET_ARG (N, (*ap), u_quad_t) : \
+	    flags&LONGINT ? (u_quad_t)GET_ARG (N, (*ap), u_long) : \
+	    flags&SHORTINT ? (u_quad_t)(u_short)GET_ARG (N, (*ap), int) : \
+	    flags&CHARINT ? (u_quad_t)(unsigned char)GET_ARG (N, (*ap), int) : \
+	    (u_quad_t)GET_ARG (N, (*ap), u_int))
 
 /* BEWARE, these `goto error' on error. And they are used
    in more than one functions.

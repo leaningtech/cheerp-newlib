@@ -612,8 +612,14 @@ _DEFUN(_VFPRINTF_R, (data, fp, fmt0, ap),
       flag_chars = "hlL";
       if ((cp = memchr (flag_chars, *fmt, 3)) != NULL)
 	{
-	  prt_data.flags |= (SHORTINT << (cp - flag_chars));
+          int f = (SHORTINT << (cp - flag_chars));
 	  fmt++;
+          if (f == LONGINT && *fmt == 'l')
+            {
+              f = QUADINT;
+	      fmt++;
+            }
+	  prt_data.flags |= f;
 	}
 
       /* The conversion specifiers.  */

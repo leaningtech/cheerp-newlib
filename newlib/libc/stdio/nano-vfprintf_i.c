@@ -127,7 +127,7 @@ _printf_i (struct _reent *data, struct _prt_data_t *pdata, FILE *fp,
     case 'd':
     case 'i':
       _uquad = SARG (pdata->flags);
-      if ((long) _uquad < 0)
+      if ((quad_t) _uquad < 0)
 	{
 	  _uquad = -_uquad;
 	  pdata->l_buf[0] = '-';
@@ -201,7 +201,9 @@ number:
       pdata->size = pdata->buf + BUF - cp;
       break;
     case 'n':
-      if (pdata->flags & LONGINT)
+      if (pdata->flags & QUADINT)
+	*GET_ARG (N, *ap, quad_ptr_t) = pdata->ret;
+      else if (pdata->flags & LONGINT)
 	*GET_ARG (N, *ap, long_ptr_t) = pdata->ret;
       else if (pdata->flags & SHORTINT)
 	*GET_ARG (N, *ap, short_ptr_t) = pdata->ret;

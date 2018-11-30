@@ -97,7 +97,7 @@ _scanf_i (struct _reent *rptr,
 {
 #define CCFN_PARAMS	_PARAMS((struct _reent *, const char *, char **, int))
   /* Conversion function (strtol/strtoul).  */
-  u_long (*ccfn)CCFN_PARAMS=0;
+  u_quad (*ccfn)CCFN_PARAMS=0;
   char *p;
   int n;
   char *xdigits = "A-Fa-f8901234567]";
@@ -107,7 +107,7 @@ _scanf_i (struct _reent *rptr,
   unsigned width_left = 0;
   int skips = 0;
 
-  ccfn = (pdata->code == CT_INT) ? (u_long (*)CCFN_PARAMS)_strtol_r : _strtoul_r;
+  ccfn = (pdata->code == CT_INT) ? (u_quad (*)CCFN_PARAMS)_strtoll_r : _strtoull_r;
 #ifdef hardway
   if (pdata->width == 0 || pdata->width > BUF - 1)
 #else
@@ -212,7 +212,7 @@ match_end:
     }
   if ((pdata->flags & SUPPRESS) == 0)
     {
-      u_long ul;
+      u_quad ul;
       *p = 0;
       ul = (*ccfn) (rptr, pdata->buf, (char **) NULL, pdata->base);
       if (pdata->flags & POINTER)
@@ -221,6 +221,8 @@ match_end:
 	*GET_ARG (N, *ap, short *) = ul;
       else if (pdata->flags & LONG)
 	*GET_ARG (N, *ap, long *) = ul;
+      else if (pdata->flags & LONGDBL)
+	*GET_ARG (N, *ap, long long *) = ul;
       else
 	*GET_ARG (N, *ap, int *) = ul;
       

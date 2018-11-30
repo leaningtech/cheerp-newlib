@@ -135,6 +135,7 @@
 
 #define u_char unsigned char
 #define u_long unsigned long
+#define u_quad unsigned long long
 
 /* Macro to support positional arguments.  */
 #define GET_ARG(n, ap, type) (va_arg ((ap), type))
