@@ -4,8 +4,8 @@
 	dh $@
 
 override_dh_auto_configure:
-	dh_auto_configure -D newlib -Bnewlib/build_genericjs -- --host=cheerp-genericjs --with-cxx-headers=$(CURDIR)/libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2 --enable-newlib-mb
-	dh_auto_configure -D newlib -Bnewlib/build_asmjs -- --host=cheerp-asmjs --with-cxx-headers=$(CURDIR)/libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2 --enable-newlib-mb
+	dh_auto_configure -D newlib -Bnewlib/build_genericjs -- --host=cheerp-genericjs --with-cxx-headers=$(CURDIR)/libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2 --enable-newlib-mb --enable-newlib-nano-formatted-io
+	dh_auto_configure -D newlib -Bnewlib/build_asmjs -- --host=cheerp-asmjs --with-cxx-headers=$(CURDIR)/libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2 --enable-newlib-mb --enable-newlib-nano-formatted-io
 
 override_dh_auto_build:
 	dh_auto_build -D newlib -Bnewlib/build_genericjs

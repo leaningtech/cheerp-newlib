@@ -392,7 +392,7 @@ out:
 }
 
 _NOINLINE_STATIC int
-_DEFUN(__sfputc_r, (ptr, c, fp),
+_FUN(__sfputc_r, (ptr, c, fp),
        struct _reent *ptr _AND
        int c _AND
        FILE *fp)

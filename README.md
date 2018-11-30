@@ -22,7 +22,7 @@ git clone <libcxx-cheerp-repo> libcxx
 # build the genericjs version of newlib
 mkdir build_genericjs
 cd build_genericjs
-../configure --host=cheerp-genericjs --with-cxx-headers=$PWD/../libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2 --enable-newlib-mb
+../configure --host=cheerp-genericjs --with-cxx-headers=$PWD/../libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2 --enable-newlib-mb --enable-newlib-nano-formatted-io
 make
 make install
 ../build-bc-libs.sh genericjs
@@ -31,7 +31,7 @@ cd ..
 #build the asmjs/wasm version of newlib
 mkdir build_asmjs
 cd build_asmjs
-../configure --host=cheerp-asmjs --with-cxx-headers=$PWD/../libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2 --enable-newlib-mb
+../configure --host=cheerp-asmjs --with-cxx-headers=$PWD/../libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2 --enable-newlib-mb --enable-newlib-nano-formatted-io
 make
 make install
 ../build-bc-libs.sh asmjs
