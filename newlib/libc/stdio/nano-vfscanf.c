@@ -138,6 +138,7 @@ Supporting OS subroutines required:
 
 #include <_ansi.h>
 #include <reent.h>
+#include <malloc.h>
 #include <newlib.h>
 #include <ctype.h>
 #include <wctype.h>
