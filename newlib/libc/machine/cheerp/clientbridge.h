@@ -28,6 +28,9 @@ _READ_WRITE_RETURN_TYPE
 _EXFUN(__cheerpwrite, (int fd _AND
        const char *buf _AND
        int n));
+
+__attribute__((cheerp_genericjs))
+int __growHeap(int nbytes);
 #ifdef __cplusplus
 }
 #endif

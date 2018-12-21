@@ -19,19 +19,34 @@
  ***************************************************************/
 
 #ifdef __ASMJS__
-// HACK: The value of this variable will be rewritten to the correct heap start
-// by the compiler backend
+#include <errno.h>
+#include "clientbridge.h"
+// HACK: The value of this variables will be rewritten to the correct heap start
+// and end by the compiler backend
 char* volatile _heapStart = (char*)0xdeadbeef;
+char* volatile _heapEnd = (char*)0xdeadbeef;
+
+char* _heapCur = 0;
 
 void* sbrk(int nbytes)
 {
-	static char* heapEnd = 0;
-	if (heapEnd == 0)
-		heapEnd = _heapStart;
-	char* prev_end = heapEnd;
-	heapEnd += nbytes;
-	//TODO: check if we reached end of heap
-	return prev_end;
+	if (_heapCur == 0)
+		_heapCur = _heapStart;
+	if (nbytes == 0)
+		return _heapEnd;
+	char* prevCur = _heapCur;
+	if (_heapCur + nbytes >= _heapEnd)
+	{
+
+		int res = __growHeap(nbytes);
+		if (res==-1) {
+			errno = ENOMEM;
+			return (void*)(-1);
+		}
+		_heapEnd += res;
+	}
+	_heapCur += nbytes;
+	return prevCur;
 }
 
 void* _sbrk_r(void* reent, int nbytes)
