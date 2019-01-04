@@ -377,9 +377,10 @@ _DEFUN(__SVFSCANF_R, (rptr, fp, fmt0, ap),
 	  fp->_r--, fp->_p++;
 	  scan_data.nread++;
 	  continue;
-
+#if !defined(__CHEERP__) || defined(__ASMJS__)
 	case 'p':
 	  scan_data.flags |= POINTER;
+#endif
 	case 'x':
 	  scan_data.flags |= PFXOK;
 	  scan_data.base = 16;

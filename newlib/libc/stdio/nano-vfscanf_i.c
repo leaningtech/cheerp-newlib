@@ -215,9 +215,12 @@ match_end:
       u_quad ul;
       *p = 0;
       ul = (*ccfn) (rptr, pdata->buf, (char **) NULL, pdata->base);
-      if (pdata->flags & POINTER)
+ #if !defined(__CHEERP__) || defined(__ASMJS__)
+     if (pdata->flags & POINTER)
 	*GET_ARG (N, *ap, void **) = (void *) (uintptr_t) ul;
-      else if (pdata->flags & SHORT)
+      else
+#endif
+      if (pdata->flags & SHORT)
 	*GET_ARG (N, *ap, short *) = ul;
       else if (pdata->flags & LONG)
 	*GET_ARG (N, *ap, long *) = ul;
