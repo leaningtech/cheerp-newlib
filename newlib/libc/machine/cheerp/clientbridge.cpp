@@ -70,19 +70,4 @@ int gettimeofday (timeval* tv, void* tz_)
 	return 0;
 }
 
-#ifdef __ASMJS__
-__attribute__((cheerp_genericjs))
-int __growHeap(int nbytes)
-{
-	constexpr int pageSize = 64*1024;
-	int pages = nbytes / pageSize + (nbytes % pageSize != 0);
-	int res;
-	__asm__("__cheerpGrowHeap(%1)" : "=r"(res) : "r"(pages));
-	client::console.log("result=",res);
-	if (res==-1)
-		return res;
-	return pages*pageSize;
-}
-#endif
-
 }

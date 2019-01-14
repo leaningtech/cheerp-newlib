@@ -20,7 +20,9 @@
 
 #ifdef __ASMJS__
 #include <errno.h>
-#include "clientbridge.h"
+
+extern int __builtin_cheerp_grow_memory(int);
+
 // HACK: The value of this variables will be rewritten to the correct heap start
 // and end by the compiler backend
 char* volatile _heapStart = (char*)0xdeadbeef;
@@ -38,7 +40,7 @@ void* sbrk(int nbytes)
 	if (_heapCur + nbytes >= _heapEnd)
 	{
 
-		int res = __growHeap(nbytes);
+		int res = __builtin_cheerp_grow_memory(nbytes);
 		if (res==-1) {
 			errno = ENOMEM;
 			return (void*)(-1);
