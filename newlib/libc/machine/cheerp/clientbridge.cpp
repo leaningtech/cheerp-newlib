@@ -23,6 +23,8 @@
 #include <malloc.h>
 #include <string.h>
 #include <sys/time.h>
+#include <sys/times.h>
+#include <time.h>
 #include "clientbridge.h"
 
 [[cheerp::genericjs]]
@@ -68,6 +70,24 @@ int gettimeofday (timeval* tv, void* tz_)
 		tz->tz_dsttime = 0;
 	}
 	return 0;
+}
+
+[[cheerp::genericjs]] double getPerfNow()
+{
+	return client::performance.now();
+}
+
+clock_t times(struct tms *buf)
+{
+	clock_t ret = getPerfNow() / 1000 * CLOCKS_PER_SEC;
+	if(buf)
+	{
+		buf->tms_utime = ret;
+		buf->tms_stime = 0;
+		buf->tms_cutime = 0;
+		buf->tms_cstime = 0;
+	}
+	return ret;
 }
 
 }
