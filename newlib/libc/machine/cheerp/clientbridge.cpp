@@ -72,7 +72,7 @@ int gettimeofday (timeval* tv, void* tz_)
 	return 0;
 }
 
-[[cheerp::genericjs]] double getPerfNow()
+[[cheerp::genericjs]] uint64_t getPerfNow()
 {
 	return client::performance.now();
 }
