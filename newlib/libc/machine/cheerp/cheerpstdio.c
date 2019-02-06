@@ -25,7 +25,7 @@
 #include "clientbridge.h"
 
 _READ_WRITE_RETURN_TYPE
-_DEFUN(write, (fd, buf, n),
+_DEFUN(_write, (fd, buf, n),
        int fd _AND
        const char *buf _AND
        int n)
@@ -35,7 +35,31 @@ _DEFUN(write, (fd, buf, n),
 	return __cheerpwrite(fd, buf, n);
 }
 
-int isatty(int fd)
+_READ_WRITE_RETURN_TYPE
+_DEFUN(_read, (fd, buf, n),
+       int fd _AND
+       const char *buf _AND
+       int n)
+{
+	return -1;
+}
+
+__attribute__((weak)) int _close(int fd)
+{
+	return -1;
+}
+
+__attribute__((weak)) off_t _lseek(int fd, off_t offset, int whence)
+{
+	return -1;
+}
+
+__attribute__((weak)) int _stat(const char *pathname, struct stat *buf)
+{
+	return -1;
+}
+
+int _isatty(int fd)
 {
   if (fd < 0 || fd > 3)
   {
@@ -44,7 +68,7 @@ int isatty(int fd)
   return 1;
 }
 
-int fstat(int fd, struct stat *st)
+__attribute__((weak)) int _fstat(int fd, struct stat *st)
 {
   if (fd >= 0 && fd < 3)
   {

@@ -53,7 +53,7 @@ _DEFUN(__cheerpwrite, (fd, buf, n),
 
 extern "C" {
 
-int gettimeofday (timeval* tv, void* tz_)
+int _gettimeofday (timeval* tv, void* tz_)
 {
 	timezone *tz = (timezone*)tz_;
 	if(tv)
@@ -77,7 +77,7 @@ int gettimeofday (timeval* tv, void* tz_)
 	return client::performance.now();
 }
 
-clock_t times(struct tms *buf)
+clock_t _times(struct tms *buf)
 {
 	clock_t ret = getPerfNow() / 1000 * CLOCKS_PER_SEC;
 	if(buf)
