@@ -21,14 +21,14 @@
 #ifndef CHEERP_DIRENT_H
 #define CHEERP_DIRENT_H
 
-struct dirent
+typedef struct dirent
 {
 	char d_name[256];
-};
+} dirent;
 
-struct DIR
+typedef struct DIR
 {
-};
+} DIR;
 
 DIR* opendir(const char* name);
 
