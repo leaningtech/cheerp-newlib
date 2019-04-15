@@ -125,7 +125,7 @@ int	_EXFUN(_mkstemp_r, (struct _reent *, char *));
 int	_EXFUN(_mkstemps_r, (struct _reent *, char *, int));
 char *	_EXFUN(_mktemp_r, (struct _reent *, char *) _ATTRIBUTE ((__warning__ ("the use of `mktemp' is dangerous; use `mkstemp' instead"))));
 #endif
-__attribute__((cheerp_genericjs)) _VOID	_EXFUN(qsort,(_PTR __base, size_t __nmemb, size_t __size, __compar_fn_t _compar));
+__attribute__((cheerp_genericjs)) __attribute__((cheerp_bytelayout)) _VOID	_EXFUN(qsort,(_PTR __base, size_t __nmemb, size_t __size, __compar_fn_t _compar));
 int	_EXFUN(rand,(_VOID));
 _PTR	_EXFUN_NOTHROW(realloc,(_PTR __r, size_t __size));
 #ifndef __STRICT_ANSI__
