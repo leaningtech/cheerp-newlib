@@ -308,7 +308,7 @@ extern "C" {
 #define POINTER_UINT unsigned _POINTER_INT
 #define SEPARATE_OBJECTS
 #define HAVE_MMAP 0
-#define MORECORE(size) _sbrk_r(reent_ptr, (size))
+#define MORECORE(size) sbrk((size))
 #define MORECORE_CLEARS 0
 #define MALLOC_LOCK __malloc_lock(reent_ptr)
 #define MALLOC_UNLOCK __malloc_unlock(reent_ptr)

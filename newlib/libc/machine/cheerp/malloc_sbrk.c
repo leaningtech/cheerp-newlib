@@ -41,7 +41,7 @@ __attribute__((cheerp_asmjs)) void* sbrk(int nbytes)
 
 		int res = __builtin_cheerp_grow_memory(nbytes);
 		if (res==-1) {
-			errno = ENOMEM;
+			//errno = ENOMEM;
 			return (void*)(-1);
 		}
 		_heapEnd += res;
