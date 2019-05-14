@@ -26,9 +26,9 @@ typedef struct dirent
 	char d_name[256];
 } dirent;
 
-typedef struct DIR
-{
-} DIR;
+// This struct is NOT defined inside libc
+struct __dir;
+typedef struct __dir DIR;
 
 DIR* opendir(const char* name);
 
