@@ -270,7 +270,11 @@ _DEFUN(__sinit, (s),
 
   /* POSIX requires stderr to be opened for reading and writing, even
      when the underlying fd 2 is write-only.  */
+#ifdef __CHEERP__
+  std (s->_stderr, __SRW | __SLBF, 2, s);
+#else
   std (s->_stderr, __SRW | __SNBF, 2, s);
+#endif
 
   s->__sdidinit = 1;
 
