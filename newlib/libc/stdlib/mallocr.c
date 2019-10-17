@@ -3506,6 +3506,8 @@ extern void malloc_update_mallinfo();
 
 */
 
+#ifndef __CHEERP__
+
 #if __STD_C
 __attribute__((cheerp_asmjs)) void malloc_stats(RONEARG)
 #else
@@ -3518,8 +3520,6 @@ __attribute__((cheerp_asmjs)) void malloc_stats(RONEARG) RDECL
 #if HAVE_MMAP
   unsigned long local_mmapped_mem, local_max_n_mmaps;
 #endif
-assert(0);
-#if 0
   FILE *fp;
 
   MALLOC_LOCK;
@@ -3558,8 +3558,9 @@ assert(0);
   fprintf(fp, "max mmap regions = %10u\n", 
 	  (unsigned int)local_max_n_mmaps);
 #endif
-#endif
 }
+
+#endif /* __CHEERP__ */
 
 #endif /* DEFINE_MALLOC_STATS */
 
