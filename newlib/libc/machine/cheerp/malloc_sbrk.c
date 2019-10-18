@@ -29,6 +29,10 @@ __attribute__((cheerp_asmjs)) char* volatile _heapEnd = (char*)0xdeadbeef;
 
 __attribute__((cheerp_asmjs)) char* _heapCur = 0;
 
+static void setErrno(int e)
+{
+	errno = e;
+}
 __attribute__((cheerp_asmjs)) void* sbrk(int nbytes)
 {
 	if (_heapCur == 0)
@@ -41,7 +45,7 @@ __attribute__((cheerp_asmjs)) void* sbrk(int nbytes)
 
 		int res = __builtin_cheerp_grow_memory(nbytes);
 		if (res==-1) {
-			//errno = ENOMEM;
+			setErrno(ENOMEM);
 			return (void*)(-1);
 		}
 		_heapEnd += res;

@@ -1079,6 +1079,13 @@ struct mallinfo mALLINFo();
 
 /* ---------- To make a malloc.h, end cutting here ------------ */
 
+#ifdef __CHEERP__
+static void setErrno(int e)
+{
+  errno = e;
+}
+#endif
+
 
 /* 
   Emulation of sbrk for WIN32
@@ -2348,7 +2355,11 @@ __attribute__((cheerp_asmjs)) Void_t* mALLOc(RARG bytes) RDECL size_t bytes;
   /* Check for overflow and just fail, if so. */
   if (nb > INT_MAX || nb < bytes)
   {
-    //RERRNO = ENOMEM;
+#ifdef __CHEERP__
+    setErrno(ENOMEM);
+#else
+    RERRNO = ENOMEM;
+#endif
     return 0;
   }
 
@@ -2833,7 +2844,11 @@ __attribute__((cheerp_asmjs)) Void_t* rEALLOc(RARG oldmem, bytes) RDECL Void_t* 
   /* Check for overflow and just fail, if so. */
   if (nb > INT_MAX || nb < bytes)
   {
-    //RERRNO = ENOMEM;
+#ifdef __CHEERP__
+    setErrno(ENOMEM);
+#else
+    RERRNO = ENOMEM;
+#endif
     return 0;
   }
 
@@ -3073,7 +3088,11 @@ __attribute__((cheerp_asmjs)) Void_t* mEMALIGn(RARG alignment, bytes) RDECL size
   /* Check for overflow. */
   if (nb > INT_MAX || nb < bytes)
   {
-    //RERRNO = ENOMEM;
+#ifdef __CHEERP__
+    setErrno(ENOMEM);
+#else
+    RERRNO = ENOMEM;
+#endif
     return 0;
   }
 
