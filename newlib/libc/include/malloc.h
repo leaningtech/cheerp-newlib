@@ -73,7 +73,7 @@ __attribute__((cheerp_asmjs))
 extern _PTR calloc _PARAMS ((size_t, size_t));
 #if defined(__CYGWIN__) || (defined(__CHEERP__) && !defined(INTERNAL_NEWLIB))
 #undef _calloc_r
-#define _calloc_r(r, s1, s2) malloc (s1*s2);
+#define _calloc_r(r, s1, s2) calloc (s1, s2);
 #else
 __attribute__((cheerp_asmjs)) extern _PTR _calloc_r _PARAMS ((void *, size_t, size_t));
 #endif
