@@ -1706,8 +1706,8 @@ __attribute__((cheerp_asmjs)) extern mbinptr av_[NAV * 2 + 2];
 
 #ifdef DEFINE_MALLOC
 
-STATIC unsigned long trim_threshold   = DEFAULT_TRIM_THRESHOLD;
-STATIC unsigned long top_pad          = DEFAULT_TOP_PAD;
+__attribute__((cheerp_asmjs)) STATIC unsigned long trim_threshold   = DEFAULT_TRIM_THRESHOLD;
+__attribute__((cheerp_asmjs)) STATIC unsigned long top_pad          = DEFAULT_TOP_PAD;
 #if HAVE_MMAP
 STATIC unsigned int  n_mmaps_max      = DEFAULT_MMAP_MAX;
 STATIC unsigned long mmap_threshold   = DEFAULT_MMAP_THRESHOLD;
