@@ -1738,15 +1738,15 @@ STATIC unsigned long max_mmapped_mem = 0;
 
 #else /* ! DEFINE_MALLOC */
 
-extern unsigned long trim_threshold;
-extern unsigned long top_pad;
+extern unsigned long __attribute__((cheerp_asmjs)) trim_threshold;
+extern unsigned long __attribute__((cheerp_asmjs)) top_pad;
 #if HAVE_MMAP
 extern unsigned int  n_mmaps_max;
 extern unsigned long mmap_threshold;
 #endif
-extern char* sbrk_base;
-extern unsigned long max_sbrked_mem;
-extern unsigned long max_total_mem;
+extern __attribute__((cheerp_asmjs)) char* sbrk_base;
+extern __attribute__((cheerp_asmjs)) unsigned long max_sbrked_mem;
+extern __attribute__((cheerp_asmjs)) unsigned long max_total_mem;
 extern __attribute__((cheerp_asmjs)) struct mallinfo current_mallinfo;
 #if HAVE_MMAP
 extern unsigned int n_mmaps;
