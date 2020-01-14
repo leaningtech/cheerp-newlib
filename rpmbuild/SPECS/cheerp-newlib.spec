@@ -5,8 +5,8 @@ Summary: A C++ compiler for the Web, C library implementation
 
 License:  GPLv2
 URL: https://leaningtech.com/cheerp
-Source0: %{NAME}-%{VERSION}.tar.gz
-Source1: cheerp-libcxx-%{VERSION}.tar.gz
+Source0: %{NAME}_%{VERSION}.orig.tar.gz
+Source1: %{NAME}_%{VERSION}.orig-libcxx.tar.gz
 
 BuildRequires: autoconf automake libtool make cheerp-llvm-clang = %{VERSION} cheerp-utils = %{VERSION}
 Requires: cheerp-llvm-clang = %{VERSION} cheerp-utils = %{VERSION}
@@ -25,12 +25,12 @@ cd newlib
 
 mkdir build_genericjs
 cd build_genericjs
-../configure --host=cheerp-genericjs --with-cxx-headers=$PWD/../../cheerp-libcxx-%{VERSION}/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2 --enable-newlib-mb --enable-newlib-nano-formatted-io
+../configure --host=cheerp-genericjs --with-cxx-headers=$PWD/../../libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2 --enable-newlib-mb --enable-newlib-nano-formatted-io
 
 cd ..
 mkdir build_asmjs
 cd build_asmjs
-../configure --host=cheerp-asmjs --with-cxx-headers=$PWD/../../cheerp-libcxx-%{VERSION}/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2 --enable-newlib-mb --enable-newlib-nano-formatted-io
+../configure --host=cheerp-asmjs --with-cxx-headers=$PWD/../../libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2 --enable-newlib-mb --enable-newlib-nano-formatted-io
 
 %build
 %make_build -C newlib/build_genericjs
