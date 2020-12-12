@@ -199,7 +199,7 @@ extern int futimesat _PARAMS ((int, const char *, const struct timeval *));
 
 /* Provide _<systemcall> prototypes for functions provided by some versions
    of newlib.  */
-#ifdef _COMPILING_NEWLIB
+#if defined(_COMPILING_NEWLIB) || defined(__CHEERP__)
 extern int _open _PARAMS ((const char *, int, ...));
 extern int _fcntl _PARAMS ((int, int, ...));
 #ifdef __LARGE64_FILES
