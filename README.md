@@ -8,21 +8,21 @@ Cheerp libc build instructions
 ------------------------------
 
 Building the cheerp-enabled libc requires having the cheerp compiler
-and cheerp-utils headers already installed in /opt/cheerp. It also require
-libcxx-cheerp headers.
+and cheerp-utils headers already installed in /opt/cheerp. It also requires
+libcxx-cheerp headers. Please see https://github.com/leaningtech/cheerp-meta/wiki/Linux-build-instructions for instructions on how to build the whole suite.
 
 ```
 #Please note that newlib is a subdirectory of the cheerp-newlib repository and not the
 #repository itself
 cd newlib
-#cheerp-libcxx is only required to access headers and it not necessary (or possible) to build
+#cheerp-compiler/libcxx is only required to access headers, it not necessary (or possible) to build
 #it before cheerp-newlib
-git clone <libcxx-cheerp-repo> libcxx
+git clone <cheerp-compiler repo> cheerp-compiler
 
 # build the genericjs version of newlib
 mkdir build_genericjs
 cd build_genericjs
-../configure --host=cheerp-genericjs --with-cxx-headers=$PWD/../libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2 --enable-newlib-mb --enable-newlib-nano-formatted-io
+../configure --host=cheerp-genericjs --with-cxx-headers=$PWD/../../cheerp-compiler/libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2 --enable-newlib-mb --enable-newlib-nano-formatted-io
 make
 make install
 ../build-bc-libs.sh genericjs
@@ -31,7 +31,7 @@ cd ..
 #build the asmjs/wasm version of newlib
 mkdir build_asmjs
 cd build_asmjs
-../configure --host=cheerp-asmjs --with-cxx-headers=$PWD/../libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2 --enable-newlib-mb --enable-newlib-nano-formatted-io
+../configure --host=cheerp-asmjs --with-cxx-headers=$PWD/../../cheerp-compiler/libcxx/include --prefix=/opt/cheerp --enable-newlib-io-long-long --enable-newlib-iconv --enable-newlib-iconv-encodings=utf-16,utf-8,ucs_2 --enable-newlib-mb --enable-newlib-nano-formatted-io
 make
 make install
 ../build-bc-libs.sh asmjs
