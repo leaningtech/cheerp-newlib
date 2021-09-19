@@ -18,6 +18,7 @@
  *
  ***************************************************************/
 
+#define LEAN_CXX_LIB
 #include <cheerp/client.h>
 #include <cheerp/clientlib.h>
 #include <malloc.h>
