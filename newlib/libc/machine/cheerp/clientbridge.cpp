@@ -73,6 +73,31 @@ int _gettimeofday (timeval* tv, void* tz_)
 	return 0;
 }
 
+int clock_getres (clockid_t clock_id, struct timespec *tp)
+{
+	if (tp)
+	{
+		tp->tv_sec = 0;
+		tp->tv_nsec = 1000.0*1000.0;
+	}
+	return 0;
+}
+
+int clock_gettime (clockid_t clock_id, struct timespec *tp)
+{
+	if (tp)
+	{
+		// 'now' is in milliseconds
+		double now = cheerp::date_now();
+		tp->tv_sec = now / 1000;
+		tp->tv_nsec = (now-(tp->tv_sec*1000.0))*1000.0*1000.0;
+	}
+	return 0;
+}
+
+//int clock_settime (clockid_t clock_id, const struct timespec *tp)
+//	unimplemented
+
 [[cheerp::genericjs]] uint64_t getPerfNow()
 {
 	return client::performance.now();
