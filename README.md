@@ -9,7 +9,7 @@ Cheerp libc build instructions
 
 Building the cheerp-enabled libc requires having the cheerp compiler
 and cheerp-utils headers already installed in /opt/cheerp. It also requires
-libcxx-cheerp headers. Please see https://github.com/leaningtech/cheerp-meta/wiki/Linux-build-instructions for instructions on how to build the whole suite.
+libcxx-cheerp headers. Please see https://docs.leaningtech.com/cheerp/Linux-build-instructions for instructions on how to build the whole suite.
 
 ```
 #Please note that newlib is a subdirectory of the cheerp-newlib repository and not the
