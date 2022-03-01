@@ -51,6 +51,11 @@ _DEFUN(__cheerpwrite, (fd, buf, n),
 	return n;
 }
 
+[[cheerp::genericjs]]
+double offsetInMilliseconds()
+{
+	return (new client::Date())->getTimezoneOffset() * -60.0 * 1000.0;
+}
 
 extern "C" {
 
@@ -60,7 +65,7 @@ int _gettimeofday (timeval* tv, void* tz_)
 	if(tv)
 	{
 		// 'now' is in milliseconds
-		double now = cheerp::date_now();
+		double now = cheerp::date_now() + offsetInMilliseconds();
 		tv->tv_sec = now / 1000;
 		tv->tv_usec = (now-(tv->tv_sec*1000.0))*1000.0;
 	}
@@ -89,6 +94,8 @@ int clock_gettime (clockid_t clock_id, struct timespec *tp)
 	{
 		// 'now' is in milliseconds
 		double now = cheerp::date_now();
+		if (clock_id == CLOCK_REALTIME)
+			now += offsetInMilliseconds();
 		tp->tv_sec = now / 1000;
 		tp->tv_nsec = (now-(tp->tv_sec*1000.0))*1000.0*1000.0;
 	}
